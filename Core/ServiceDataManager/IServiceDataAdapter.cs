@@ -8,6 +8,6 @@ namespace TravelLine.CurrencyRate.Core.ServiceDataManager
 {
     public interface IServiceDataAdapter
     {
-        string GetData();
+        ServiceData GetData();
     }
 }
