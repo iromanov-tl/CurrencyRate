@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="tlui/tlui.min.css"/>
+  <!--(if target dev || package_dev || prod || package_prod)>
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
+  <!(endif)-->
+  <!--(if target qa || package_qa)>
+    <link rel="icon" type="image/png" href="images/favicon_qa.png"/>
+  <!(endif)-->
+</head>
+<body>
+ 
+  <div ng-controller="LayoutController">
+    <tl-extranet-host main-menu-items="mainMenuItems"
+                      provider-info-logo="providerInfoLogo"
+                      provider-info-provider-id="providerInfoProviderId"
+                      provider-info-name="providerInfoName"
+                      provider-info-city="providerInfoCity"
+                      business-card-name="businessCardName"
+                      business-card-position="businessCardPosition"
+                      business-card-email="businessCardEmail"
+                      business-card-phones="businessCardPhones"
+                      business-card-photo-url="businessCardPhotoUrl"
+                      ribbon-navigation-data="ribbonNavigationData"
+                      ribbon-back-button-click="ribbonBackButtonClick"
+                      ribbon-save-button-click="ribbonSaveButtonClick"
+                      ribbon-save-and-stay-button-click="ribbonSaveAndStayButtonClick"
+                      ribbon-buttons-disabled="ribbonButtonsDisabled"
+                      ribbon-old-page-link="ribbonOldPageLink"
+                      ribbon-new-page-link="ribbonNewPageLink"
+                      ribbon-languages="ribbonLanguages"
+                      ribbon-selected-language-id="ribbonSelectedLanguageId"
+                      ribbon-help-button-url="ribbonHelpButtonUrl"
+                      notifications="notifications"
+                      page-title="pageTitle"
+                      page-subtitle="pageSubtitle"
+                      help-title="helpTitle"
+                      help-content="helpContent"
+                      help-link="helpLink">
+      <div ng-view class="ng-cloak"></div>
+    </tl-extranet-host>
+  </div>
+  <!--(if target qa || prod || package_qa || package_prod)>
+    <script type="text/javascript" src="tlui/monitoring.js"></script>  
+    <script type="text/javascript" src="tlui/tlui-vendor.min.js"></script>
+    <script type="text/javascript" src="tlui/tlui.min.js"></script>
+  <!(endif)-->
+  <!--(if target dev || package_dev)>
+    <script type="text/javascript" src="tlui/monitoring.js"></script>  
+    <script type="text/javascript" src="tlui/tlui-vendor.js"></script>
+    <script type="text/javascript" src="tlui/tlui.js"></script>
+  <!(endif)-->
+  
+  <script type="text/javascript" src="/secure/Panel/wgtutil.js"></script>
+  <script type="text/javascript" src="/secure/Panel/panel.js"></script>
+  <script type="text/javascript" src="/secure/Extranet/Assets/js/menu-localization.js"></script>
+  
+  <script type="text/javascript" src="app.js"></script>
+  
+  <script type="text/javascript">
+    TLPanel.init('/secure/Panel/Handler.ashx', 'CurrencyRate');
+  </script>  
+  
+</body>
+</html>

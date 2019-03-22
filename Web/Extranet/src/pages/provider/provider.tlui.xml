@@ -1,0 +1,23 @@
+﻿<div ng-controller="ProviderController">
+  <row>
+    <column>
+      <form-item>
+        <list item="ps" version="2" get-items="getItems($from, $to)" views="['table']">
+          <list-item>
+            <list-item-title title="T:provider.name" text="ps.name" />
+            <list-item-status>
+              <list-item-state text="T:provider.active" if="ps.id != 0 &amp;&amp; ps.isEnabled" type="active"/>
+              <list-item-state text="T:provider.inactive" if="ps.id != 0 &amp;&amp; !ps.isEnabled" type="inactive"/>
+            </list-item-status>
+            
+            <list-item-actions>
+              <list-item-action-edit action="edit(ps)" if="ps.id != 0 &amp;&amp; ps.isEnabled"/>
+              <list-item-action-custom action="deactivate(ps)" text="T:provider.deactivate" icon="cancel" if="ps.id != 0 &amp;&amp; ps.isEnabled"/>
+              <list-item-action-custom action="reactivate(ps)" text="T:provider.activate" icon="cw" if="ps.id != 0 &amp;&amp; !ps.isEnabled"/>
+            </list-item-actions>
+          </list-item>
+        </list>
+      </form-item>
+    </column>
+  </row>
+</div>

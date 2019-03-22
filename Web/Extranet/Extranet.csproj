@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{59576803-E8CF-4F9E-B8A0-862C00911266}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="gruntfile.js" />
+    <Content Include="src\images\favicon.png" />
+    <Content Include="src\images\favicon_qa.png" />
+    <Content Include="src\index.html" />
+    <Content Include="src\pages\error\error.tlui.xml" />
+    <Content Include="src\pages\provider\provider.tlui.xml" />
+    <Content Include="tlui\data\images\flags24.png" />
+    <Content Include="tlui\data\images\flags64.png" />
+    <Content Include="tlui\data\tlui-icons.svg" />
+    <Content Include="tlui\tlui-vendor.js" />
+    <Content Include="tlui\tlui-vendor.min.js" />
+    <Content Include="tlui\tlui.css" />
+    <Content Include="tlui\tlui.js" />
+    <Content Include="tlui\tlui.min.css" />
+    <Content Include="tlui\tlui.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\app\Application.ts" />
+    <TypeScriptCompile Include="src\app\Constants.ts" />
+    <TypeScriptCompile Include="src\app\enums\Enums.inc.ts" />
+    <TypeScriptCompile Include="src\app\enums\OrderType.ts" />
+    <TypeScriptCompile Include="src\app\MenuItems.ts" />
+    <TypeScriptCompile Include="src\app\services\ProviderService.ts" />
+    <TypeScriptCompile Include="src\app\services\TLExtranetService.ts" />
+    <TypeScriptCompile Include="src\dto\ApplicationConfig.ts" />
+    <TypeScriptCompile Include="src\dto\Dto.inc.ts" />
+    <TypeScriptCompile Include="src\dto\provider\Provider.ts" />
+    <TypeScriptCompile Include="src\dto\provider\ProvidersContainerDto.ts" />
+    <TypeScriptCompile Include="src\pages\error\error.ts" />
+    <TypeScriptCompile Include="src\pages\provider\provider.ts" />
+    <TypeScriptCompile Include="tlui\tlui.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\angularjs\angular-resource.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\angularjs\angular-route.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\lodash\lodash.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\moment\moment.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\tlui\instance_api.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\tlui\tlui.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\tlui\tlui.internal.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\travelline\travelline.d.ts" />
+    <TypeScriptCompile Include="tlui\typings\tsd.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-resource.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-route.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="typings\es6-promise\es6-promise.d.ts" />
+    <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\lodash\lodash.d.ts" />
+    <TypeScriptCompile Include="typings\tsd.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="src\i18n\common\navigation_menu.en.resx" />
+    <EmbeddedResource Include="src\i18n\common\navigation_menu.resx" />
+    <EmbeddedResource Include="src\i18n\pages\provider.en.resx" />
+    <EmbeddedResource Include="src\i18n\pages\provider.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\styles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="TLUILib, Version=0.0.20.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TLUI.1.60.0\lib\net45\TLUILib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Extranet</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>24202</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:24202/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind />
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+</Project>

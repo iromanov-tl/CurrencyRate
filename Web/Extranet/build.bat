@@ -1,0 +1,1 @@
+node  "%~dp0node_modules\grunt-cli\bin\grunt" --gruntfile="gruntfile.js" tpBuild_%1

@@ -1,0 +1,2 @@
+Get-ChildItem ("..\Web\*\Bin", "..\AppCore\*\Bin", "..\Services\*\Bin", "..\WebServices\*\Bin", "..\Tests\*\Bin" ) | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem ("..\Web\*\Obj", "..\AppCore\*\Obj", "..\Services\*\Obj", "..\WebServices\*\Obj", "..\Tests\*\Obj" ) | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
