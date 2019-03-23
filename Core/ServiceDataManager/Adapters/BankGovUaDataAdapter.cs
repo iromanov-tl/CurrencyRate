@@ -12,43 +12,52 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 {
     class BankGovUaDataAdapter : IServiceDataAdapter
     {
-        private string connectionUrl;
         private const string CODE_PROPERTY = "cc";
         private const string RATE_PROPERTY = "rate";
         private const string SOURCE_CURRENCY_CODE = "RUB";
         private const string SERVICE_CURRENCY_CODE = "UAH";
-        private double sourceCurrencyValue;
-        private void SetConnectionUrl(DateTime date)
+
+        private void ValidateResponse(JArray responseArray)
         {
-            connectionUrl = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=" + date.ToString("yyyyMMdd") + "&json";
+            string message = (string)responseArray.First["message"];
+            if (responseArray.Count == 1 && message != null)
+            {
+                throw new Exception("Service returns message :" + message);
+            }
         }
-        public CurrencyData GetData(RequestData requestData)
+
+        public double GetRate(RequestData requestData)
         {
-            SetConnectionUrl(requestData.date);
-            CurrencyData currencyData = new CurrencyData();
+            string connectionUrl = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=" + requestData.date.ToString("yyyyMMdd") + "&json";
+            double rate = 0;
+            double sourceCurrencyValue = 0;
             string responseJSON = HttpClient.GetDataFromUrl(connectionUrl);
             JArray responseArray = JArray.Parse(responseJSON);
+            ValidateResponse(responseArray);
             bool isOneCurrencyFinded = false;
             foreach (JObject item in responseArray)
             {
                 if ((string)item[CODE_PROPERTY] == requestData.currencyCode)
                 {
-                    currencyData.rate = (double)item[RATE_PROPERTY];
+                    rate = (double)item[RATE_PROPERTY];
                     if (isOneCurrencyFinded)
                     {
                         break;
                     }
                     isOneCurrencyFinded = true;
 
-                };
+                }
+
                 if ((string)item[CODE_PROPERTY] == SOURCE_CURRENCY_CODE)
                 {
                     if (requestData.currencyCode == SERVICE_CURRENCY_CODE)
                     {
-                        currencyData.rate = 1 / (double)item[RATE_PROPERTY];
-                        return currencyData;
+                        rate = 1 / (double)item[RATE_PROPERTY];
+                        return rate;
                     }
+
                     sourceCurrencyValue = (double)item[RATE_PROPERTY];
+
                     if (isOneCurrencyFinded)
                     {
                         break;
@@ -56,8 +65,14 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
                     isOneCurrencyFinded = true;
                 }
             }
-            currencyData.rate = currencyData.rate / sourceCurrencyValue;
-            return currencyData;
+
+            if (rate == 0)
+                throw new Exception("Can't compute currency with code:" + requestData.currencyCode);
+
+            if (sourceCurrencyValue == 0)
+                throw new Exception("Can't compute currency with code:" + SOURCE_CURRENCY_CODE);
+
+            return rate;
         }
     }
 }

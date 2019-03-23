@@ -10,24 +10,36 @@ using TravelLine.WebAppTemplate.Core.Util;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 {
-    class OpenexchangeratesDataAdapter : IServiceDataAdapter
+    class OpenExchangeRatesDataAdapter : IServiceDataAdapter
     {
-        private static string connectionUrl;
         private const string RATES_PROPERTY = "rates";
         private const string SOURCE_CURRENCY_CODE = "RUB";
-        private static void SetConnectionUrl(DateTime date)
+
+        private void ValidateResponse(JObject responseObject)
         {
-            connectionUrl = "https://openexchangerates.org/api/historical/" + date.ToString("yyyy-MM-dd") + ".json?app_id=d164219ce3aa4403adc977f9ee09b996";
+            bool isError = (bool)responseObject["error"];
+            string description = (string)responseObject["description"];
+            if (isError)
+            {
+                throw new Exception("Service returns message :" + description);
+            }
         }
-        public CurrencyData GetData(RequestData requestData)
+
+        public double GetRate(RequestData requestData)
         {
-            SetConnectionUrl(requestData.date);
-            CurrencyData currencyData = new CurrencyData();
+            string connectionUrl = "https://openexchangerates.org/api/historical/" + requestData.date.ToString("yyyy-MM-dd") + ".json?app_id=d164219ce3aa4403adc977f9ee09b996";
+
+            double rate = 0;
             string responseJSON = HttpClient.GetDataFromUrl(connectionUrl);
             JObject responseObject = JObject.Parse(responseJSON);
+            ValidateResponse(responseObject);
             JObject rates = (JObject)responseObject[RATES_PROPERTY];
-            currencyData.rate = (double)rates[SOURCE_CURRENCY_CODE] / (double)rates[requestData.currencyCode];
-            return currencyData;
+
+            if (rate == 0)
+                throw new Exception("Can't compute currency with code:" + requestData.currencyCode);
+
+            rate = (double)rates[SOURCE_CURRENCY_CODE] / (double)rates[requestData.currencyCode];
+            return rate;
         }
     }
 }

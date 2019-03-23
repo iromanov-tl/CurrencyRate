@@ -9,6 +9,6 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
 {
     public interface IServiceDataAdapter
     {
-        CurrencyData GetData(RequestData requestData);
+        double GetRate(RequestData requestData);
     }
 }
