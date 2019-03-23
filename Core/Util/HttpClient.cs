@@ -189,5 +189,11 @@ namespace TravelLine.CurrencyRate.Core.Util
             }
             return output;
         }
+
+        public static string GetDataFromUrl(string url, HttpClientAdvancedSettings advancedSettings = null)
+        {
+            HttpWebRequest request = CreateWebRequest(url);
+            return GetResponse(request);
+        }
     }
 }

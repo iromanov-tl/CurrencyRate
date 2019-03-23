@@ -68,9 +68,8 @@
       <HintPath>..\packages\TLTransit.Common.1.2.5.0\lib\net45\MassTransit.Transports.RabbitMq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -217,6 +216,12 @@
     <Compile Include="Scheduler\TaskEventArgs.cs" />
     <Compile Include="Domain\Security\GroupName.cs" />
     <Compile Include="Domain\Security\RoleName.cs" />
+    <Compile Include="ServiceDataManager\Adapters\BankGovUaDataAdapter.cs" />
+    <Compile Include="ServiceDataManager\Adapters\NationalbankDataAdapter.cs" />
+    <Compile Include="ServiceDataManager\Adapters\OpenexchangeratesDataAdapter.cs" />
+    <Compile Include="ServiceDataManager\DataProvider.cs" />
+    <Compile Include="ServiceDataManager\ServiceData.cs" />
+    <Compile Include="ServiceDataManager\IServiceDataAdapter.cs" />
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\ExportActivityLogService.cs" />
     <Compile Include="Services\IExportActivityLogService.cs" />
@@ -243,6 +248,7 @@
     <Compile Include="Services\Travelline\TravellineServiceClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
