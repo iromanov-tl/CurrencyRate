@@ -1,10 +1,10 @@
 ﻿using System;
 using TravelLine.Database.DataAccess;
 using TravelLine.Database.DataAccess.Initializers;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.Core.Data;
-using TravelLine.CurrencyRate.Core.DependencyManagement;
-using TravelLine.CurrencyRate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.Data;
+using TravelLine.WebAppTemplate.Core.DependencyManagement;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
 
 namespace Core.Tests.Services
 {
@@ -33,8 +33,8 @@ namespace Core.Tests.Services
             {
                 return;
             }
-            DependencyContainerServiceRegistrator.RegisterServices( CurrencyRateContext.Current.ContainerManager );
-            CurrencyRateContext.Current.ContainerManager.BindDbContextFactory<IDbContextFactory, CurrencyRateDbContextFactory>( DatabaseInitializerType.DropCreateDatabaseAlways, Config.DbConnectionString, Config.DbReadonlyConnectionString );
+            DependencyContainerServiceRegistrator.RegisterServices( WebAppTemplateContext.Current.ContainerManager );
+            WebAppTemplateContext.Current.ContainerManager.BindDbContextFactory<IDbContextFactory, WebAppTemplateDbContextFactory>( DatabaseInitializerType.DropCreateDatabaseAlways, Config.DbConnectionString, Config.DbReadonlyConnectionString );
             _engineInited = true;
         }
 

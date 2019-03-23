@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="TravelLine.CurrencyRate.AccountsApi.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="TravelLine.WebAppTemplate.AccountsApi.Global" Language="C#" %>

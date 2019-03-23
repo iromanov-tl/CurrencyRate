@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.Domain.Logging
+﻿namespace TravelLine.WebAppTemplate.Core.Domain.Logging
 {
     public enum LogLevel
     {

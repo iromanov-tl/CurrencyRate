@@ -5,10 +5,10 @@ using System.Net.Http;
 using System.Web;
 using Newtonsoft.Json;
 using TravelLine.Database.DataAccess;
-using TravelLine.CurrencyRate.Core.Data.Repository;
-using TravelLine.CurrencyRate.Core.Domain.Logging;
+using TravelLine.WebAppTemplate.Core.Data.Repository;
+using TravelLine.WebAppTemplate.Core.Domain.Logging;
 
-namespace TravelLine.CurrencyRate.Core.Services.Logging
+namespace TravelLine.WebAppTemplate.Core.Services.Logging
 {
     public class ActivityLogService : IActivityLogService
     {

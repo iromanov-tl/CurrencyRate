@@ -1,4 +1,4 @@
-﻿module CurrencyRate.Application.Enums {
+﻿module WebAppTemplate.Application.Enums {
 
     export enum OrderType {
         None = 0,

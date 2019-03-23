@@ -5,9 +5,9 @@ $scriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
 ."$scriptDir\_common.inc.ps1"
 ."$scriptDir\_config.inc.ps1"
 
-$serviceName = 'Travelline CurrencyRate'
+$serviceName = 'Travelline WebAppTemplate'
 $serviceDescription = 'Executes jobs: ***********************.'
-$servicePath = "d:\sources\CurrencyRate\WinServices\CurrencyRateSvc\bin\Debug\CurrencyRateSvc.exe";
+$servicePath = "d:\sources\WebAppTemplate\WinServices\WebAppTemplateSvc\bin\Debug\WebAppTemplateSvc.exe";
 $serviceNotInstalledResult = "serviceNotInstalledResult";
 
 function SwitchService {

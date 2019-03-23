@@ -11,7 +11,7 @@ goto success
 
 :usage_error
     REM Invalid environment name. Error
-    ECHO Deploy script for CurrencyRate app. Environment is not passed.
+    ECHO Deploy script for WebAppTemplate app. Environment is not passed.
     ECHO --------------------------------
     ECHO Usage:  %~n0 ^<env^>
     EXIT /B 1

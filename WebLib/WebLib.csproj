@@ -7,8 +7,8 @@
     <ProjectGuid>{799D3375-E4A2-4D8C-9EEA-46AA6F73B0D1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TravelLine.CurrencyRate.WebLib</RootNamespace>
-    <AssemblyName>TravelLine.CurrencyRate.WebLib</AssemblyName>
+    <RootNamespace>TravelLine.WebAppTemplate.WebLib</RootNamespace>
+    <AssemblyName>TravelLine.WebAppTemplate.WebLib</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -96,8 +96,8 @@
     <Compile Include="Security\UserContextInitResult.cs" />
     <Compile Include="Security\UserContextService.cs" />
     <Compile Include="Security\UserContextUtil.cs" />
-    <Compile Include="Security\CurrencyRateIdentity.cs" />
-    <Compile Include="Security\CurrencyRatePrincipal.cs" />
+    <Compile Include="Security\WebAppTemplateIdentity.cs" />
+    <Compile Include="Security\WebAppTemplatePrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -106,7 +106,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

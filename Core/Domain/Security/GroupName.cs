@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.Domain.Security
+﻿namespace TravelLine.WebAppTemplate.Core.Domain.Security
 {
     public static class GroupName
     {

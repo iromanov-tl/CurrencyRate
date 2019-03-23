@@ -10,9 +10,9 @@
                     <section name="logging" type="Common.Logging.ConfigurationSectionHandler, Common.Logging" />
                 </sectionGroup>
                 <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />            
-                <section name="mailDispatchPoints" requirePermission="false" type="TravelLine.CurrencyRate.Core.Configuration.MailDispatchPoint.MailDispatchPointsSection, TravelLine.CurrencyRate.Core" />
-                <section name="database" requirePermission="false" type="TravelLine.CurrencyRate.Core.Configuration.DatabaseConfiguration,TravelLine.CurrencyRate.Core" />
-                <section name="accountsApi" requirePermission="false" type="TravelLine.CurrencyRate.Core.Configuration.AccountsApiConfiguration,TravelLine.CurrencyRate.Core" />
+                <section name="mailDispatchPoints" requirePermission="false" type="TravelLine.WebAppTemplate.Core.Configuration.MailDispatchPoint.MailDispatchPointsSection, TravelLine.WebAppTemplate.Core" />
+                <section name="database" requirePermission="false" type="TravelLine.WebAppTemplate.Core.Configuration.DatabaseConfiguration,TravelLine.WebAppTemplate.Core" />
+                <section name="accountsApi" requirePermission="false" type="TravelLine.WebAppTemplate.Core.Configuration.AccountsApiConfiguration,TravelLine.WebAppTemplate.Core" />
                 <section name="tlAccountsLib" requirePermission="false" type="TravelLine.AccountsLib.Configuration.AccountsLibConfig" />
             </configSections>
             <appSettings>

@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-module CurrencyRate.Controllers {
+module WebAppTemplate.Controllers {
     interface IErrorPageScope extends ng.IScope {
         errorCode: number;
         /* tslint:disable:no-any */

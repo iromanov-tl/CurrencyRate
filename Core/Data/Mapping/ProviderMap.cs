@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using TravelLine.CurrencyRate.Core.Domain;
+using TravelLine.WebAppTemplate.Core.Domain;
 
-namespace TravelLine.CurrencyRate.Core.Data.Mapping
+namespace TravelLine.WebAppTemplate.Core.Data.Mapping
 {
     public class ProviderMap : EntityTypeConfiguration<Provider>
     {

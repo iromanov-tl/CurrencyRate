@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TravelLine.Database.DataAccess;
 
-namespace TravelLine.CurrencyRate.Core.Domain.Security
+namespace TravelLine.WebAppTemplate.Core.Domain.Security
 {
     public class Role : EntityWithTypedId<string>
     {

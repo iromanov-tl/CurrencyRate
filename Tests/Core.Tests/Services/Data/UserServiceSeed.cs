@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using TravelLine.Database.DataAccess;
-using TravelLine.CurrencyRate.Core.Domain.Security;
+using TravelLine.WebAppTemplate.Core.Domain.Security;
 
 namespace Core.Tests.Services.Data
 {

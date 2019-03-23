@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TravelLine.CurrencyRate.Core.Infrastructure
+namespace TravelLine.WebAppTemplate.Core.Infrastructure
 {
     public class ServiceFactory : IServiceFactory
     {
@@ -8,17 +8,17 @@ namespace TravelLine.CurrencyRate.Core.Infrastructure
 
         public T Get<T>() where T : class
         {
-            return CurrencyRateContext.Current.Resolve<T>();
+            return WebAppTemplateContext.Current.Resolve<T>();
         }
 
         public T Get<T>( string name ) where T : class
         {
-            return CurrencyRateContext.Current.Resolve<T>( name );
+            return WebAppTemplateContext.Current.Resolve<T>( name );
         }
 
         public object Get( Type type )
         {
-            return CurrencyRateContext.Current.TryToResolve( type );
+            return WebAppTemplateContext.Current.TryToResolve( type );
         }
 
         #endregion

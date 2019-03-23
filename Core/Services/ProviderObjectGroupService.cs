@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TravelLine.CurrencyRate.Core.Domain.Security;
+using TravelLine.WebAppTemplate.Core.Domain.Security;
 
-namespace TravelLine.CurrencyRate.Core.Services
+namespace TravelLine.WebAppTemplate.Core.Services
 {
     class ProviderObjectGroupService : CommonService<ProviderObjectGroup>, IProviderObjectGroupService
     {

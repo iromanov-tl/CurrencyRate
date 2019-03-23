@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.WebLib.Security
+﻿namespace TravelLine.WebAppTemplate.WebLib.Security
 {
     public enum UserContextInitResult
     {

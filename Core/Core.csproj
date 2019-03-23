@@ -7,8 +7,8 @@
     <ProjectGuid>{6B8827C2-6D52-44E6-A468-94FB37753031}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TravelLine.CurrencyRate.Core</RootNamespace>
-    <AssemblyName>TravelLine.CurrencyRate.Core</AssemblyName>
+    <RootNamespace>TravelLine.WebAppTemplate.Core</RootNamespace>
+    <AssemblyName>TravelLine.WebAppTemplate.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -68,8 +68,9 @@
       <HintPath>..\packages\TLTransit.Common.1.2.5.0\lib\net45\MassTransit.Transports.RabbitMq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -149,7 +150,7 @@
     <Compile Include="Configuration\MailDispatchPoint\MailDispatchPoint.cs" />
     <Compile Include="Configuration\MailDispatchPoint\MailDispatchPointCollection.cs" />
     <Compile Include="Configuration\MailDispatchPoint\MailDispatchPointsSection.cs" />
-    <Compile Include="Configuration\CurrencyRateConfiguration.cs" />
+    <Compile Include="Configuration\WebAppTemplateConfiguration.cs" />
     <Compile Include="Configuration\DatabaseConfiguration.cs" />
     <Compile Include="Configuration\TravellineServiceConfig.cs" />
     <Compile Include="Data\DateTimeKindAttribute.cs" />
@@ -157,12 +158,14 @@
     <Compile Include="Data\Mapping\Logging\ActivityLogMap.cs" />
     <Compile Include="Data\Mapping\Logging\LogMap.cs" />
     <Compile Include="Data\Mapping\Security\ProviderObjectGroupMap.cs" />
+    <Compile Include="Data\Models\CurrencyRecord.cs" />
+    <Compile Include="Data\Models\Service.cs" />
     <Compile Include="Data\Repository\IRepositoryStringId.cs" />
     <Compile Include="Data\Repository\RepositoryStringId.cs" />
-    <Compile Include="Data\CurrencyRateDbContextFactory.cs" />
+    <Compile Include="Data\WebAppTemplateDbContextFactory.cs" />
     <Compile Include="Data\Repository\Entity.cs" />
-    <Compile Include="Data\CurrencyRateDbContext.cs" />
-    <Compile Include="Data\CurrencyRateReadonlyDbContext.cs" />
+    <Compile Include="Data\WebAppTemplateDbContext.cs" />
+    <Compile Include="Data\WebAppTemplateReadonlyDbContext.cs" />
     <Compile Include="Data\Mapping\ProviderMap.cs" />
     <Compile Include="Data\Mapping\Security\GroupMap.cs" />
     <Compile Include="Data\Mapping\Security\GroupRoleMap.cs" />
@@ -197,11 +200,12 @@
     <Compile Include="Domain\TLHotel\Resources\Region.cs" />
     <Compile Include="Extensions\Log4Net\AbstractLogAppender.cs" />
     <Compile Include="Extensions\Log4Net\EmailStorageLogAppender.cs" />
-    <Compile Include="Infrastructure\CurrencyRateContext.cs" />
-    <Compile Include="Infrastructure\ICurrencyRateContext.cs" />
+    <Compile Include="Infrastructure\WebAppTemplateContext.cs" />
+    <Compile Include="Infrastructure\IWebAppTemplateContext.cs" />
     <Compile Include="Infrastructure\IServiceFactory.cs" />
     <Compile Include="Infrastructure\ServiceFactory.cs" />
     <Compile Include="Infrastructure\ServiceScope.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\ITask.cs" />
     <Compile Include="Scheduler\ITaskQueue.cs" />
@@ -219,9 +223,10 @@
     <Compile Include="ServiceDataManager\Adapters\BankGovUaDataAdapter.cs" />
     <Compile Include="ServiceDataManager\Adapters\NationalbankDataAdapter.cs" />
     <Compile Include="ServiceDataManager\Adapters\OpenexchangeratesDataAdapter.cs" />
+    <Compile Include="ServiceDataManager\CurrencyData.cs" />
     <Compile Include="ServiceDataManager\DataProvider.cs" />
-    <Compile Include="ServiceDataManager\ServiceData.cs" />
     <Compile Include="ServiceDataManager\IServiceDataAdapter.cs" />
+    <Compile Include="ServiceDataManager\RequestData.cs" />
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\ExportActivityLogService.cs" />
     <Compile Include="Services\IExportActivityLogService.cs" />
@@ -248,7 +253,6 @@
     <Compile Include="Services\Travelline\TravellineServiceClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>

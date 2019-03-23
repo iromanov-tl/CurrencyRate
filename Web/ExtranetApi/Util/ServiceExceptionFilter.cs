@@ -4,9 +4,9 @@ using System.Net.Http.Formatting;
 using System.Reflection;
 using System.Web.Http.Filters;
 using Common.Logging;
-using TravelLine.CurrencyRate.ExtranetApi.Exceptions;
+using TravelLine.WebAppTemplate.ExtranetApi.Exceptions;
 
-namespace TravelLine.CurrencyRate.ExtranetApi.Util
+namespace TravelLine.WebAppTemplate.ExtranetApi.Util
 {
     public class ServiceExceptionFilter : ExceptionFilterAttribute
     {

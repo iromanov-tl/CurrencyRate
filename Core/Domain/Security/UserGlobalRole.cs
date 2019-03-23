@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TravelLine.CurrencyRate.Core.Domain.Security
+namespace TravelLine.WebAppTemplate.Core.Domain.Security
 {
     /// <summary>
     /// Сущность, представляющая глобальную пользовательскую роль.

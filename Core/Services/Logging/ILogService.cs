@@ -1,6 +1,6 @@
-﻿using TravelLine.CurrencyRate.Core.Domain.Logging;
+﻿using TravelLine.WebAppTemplate.Core.Domain.Logging;
 
-namespace TravelLine.CurrencyRate.Core.Services.Logging
+namespace TravelLine.WebAppTemplate.Core.Services.Logging
 {
     public interface ILogService
     {

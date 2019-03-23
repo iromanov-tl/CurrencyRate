@@ -3,19 +3,19 @@
     <deploymentSettings>
         <dev>
             <domain name="currencyRate" />
-            <deploymentDir path="D:\dev\CurrencyRate\App" />
+            <deploymentDir path="d:\TL\innerProjects\TLCurrencyRate\App" />
         </dev>
         <qa>
             <domain name="currencyRate" />
-            <deploymentDir path="D:\dev\CurrencyRate\App" />
+            <deploymentDir path="d:\TL\innerProjects\TLCurrencyRate\App" />
         </qa>
         <qa2>
             <domain name="currencyRate" />
-            <deploymentDir path="D:\dev\CurrencyRate\App" />
+            <deploymentDir path="d:\TL\innerProjects\TLCurrencyRate\App" />
         </qa2>
         <prod>
             <domain name="currencyRate" /> <!--app name in IIS-->
-            <deploymentDir path="D:\dev\CurrencyRate\App" />
+            <deploymentDir path="d:\TL\innerProjects\TLCurrencyRate\App" />
         </prod>
     </deploymentSettings>
 
@@ -37,32 +37,32 @@
         <common>
             <add key="ErrorMailDispatchPoint" value="mail_travelline_ru" />
             <add key="ErrorReceiverEmailAddress" value="ilya.romanov@travelline.ru" />
-            <add key="LogsDir" value="D:\dev\CurrencyRate\logs" />
+            <add key="LogsDir" value="d:\TL\innerProjects\TLCurrencyRate\logs" />
         </common>
         <dev>
             <add key="ErrorMailDispatchPoint" value="mail_travelline_ru" />
             <add key="ErrorReceiverEmailAddress" value="ilya.romanov@travelline.ru" />
-            <add key="LogsDir" value="D:\dev\CurrencyRate\logs" />
+            <add key="LogsDir" value="d:\TL\innerProjects\TLCurrencyRate\logs" />
         </dev>
         <ilya.romanov>
             <add key="ErrorMailDispatchPoint" value="mail_travelline_ru" />
             <add key="ErrorReceiverEmailAddress" value="ilya.romanov@travelline.ru" />
-            <add key="LogsDir" value="D:\dev\CurrencyRate\logs" />
+            <add key="LogsDir" value="d:\TL\innerProjects\TLCurrencyRate\logs" />
         </ilya.romanov>
         <qa>
             <add key="ErrorMailDispatchPoint" value="bugs_travelline_ru" />
             <add key="ErrorReceiverEmailAddress" value="bugs@dev.travelline.ru" />
-            <add key="LogsDir" value="D:\dev\CurrencyRate\logs" />
+            <add key="LogsDir" value="d:\TL\innerProjects\TLCurrencyRate\logs" />
         </qa>
         <qa2>
             <add key="ErrorMailDispatchPoint" value="bugs_travelline_ru" />
             <add key="ErrorReceiverEmailAddress" value="bugs@dev.travelline.ru" />
-            <add key="LogsDir" value="D:\dev\CurrencyRate\logs" />
+            <add key="LogsDir" value="d:\TL\innerProjects\TLCurrencyRate\logs" />
         </qa2>
         <prod>
             <add key="ErrorMailDispatchPoint" value="bugs_travelline_ru" />
             <add key="ErrorReceiverEmailAddress" value="bugs@dev.travelline.ru" />
-            <add key="LogsDir" value="D:\dev\CurrencyRate\logs" />
+            <add key="LogsDir" value="d:\TL\innerProjects\TLCurrencyRate\logs" />
         </prod>
     </appSettings2>
 
@@ -162,16 +162,18 @@
                 </layout>
                 <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
             </appender>
+			<!--
             <appender name="ErrorEmailStorageLogAppender" type="TravelLine.CurrencyRate.Core.Extensions.Log4Net.EmailStorageLogAppender, TravelLine.CurrencyRate.Core">
                 <threshold value="ERROR" />
                 <layout type="log4net.Layout.PatternLayout,log4net">
                     <param name="ConversionPattern" value="%logger  %message" />
                 </layout>
             </appender>
+			-->
             <root>
                 <level value="ALL" />
                 <appender-ref ref="TLTransitErrorTextLog" />
-                <appender-ref ref="ErrorEmailStorageLogAppender" />
+                <!--<appender-ref ref="ErrorEmailStorageLogAppender" />-->
             </root>
         </common>
     </log4netTLIntegrationService>
@@ -192,16 +194,18 @@
                 </layout>
                 <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
             </appender>
-            <appender name="ErrorEmailStorageLogAppender" type="TravelLine.CurrencyRate.Core.Extensions.Log4Net.EmailStorageLogAppender, TravelLine.CurrencyRate.Core">
+            <!--
+			<appender name="ErrorEmailStorageLogAppender" type="TravelLine.CurrencyRate.Core.Extensions.Log4Net.EmailStorageLogAppender, TravelLine.CurrencyRate.Core">
                 <threshold value="ERROR" />
                 <layout type="log4net.Layout.PatternLayout,log4net">
                     <param name="ConversionPattern" value="%logger  %message" />
                 </layout>
             </appender>
+			-->
             <root>
                 <level value="ALL" />
                 <appender-ref ref="LogFileAppender" />
-                <appender-ref ref="ErrorEmailStorageLogAppender" />
+                <!--<appender-ref ref="ErrorEmailStorageLogAppender" />-->
             </root> 
         </common>
     </log4net>

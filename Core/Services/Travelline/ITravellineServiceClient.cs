@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace TravelLine.CurrencyRate.Core.Services.Travelline
+namespace TravelLine.WebAppTemplate.Core.Services.Travelline
 {
     interface ITravellineServiceClient
     {

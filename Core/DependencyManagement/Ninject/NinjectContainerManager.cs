@@ -5,7 +5,7 @@ using Ninject.Activation.Caching;
 using Ninject.Modules;
 using TravelLine.Database.DataAccess.Initializers;
 
-namespace TravelLine.CurrencyRate.Core.DependencyManagement.Ninject
+namespace TravelLine.WebAppTemplate.Core.DependencyManagement.Ninject
 {
     class NinjectContainerManager : IDependencyContainerManager
     {

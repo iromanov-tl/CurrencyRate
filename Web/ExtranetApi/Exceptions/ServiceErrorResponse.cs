@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.ExtranetApi.Exceptions
+﻿namespace TravelLine.WebAppTemplate.ExtranetApi.Exceptions
 {
     public class ServiceErrorResponse
     {

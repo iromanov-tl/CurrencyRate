@@ -3,11 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using TravelLine.AccountsLib.Claims.Services;
-using TravelLine.CurrencyRate.Core.Infrastructure;
-using TravelLine.CurrencyRate.Core.Services;
-using TravelLine.CurrencyRate.WebLib.Security;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.Core.Services;
+using TravelLine.WebAppTemplate.WebLib.Security;
 
-namespace TravelLine.CurrencyRate.WebLib.Handlers
+namespace TravelLine.WebAppTemplate.WebLib.Handlers
 {
     public class UserContextInitHandler : DelegatingHandler
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TravelLine.CurrencyRate.Core.Scheduler
+namespace TravelLine.WebAppTemplate.Core.Scheduler
 {
     public interface ITaskScheduler
     {

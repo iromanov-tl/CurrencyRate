@@ -36,7 +36,7 @@ function GenerateAppConfig([string]$configTransformFile, [string]$outputConfigFi
 function DeployFromPackage {   
     Copy-Item -Path $packageBuildPath -Filter *.* -Destination $deploymentPath -Recurse -Verbose
 
-    GenerateAppConfig "$configurationDir\config-transform-CurrencyRateSvc.xsl" "$deploymentPath\services\CurrencyRateSvc\CurrencyRateSvc.exe.config"
+    GenerateAppConfig "$configurationDir\config-transform-WebAppTemplateSvc.xsl" "$deploymentPath\services\WebAppTemplateSvc\WebAppTemplateSvc.exe.config"
     GenerateAppConfig "$configurationDir\config-transform-ExtranetApi.xsl" "$deploymentPath\api\extranet\web.config"
     GenerateAppConfig "$configurationDir\config-transform-AccountsApi.xsl" "$deploymentPath\api\accounts\web.config"
     

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using TravelLine.Database.DataAccess;
-using TravelLine.CurrencyRate.Core.Domain.Security;
+using TravelLine.WebAppTemplate.Core.Domain.Security;
 
-namespace TravelLine.CurrencyRate.Core.Services
+namespace TravelLine.WebAppTemplate.Core.Services
 {
     public class UserService : IUserService
     {

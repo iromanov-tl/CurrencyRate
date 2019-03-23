@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.Scheduler
+﻿namespace TravelLine.WebAppTemplate.Core.Scheduler
 {
     public delegate void RunMethod();
 

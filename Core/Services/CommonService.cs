@@ -2,7 +2,7 @@
 using System.Linq;
 using TravelLine.Database.DataAccess;
 
-namespace TravelLine.CurrencyRate.Core.Services
+namespace TravelLine.WebAppTemplate.Core.Services
 {
     public abstract class CommonService<TEntity> : DalServiceWithTypedId<TEntity, int> where TEntity : EntityWithTypedId<int>, new()
     {

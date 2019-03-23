@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TravelLine.CurrencyRate.Core.Scheduler
+namespace TravelLine.WebAppTemplate.Core.Scheduler
 {
     public class ServiceScopeTaskQueue : ITaskQueue
     {

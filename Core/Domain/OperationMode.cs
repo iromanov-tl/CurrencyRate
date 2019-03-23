@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.Domain
+﻿namespace TravelLine.WebAppTemplate.Core.Domain
 {
     public enum OperationMode
     {

@@ -5,11 +5,11 @@
 
 call generate-webconfig.bat %ENV% ExtranetApi
 call generate-webconfig.bat %ENV% AccountsApi
-call generate-appconfig.bat %ENV% CurrencyRateSvc
+call generate-appconfig.bat %ENV% WebAppTemplateSvc
 
 @move /Y Web.Config-ExtranetApi  ..\Web\ExtranetApi\web.config
 @move /Y Web.Config-AccountsApi  ..\Web\AccountsApi\web.config
-@move /Y App.Config-CurrencyRateSvc ..\WinServices\CurrencyRateSvc\app.config
+@move /Y App.Config-WebAppTemplateSvc ..\WinServices\WebAppTemplateSvc\app.config
 
 @goto exit
 

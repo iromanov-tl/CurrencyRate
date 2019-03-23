@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace TravelLine.CurrencyRate.ExtranetApi.Models
+namespace TravelLine.WebAppTemplate.ExtranetApi.Models
 {
     [DataContract]
     public class ProvidersContainerDto

@@ -3,7 +3,7 @@
 
 #====== Common functions
 $basePath = "$scriptDir\.."
-$projFile = "$basePath\deployment\CurrencyRate.proj"
+$projFile = "$basePath\deployment\WebAppTemplate.proj"
 $dbMigrationPath = "$basePath\db-migrations"
 $platform = '"Any CPU"'
 

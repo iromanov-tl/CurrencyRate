@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.DependencyManagement
+﻿namespace TravelLine.WebAppTemplate.Core.DependencyManagement
 {
     internal enum DependencyContainerKind
     {

@@ -3,7 +3,7 @@ using System.Reflection;
 using Common.Logging;
 using TLUILib.Handlers;
 
-namespace TravelLine.CurrencyRate.ExtranetApi.Util
+namespace TravelLine.WebAppTemplate.ExtranetApi.Util
 {
     public class MethodOverrideLogger : IMethodOverrideLogger
     {

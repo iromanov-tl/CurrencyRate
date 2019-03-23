@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TravelLine.CurrencyRate.ExtranetApi.I18n {
+namespace TravelLine.WebAppTemplate.ExtranetApi.I18n {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TravelLine.CurrencyRate.ExtranetApi.I18n {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TravelLine.CurrencyRate.ExtranetApi.I18n.WebApi", typeof(WebApi).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TravelLine.WebAppTemplate.ExtranetApi.I18n.WebApi", typeof(WebApi).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

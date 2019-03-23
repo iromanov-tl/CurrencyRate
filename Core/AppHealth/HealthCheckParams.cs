@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.AppHealth
+﻿namespace TravelLine.WebAppTemplate.Core.AppHealth
 {
     public class HealthCheckParams
     {

@@ -3,12 +3,12 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.Core.Configuration.MailDispatchPoint;
-using TravelLine.CurrencyRate.Core.Data.Repository;
-using TravelLine.CurrencyRate.Core.Domain.Logging;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.Configuration.MailDispatchPoint;
+using TravelLine.WebAppTemplate.Core.Data.Repository;
+using TravelLine.WebAppTemplate.Core.Domain.Logging;
 
-namespace TravelLine.CurrencyRate.Core.Services.Logging
+namespace TravelLine.WebAppTemplate.Core.Services.Logging
 {
     public class LogService : CommonService<Log>, ILogService
     {
@@ -120,7 +120,7 @@ namespace TravelLine.CurrencyRate.Core.Services.Logging
 
             var emailMessage = new MailMessage(Config.ErrorSenderEmailAddress, Config.ErrorReceiverEmailAddress);
             string logLevelString = logItem.LogLevel.ToString().ToUpper();
-            emailMessage.Subject = String.Format("CurrencyRate [{0}] {1}", Config.Environment, logLevelString);
+            emailMessage.Subject = String.Format("WebAppTemplate [{0}] {1}", Config.Environment, logLevelString);
 
             string body = String.Format("{0:yyyy-MM-dd HH:mm:ss,fff} (UTC) {1}\n{2}",
                 logItem.Created.ToUniversalTime(), logLevelString, logItem.Message);

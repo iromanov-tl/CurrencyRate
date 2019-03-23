@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appcmd>
+   <SITE SITE.NAME="WebAppTemplate" bindings="http/*:80:WebAppTemplate,https/*:443:WebAppTemplate" state="Started">
+       <site name="WebAppTemplate" serverAutoStart="true">
+           <bindings>
+               <binding protocol="http" bindingInformation="*:80:WebAppTemplate" />
+               <binding protocol="https" bindingInformation="*:443:WebAppTemplate" sslFlags="1" />
+           </bindings>
+           <limits />
+           <logFile />
+           <traceFailedRequestsLogging />
+           <applicationDefaults />
+           <virtualDirectoryDefaults />           
+           <application path="/" applicationPool="WebAppTemplate">
+               <virtualDirectoryDefaults />
+               <virtualDirectory path="/" physicalPath="{SolutionDir}\Web\wwwroot" />
+           </application>
+           <application path="/accounts-api" applicationPool="WebAppTemplate">
+               <virtualDirectoryDefaults />
+               <virtualDirectory path="/" physicalPath="{SolutionDir}\Web\AccountsApi" />
+           </application>
+           <application path="/extranet" applicationPool="WebAppTemplate">
+               <virtualDirectoryDefaults />
+               <virtualDirectory path="/" physicalPath="{SolutionDir}\Web\Extranet\build" />
+           </application>
+           <application path="/extranet-api" applicationPool="WebAppTemplate">
+               <virtualDirectoryDefaults />
+               <virtualDirectory path="/" physicalPath="{SolutionDir}\Web\ExtranetApi" />
+           </application>
+       </site>
+   </SITE>
+</appcmd>

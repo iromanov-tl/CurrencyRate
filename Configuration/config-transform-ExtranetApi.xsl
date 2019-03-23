@@ -10,12 +10,12 @@
                     <section name="logging" type="Common.Logging.ConfigurationSectionHandler, Common.Logging" />
                 </sectionGroup>
                 <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
-                <section name="mailDispatchPoints" requirePermission="false" type="TravelLine.CurrencyRate.Core.Configuration.MailDispatchPoint.MailDispatchPointsSection, TravelLine.CurrencyRate.Core" />
+                <section name="mailDispatchPoints" requirePermission="false" type="TravelLine.WebAppTemplate.Core.Configuration.MailDispatchPoint.MailDispatchPointsSection, TravelLine.WebAppTemplate.Core" />
                 <section name="tlAccountsLib" requirePermission="false" type="TravelLine.AccountsLib.Configuration.AccountsLibConfig" />
                 <section name="tlTransit" requirePermission="false" type="TravelLine.TLTransit.Common.Configuration.TLTransitConfig, TravelLine.TLTransit.Common" />
-                <section name="currencyRate" requirePermission="false" type="TravelLine.CurrencyRate.Core.Configuration.CurrencyRateConfiguration,TravelLine.CurrencyRate.Core" />
-                <section name="database" requirePermission="false" type="TravelLine.CurrencyRate.Core.Configuration.DatabaseConfiguration,TravelLine.CurrencyRate.Core" />
-                <section name="travellineService" requirePermission="false" type="TravelLine.CurrencyRate.Core.Configuration.TravellineServiceConfig,TravelLine.CurrencyRate.Core" />
+                <section name="webAppTemplate" requirePermission="false" type="TravelLine.WebAppTemplate.Core.Configuration.WebAppTemplateConfiguration,TravelLine.WebAppTemplate.Core" />
+                <section name="database" requirePermission="false" type="TravelLine.WebAppTemplate.Core.Configuration.DatabaseConfiguration,TravelLine.WebAppTemplate.Core" />
+                <section name="travellineService" requirePermission="false" type="TravelLine.WebAppTemplate.Core.Configuration.TravellineServiceConfig,TravelLine.WebAppTemplate.Core" />
                 <section name="appHealthConfiguration" requirePermission="false" type="TravelLine.AppHealth.Config.AppHealthConfiguration, TravelLine.AppHealth" />
             </configSections>
             <appSettings>
@@ -26,7 +26,7 @@
                     <xsl:with-param name="env" select="$env" />
                 </xsl:apply-templates>
             </appSettings>
-            <xsl:apply-templates select="currencyRate">
+            <xsl:apply-templates select="webAppTemplate">
                 <xsl:with-param name="env" select="$env" />
             </xsl:apply-templates>
             <xsl:apply-templates select="database">

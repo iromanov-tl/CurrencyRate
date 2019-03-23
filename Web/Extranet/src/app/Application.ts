@@ -5,7 +5,7 @@
 /// <reference path="../dto/Dto.inc.ts" />
 /* tslint:disable:no-any */
 
-module CurrencyRate.Application {
+module WebAppTemplate.Application {
 
     import TLExtranetService = Services.TLExtranetService;
 
@@ -138,12 +138,12 @@ module CurrencyRate.Application {
 
             $scope.mainMenuItems = extranetHostData.menu.items.concat($scope.mainMenuItems);
             for (let i: number = 0; i < $scope.mainMenuItems.length; i++) {
-                if ($scope.mainMenuItems[i].id === 'CurrencyRate') {
+                if ($scope.mainMenuItems[i].id === 'WebAppTemplate') {
                     $scope.mainMenuItems[i].items = [
                         {
                             id: MenuItems.providerSettings,
                             text: 'T:navigation_menu.provider_settings',
-                            href: '/secure/currencyRate/extranet/#/provider'
+                            href: '/secure/webAppTemplate/extranet/#/provider'
                         }
                     ];
                     break;

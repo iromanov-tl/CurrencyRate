@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TravelLine.AccountsLib.Claims.Services;
-using TravelLine.CurrencyRate.Core.Domain;
-using TravelLine.CurrencyRate.Core.Domain.Security;
-using TravelLine.CurrencyRate.Core.Services;
+using TravelLine.WebAppTemplate.Core.Domain;
+using TravelLine.WebAppTemplate.Core.Domain.Security;
+using TravelLine.WebAppTemplate.Core.Services;
 
-namespace TravelLine.CurrencyRate.WebLib.Security
+namespace TravelLine.WebAppTemplate.WebLib.Security
 {
     public class UserContextService : IUserContextService
     {
@@ -67,7 +67,7 @@ namespace TravelLine.CurrencyRate.WebLib.Security
                 return true;
             }
 
-            CurrencyRatePrincipal principal = user as CurrencyRatePrincipal;
+            WebAppTemplatePrincipal principal = user as WebAppTemplatePrincipal;
             if ( principal != null )
             {
                 List<string> providerObjectGroups = _providerObjectGroupService.GetProviderObjectGroups( userContext.ProviderId );
@@ -102,8 +102,8 @@ namespace TravelLine.CurrencyRate.WebLib.Security
         {
 
             if ( _httpContext.User == null 
-                || !(_httpContext.User.Identity is CurrencyRateIdentity) 
-                || !( (CurrencyRateIdentity) _httpContext.User.Identity ).IsAuthenticated )
+                || !(_httpContext.User.Identity is WebAppTemplateIdentity) 
+                || !( (WebAppTemplateIdentity) _httpContext.User.Identity ).IsAuthenticated )
                 return UserContextInitResult.NotAuthenticated;
 
             string username = _httpContext.User.Identity.Name;

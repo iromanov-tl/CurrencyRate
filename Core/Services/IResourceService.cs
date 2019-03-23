@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TravelLine.CurrencyRate.Core.Domain.TLHotel.Resources;
+using TravelLine.WebAppTemplate.Core.Domain.TLHotel.Resources;
 
-namespace TravelLine.CurrencyRate.Core.Services
+namespace TravelLine.WebAppTemplate.Core.Services
 {
     public interface IResourceService
     {

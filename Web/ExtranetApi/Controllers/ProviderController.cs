@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using TravelLine.CurrencyRate.Core.Domain;
-using TravelLine.CurrencyRate.Core.Domain.Security;
-using TravelLine.CurrencyRate.Core.Services;
-using TravelLine.CurrencyRate.ExtranetApi.Exceptions;
-using TravelLine.CurrencyRate.ExtranetApi.Mapper;
-using TravelLine.CurrencyRate.ExtranetApi.Models;
-using TravelLine.CurrencyRate.WebLib.Security;
+using TravelLine.WebAppTemplate.Core.Domain;
+using TravelLine.WebAppTemplate.Core.Domain.Security;
+using TravelLine.WebAppTemplate.Core.Services;
+using TravelLine.WebAppTemplate.ExtranetApi.Exceptions;
+using TravelLine.WebAppTemplate.ExtranetApi.Mapper;
+using TravelLine.WebAppTemplate.ExtranetApi.Models;
+using TravelLine.WebAppTemplate.WebLib.Security;
 
-namespace TravelLine.CurrencyRate.ExtranetApi.Controllers
+namespace TravelLine.WebAppTemplate.ExtranetApi.Controllers
 {
     [RoutePrefix( "provider" )]
     [CheckAccess( Role = RoleName.AccessProviderSettings )]

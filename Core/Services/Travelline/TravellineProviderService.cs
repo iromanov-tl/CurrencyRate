@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
 
-namespace TravelLine.CurrencyRate.Core.Services.Travelline
+namespace TravelLine.WebAppTemplate.Core.Services.Travelline
 {
     class TravellineProviderService : ITravellineProviderService
     {

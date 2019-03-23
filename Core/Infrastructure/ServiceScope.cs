@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
-using TravelLine.CurrencyRate.Core.DependencyManagement;
+using TravelLine.WebAppTemplate.Core.DependencyManagement;
 
-namespace TravelLine.CurrencyRate.Core.Infrastructure
+namespace TravelLine.WebAppTemplate.Core.Infrastructure
 {
     public class ServiceScope : IDisposable, IServiceFactory
     {
@@ -16,7 +16,7 @@ namespace TravelLine.CurrencyRate.Core.Infrastructure
 
         public static ServiceScope Create()
         {
-            return CurrencyRateContext.Current.BeginServiceScope();
+            return WebAppTemplateContext.Current.BeginServiceScope();
         }
 
         readonly IDependencyContainerManager _manager;

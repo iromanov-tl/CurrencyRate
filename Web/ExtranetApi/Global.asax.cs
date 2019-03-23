@@ -1,10 +1,10 @@
 ﻿using System.Web.Http;
 using System.Web.Security;
-using TravelLine.CurrencyRate.Core.Infrastructure;
-using TravelLine.CurrencyRate.ExtranetApi.Mapper;
-using TravelLine.CurrencyRate.WebLib.Security;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.ExtranetApi.Mapper;
+using TravelLine.WebAppTemplate.WebLib.Security;
 
-namespace TravelLine.CurrencyRate.ExtranetApi
+namespace TravelLine.WebAppTemplate.ExtranetApi
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

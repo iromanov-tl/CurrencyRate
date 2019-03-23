@@ -8,7 +8,7 @@ using Quartz;
 using Quartz.Impl;
 using Quartz.Impl.Matchers;
 
-namespace TravelLine.CurrencyRate.Core.Scheduler.Quartz
+namespace TravelLine.WebAppTemplate.Core.Scheduler.Quartz
 {
     internal class QuartzTaskEvents
     {

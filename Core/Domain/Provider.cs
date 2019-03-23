@@ -1,7 +1,7 @@
 ﻿using System;
-using TravelLine.CurrencyRate.Core.Data.Repository;
+using TravelLine.WebAppTemplate.Core.Data.Repository;
 
-namespace TravelLine.CurrencyRate.Core.Domain
+namespace TravelLine.WebAppTemplate.Core.Domain
 {
     public class Provider : Entity
     {

@@ -3,9 +3,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using TravelLine.CurrencyRate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
 
-namespace TravelLine.CurrencyRate.WebLib.Security
+namespace TravelLine.WebAppTemplate.WebLib.Security
 {
     public class CheckAccessAttribute : ActionFilterAttribute
     {

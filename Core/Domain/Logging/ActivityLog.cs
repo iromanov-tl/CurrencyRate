@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using TravelLine.CurrencyRate.Core.Data.Repository;
+using TravelLine.WebAppTemplate.Core.Data.Repository;
 
-namespace TravelLine.CurrencyRate.Core.Domain.Logging
+namespace TravelLine.WebAppTemplate.Core.Domain.Logging
 {
     public class ActivityLog : Entity
     {

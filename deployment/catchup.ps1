@@ -9,7 +9,7 @@ $environment = GetEnvironment
 $deploymentDir = GetDeploymentDir $environment;
 $deploymentVersion = GetDeploymentVersion;
 
-$gMSA = "TRAVELLINE\gmsaCurrencyRatePool`$"
+$gMSA = "TRAVELLINE\gmsaWebAppTemplatePool`$"
 $serviceNotInstalledResult = "serviceNotInstalledResult";
 
 function SwitchWebsite {
@@ -109,7 +109,7 @@ function StartService($serviceName) {
 #start here
 try {
     SwitchWebsite
-    SwitchService "TL.CurrencyRate.IntegrationSvc" "Travelline CurrencyRate integration" "$deploymentDir\$deploymentVersion\services\CurrencyRateSvc\CurrencyRateSvc.exe"
+    SwitchService "TL.WebAppTemplate.IntegrationSvc" "Travelline WebAppTemplate integration" "$deploymentDir\$deploymentVersion\services\WebAppTemplateSvc\WebAppTemplateSvc.exe"
     # Other application services
 } catch {
     throw $Error[0]

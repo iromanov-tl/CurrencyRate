@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 
-namespace TravelLine.CurrencyRate.Core.Data
+namespace TravelLine.WebAppTemplate.Core.Data
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class DateTimeKindAttribute : Attribute

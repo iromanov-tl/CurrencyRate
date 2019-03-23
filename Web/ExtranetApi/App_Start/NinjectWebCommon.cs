@@ -4,16 +4,16 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using TravelLine.TLTransit.Common;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.Core.DependencyManagement;
-using TravelLine.CurrencyRate.Core.Infrastructure;
-using TravelLine.CurrencyRate.ExtranetApi;
-using TravelLine.CurrencyRate.WebLib.Security;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.DependencyManagement;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.ExtranetApi;
+using TravelLine.WebAppTemplate.WebLib.Security;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace TravelLine.CurrencyRate.ExtranetApi
+namespace TravelLine.WebAppTemplate.ExtranetApi
 {
     public static class NinjectWebCommon
     {
@@ -43,13 +43,13 @@ namespace TravelLine.CurrencyRate.ExtranetApi
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            IDependencyContainerManager containerManager = CurrencyRateContext.Current.ContainerManager;
+            IDependencyContainerManager containerManager = WebAppTemplateContext.Current.ContainerManager;
             containerManager.BindToMethod<Func<IKernel>>( ctx => () => new Bootstrapper().Kernel );
             containerManager.SetDefaultScope( () => HttpContext.Current );
 
             DependencyContainerServiceRegistrator.RegisterServices( containerManager );
 
-            containerManager.BindToMethodAsSingleton( ctx => TLTransitConnectorFactory.GetConnector( Config.CurrencyRateWebBusQueueName ) );
+            containerManager.BindToMethodAsSingleton( ctx => TLTransitConnectorFactory.GetConnector( Config.WebAppTemplateWebBusQueueName ) );
             containerManager.Bind<IHttpModule, HttpApplicationInitializationHttpModule>();
             containerManager.Bind<IUserContextService, UserContextService>();
             containerManager.Bind<IFormsAuthService, FormsAuthService>();

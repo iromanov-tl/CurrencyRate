@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../typings/tsd.d.ts" />
 
 /* tslint:disable:no-any */
-module CurrencyRate.Application.Services {
+module WebAppTemplate.Application.Services {
     export interface ITLExtranetService {
         setFormUnsaved(isUnsaved: boolean): void;
         showPreloader(visible: boolean): void;

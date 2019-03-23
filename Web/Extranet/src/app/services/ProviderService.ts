@@ -2,7 +2,7 @@
 /// <reference path="../../app/Constants.ts" />
 /// <reference path="../../dto/Dto.inc.ts" />
 /* tslint:disable:no-any */
-module CurrencyRate.Application.Services {
+module WebAppTemplate.Application.Services {
 
     import ProvidersContainerDto = Dto.ProvidersContainerDto;
 

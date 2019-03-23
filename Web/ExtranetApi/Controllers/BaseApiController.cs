@@ -3,12 +3,12 @@ using System.Web;
 using System.Web.Http;
 using Common.Logging;
 using Ninject;
-using TravelLine.CurrencyRate.Core.Domain;
-using TravelLine.CurrencyRate.Core.Infrastructure;
-using TravelLine.CurrencyRate.Core.Services.Logging;
-using TravelLine.CurrencyRate.WebLib.Security;
+using TravelLine.WebAppTemplate.Core.Domain;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.Core.Services.Logging;
+using TravelLine.WebAppTemplate.WebLib.Security;
 
-namespace TravelLine.CurrencyRate.ExtranetApi.Controllers
+namespace TravelLine.WebAppTemplate.ExtranetApi.Controllers
 {
     public class BaseApiController : ApiController
     {
@@ -66,8 +66,8 @@ namespace TravelLine.CurrencyRate.ExtranetApi.Controllers
             ActivityLogService.LogActivityEntity( logId, entityKey, entityName, entityDesc, entity );
         }
 
-        protected string CurrentUserLanguage => ( (CurrencyRateIdentity)( (CurrencyRatePrincipal)CurrentHttpContext.User ).Identity ).Language;
+        protected string CurrentUserLanguage => ( (WebAppTemplateIdentity)( (WebAppTemplatePrincipal)CurrentHttpContext.User ).Identity ).Language;
 
-        protected string CurrentUserName => ( (CurrencyRateIdentity)( (CurrencyRatePrincipal)CurrentHttpContext.User ).Identity ).Name;
+        protected string CurrentUserName => ( (WebAppTemplateIdentity)( (WebAppTemplatePrincipal)CurrentHttpContext.User ).Identity ).Name;
     }
 }

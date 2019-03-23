@@ -5,9 +5,9 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
-using TravelLine.CurrencyRate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.Configuration;
 
-namespace TravelLine.CurrencyRate.Core.Util
+namespace TravelLine.WebAppTemplate.Core.Util
 {
     class HttpClient
     {
@@ -86,7 +86,7 @@ namespace TravelLine.CurrencyRate.Core.Util
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create( url );
             webRequest.AllowAutoRedirect = false;
 
-            var env = CurrencyRateConfiguration.Settings.Environment;
+            var env = WebAppTemplateConfiguration.Settings.Environment;
             if ( env != "prod" )
             {
                 ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };

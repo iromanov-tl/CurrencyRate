@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.Util
+﻿namespace TravelLine.WebAppTemplate.Core.Util
 {
     public class HttpClientAdvancedSettings
     {

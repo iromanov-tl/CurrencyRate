@@ -1,4 +1,4 @@
-﻿module CurrencyRate.Dto {
+﻿module WebAppTemplate.Dto {
 
     export class ApplicationConfig {
         private _appEnabled: boolean;

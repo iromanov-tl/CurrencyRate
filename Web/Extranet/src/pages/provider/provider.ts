@@ -2,7 +2,7 @@
 /// <reference path="../../app/services/ProviderService.ts" />
 
 /* tslint:disable:no-any */
-module CurrencyRate.Application.Controllers {
+module WebAppTemplate.Application.Controllers {
     import IProviderService = Services.IProviderService;
     import ProvidersContainerDto = Dto.ProvidersContainerDto;
     import Provider = Dto.Provider;

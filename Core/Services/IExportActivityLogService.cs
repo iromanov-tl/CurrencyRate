@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.Services
+﻿namespace TravelLine.WebAppTemplate.Core.Services
 {
     public interface IExportActivityLogService
     {

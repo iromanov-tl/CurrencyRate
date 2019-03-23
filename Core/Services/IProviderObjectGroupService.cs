@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TravelLine.CurrencyRate.Core.Services
+namespace TravelLine.WebAppTemplate.Core.Services
 {
     public interface IProviderObjectGroupService
     {

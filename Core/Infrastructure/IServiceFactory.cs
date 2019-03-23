@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TravelLine.CurrencyRate.Core.Infrastructure
+namespace TravelLine.WebAppTemplate.Core.Infrastructure
 {
     public interface IServiceFactory
     {

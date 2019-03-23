@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.Services.Travelline
+﻿namespace TravelLine.WebAppTemplate.Core.Services.Travelline
 {
     public interface ITravellineProviderService
     {

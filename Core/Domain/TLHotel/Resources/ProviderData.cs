@@ -1,4 +1,4 @@
-﻿namespace TravelLine.CurrencyRate.Core.Domain.TLHotel.Resources
+﻿namespace TravelLine.WebAppTemplate.Core.Domain.TLHotel.Resources
 {
     public class ProviderData
     {

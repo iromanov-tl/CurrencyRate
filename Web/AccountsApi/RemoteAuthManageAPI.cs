@@ -6,11 +6,11 @@ using System.Web;
 using System.Web.Caching;
 using TravelLine.AccountsLib.Claims.Services;
 using TravelLine.AccountsManagementLib;
-using TravelLine.CurrencyRate.Core.Domain;
-using TravelLine.CurrencyRate.Core.Domain.Security;
-using TravelLine.CurrencyRate.Core.Services;
+using TravelLine.WebAppTemplate.Core.Domain;
+using TravelLine.WebAppTemplate.Core.Domain.Security;
+using TravelLine.WebAppTemplate.Core.Services;
 
-namespace TravelLine.CurrencyRate.AccountsApi
+namespace TravelLine.WebAppTemplate.AccountsApi
 {
     public class RemoteAuthManageAPI : IRemoteAuthManageAPI
     {

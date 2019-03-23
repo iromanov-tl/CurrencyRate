@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net;
 using Newtonsoft.Json;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.Core.Util;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.Util;
 
-namespace TravelLine.CurrencyRate.Core.Services.Travelline
+namespace TravelLine.WebAppTemplate.Core.Services.Travelline
 {
     class TravellineServiceClient : ITravellineServiceClient
     {

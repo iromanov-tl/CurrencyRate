@@ -4,10 +4,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using TravelLine.AppHealth;
 using TravelLine.TLTransit.Common;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
 
-namespace TravelLine.CurrencyRate.Core.AppHealth
+namespace TravelLine.WebAppTemplate.Core.AppHealth
 {
     public class HealthCheckClient : IAppHealthStateResolver
     {

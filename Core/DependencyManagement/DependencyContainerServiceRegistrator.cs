@@ -1,21 +1,21 @@
 ﻿using TravelLine.AccountsLib.Claims.Services;
 using TravelLine.Database.DataAccess;
 using TravelLine.Database.DataAccess.Initializers;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.Core.Data;
-using TravelLine.CurrencyRate.Core.Data.Repository;
-using TravelLine.CurrencyRate.Core.Infrastructure;
-using TravelLine.CurrencyRate.Core.Services;
-using TravelLine.CurrencyRate.Core.Services.Logging;
-using TravelLine.CurrencyRate.Core.Services.Travelline;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.Data;
+using TravelLine.WebAppTemplate.Core.Data.Repository;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.Core.Services;
+using TravelLine.WebAppTemplate.Core.Services.Logging;
+using TravelLine.WebAppTemplate.Core.Services.Travelline;
 
-namespace TravelLine.CurrencyRate.Core.DependencyManagement
+namespace TravelLine.WebAppTemplate.Core.DependencyManagement
 {
     public class DependencyContainerServiceRegistrator
     {
         public static void RegisterServices( IDependencyContainerManager containerManager )
         {
-            containerManager.BindDbContextFactory<IDbContextFactory,CurrencyRateDbContextFactory>( DatabaseInitializerType.None, Config.DbConnectionString, Config.DbReadonlyConnectionString );
+            containerManager.BindDbContextFactory<IDbContextFactory,WebAppTemplateDbContextFactory>( DatabaseInitializerType.None, Config.DbConnectionString, Config.DbReadonlyConnectionString );
 
             containerManager.Bind( typeof ( IRepository<> ), typeof ( Repository<> ) );
             containerManager.Bind( typeof ( IRepositoryWithTypedId<,> ), typeof ( EfRepositoryWithTypedId<,> ) );

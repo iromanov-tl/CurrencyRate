@@ -1,6 +1,6 @@
-﻿using TravelLine.CurrencyRate.Core.Infrastructure;
+﻿using TravelLine.WebAppTemplate.Core.Infrastructure;
 
-namespace TravelLine.CurrencyRate.Core.Scheduler
+namespace TravelLine.WebAppTemplate.Core.Scheduler
 {
     public class ServiceScopeTask : ITask
     {

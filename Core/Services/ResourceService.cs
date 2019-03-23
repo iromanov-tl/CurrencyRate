@@ -5,9 +5,9 @@ using System.Runtime.Caching;
 using TravelLine.MessageContracts.TLCore;
 using TravelLine.TLTransit.Common;
 using TravelLine.TLTransit.Common.Helpers;
-using TravelLine.CurrencyRate.Core.Domain.TLHotel.Resources;
+using TravelLine.WebAppTemplate.Core.Domain.TLHotel.Resources;
 
-namespace TravelLine.CurrencyRate.Core.Services
+namespace TravelLine.WebAppTemplate.Core.Services
 {
     public class ResourceService : IResourceService
     {

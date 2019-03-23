@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace TravelLine.CurrencyRate.Core.Util
+namespace TravelLine.WebAppTemplate.Core.Util
 {
     public static class HttpUtil
     {

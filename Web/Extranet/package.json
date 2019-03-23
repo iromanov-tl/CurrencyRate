@@ -1,6 +1,6 @@
 {
-  "name": "CurrencyRate",
-  "description": "Traveline Product for hotel currencyRate management",
+  "name": "WebAppTemplate",
+  "description": "Traveline Product for hotel webAppTemplate management",
   "private": true,
   "devDependencies": {
     "grunt": "1.0.1",

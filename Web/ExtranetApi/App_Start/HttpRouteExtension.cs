@@ -1,8 +1,8 @@
 ﻿using System.Web.Http;
 using TravelLine.AppHealth;
-using TravelLine.CurrencyRate.Core.AppHealth;
+using TravelLine.WebAppTemplate.Core.AppHealth;
 
-namespace TravelLine.CurrencyRate.ExtranetApi
+namespace TravelLine.WebAppTemplate.ExtranetApi
 {
     public static class HttpRouteExtension
     {

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using ServiceManager.ServiceDataManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelLine.CurrencyRate.Core.ServiceDataManager
+namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
 {
     public interface IServiceDataAdapter
     {
-        ServiceData GetData(DateTime date);
+        CurrencyData GetData(RequestData requestData);
     }
 }

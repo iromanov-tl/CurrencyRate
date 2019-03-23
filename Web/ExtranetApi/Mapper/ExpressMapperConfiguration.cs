@@ -1,7 +1,7 @@
-﻿using TravelLine.CurrencyRate.Core.Domain;
-using TravelLine.CurrencyRate.ExtranetApi.Models;
+﻿using TravelLine.WebAppTemplate.Core.Domain;
+using TravelLine.WebAppTemplate.ExtranetApi.Models;
 
-namespace TravelLine.CurrencyRate.ExtranetApi.Mapper
+namespace TravelLine.WebAppTemplate.ExtranetApi.Mapper
 {
     public static class ExpressMapperConfiguration
     {

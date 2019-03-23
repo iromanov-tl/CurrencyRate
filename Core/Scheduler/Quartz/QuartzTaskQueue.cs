@@ -4,7 +4,7 @@ using Quartz;
 using Quartz.Impl.Matchers;
 using Quartz.Impl.Triggers;
 
-namespace TravelLine.CurrencyRate.Core.Scheduler.Quartz
+namespace TravelLine.WebAppTemplate.Core.Scheduler.Quartz
 {
     public class QuartzTaskQueue : ITaskQueue
     {

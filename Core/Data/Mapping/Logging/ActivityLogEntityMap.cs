@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using TravelLine.CurrencyRate.Core.Domain.Logging;
+using TravelLine.WebAppTemplate.Core.Domain.Logging;
 
-namespace TravelLine.CurrencyRate.Core.Data.Mapping.Logging
+namespace TravelLine.WebAppTemplate.Core.Data.Mapping.Logging
 {
     public class ActivityLogEntityMap : EntityTypeConfiguration<ActivityLogEntity>
     {

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using TravelLine.CurrencyRate.Core.Domain.Security;
+using TravelLine.WebAppTemplate.Core.Domain.Security;
 
-namespace TravelLine.CurrencyRate.Core.Data.Mapping.Security
+namespace TravelLine.WebAppTemplate.Core.Data.Mapping.Security
 {
     public class UserRoleMap : EntityTypeConfiguration<UserRole>
     {

@@ -1,7 +1,7 @@
 ﻿using Core.Tests.Services.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TravelLine.CurrencyRate.Core.Domain.Security;
-using TravelLine.CurrencyRate.Core.Services;
+using TravelLine.WebAppTemplate.Core.Domain.Security;
+using TravelLine.WebAppTemplate.Core.Services;
 
 namespace Core.Tests.Services
 {

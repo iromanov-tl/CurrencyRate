@@ -1,6 +1,6 @@
-﻿using TravelLine.CurrencyRate.Core.Data.Repository;
+﻿using TravelLine.WebAppTemplate.Core.Data.Repository;
 
-namespace TravelLine.CurrencyRate.Core.Domain.Security
+namespace TravelLine.WebAppTemplate.Core.Domain.Security
 {
     public class ProviderUserContext : Entity
     {

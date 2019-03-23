@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Security;
 
-namespace TravelLine.CurrencyRate.WebLib.Security
+namespace TravelLine.WebAppTemplate.WebLib.Security
 {
     public interface IFormsAuthService
     {

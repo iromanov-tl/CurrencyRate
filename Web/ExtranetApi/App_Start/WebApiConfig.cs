@@ -1,12 +1,12 @@
 ﻿using System.Web.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using TravelLine.CurrencyRate.Core.AppHealth;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.ExtranetApi.Util;
-using TravelLine.CurrencyRate.WebLib.Handlers;
+using TravelLine.WebAppTemplate.Core.AppHealth;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.ExtranetApi.Util;
+using TravelLine.WebAppTemplate.WebLib.Handlers;
 
-namespace TravelLine.CurrencyRate.ExtranetApi
+namespace TravelLine.WebAppTemplate.ExtranetApi
 {
     public static class WebApiConfig
     {

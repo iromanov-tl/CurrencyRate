@@ -6,12 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.Core.Domain.Logging;
-using TravelLine.CurrencyRate.Core.Services.Logging;
-using TravelLine.CurrencyRate.Core.Util;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.Domain.Logging;
+using TravelLine.WebAppTemplate.Core.Services.Logging;
+using TravelLine.WebAppTemplate.Core.Util;
 
-namespace TravelLine.CurrencyRate.Core.Services
+namespace TravelLine.WebAppTemplate.Core.Services
 {
     public class ExportActivityLogService : IExportActivityLogService
     {
@@ -83,7 +83,7 @@ namespace TravelLine.CurrencyRate.Core.Services
                     xmlWriter.WriteElementString( "val4", "" );
                     xmlWriter.WriteElementString( "val5", "" );
                     xmlWriter.WriteElementString( "val6", "UserActivity" );
-                    xmlWriter.WriteElementString( "val7", String.Format("CurrencyRate_{0}", log.Id) );
+                    xmlWriter.WriteElementString( "val7", String.Format("WebAppTemplate_{0}", log.Id) );
                     xmlWriter.WriteElementString( "val10", EncodeStringToBase64( log.Detail ) );
                     xmlWriter.WriteElementString( "parent", "" );
 
@@ -102,7 +102,7 @@ namespace TravelLine.CurrencyRate.Core.Services
                         xmlWriter.WriteElementString( "val6", "" );
                         xmlWriter.WriteElementString( "val7", "" );
                         xmlWriter.WriteElementString( "val10", EncodeStringToBase64( logEntity.Data ) );
-                        xmlWriter.WriteElementString( "parent", String.Format("CurrencyRate_{0}", log.Id) );
+                        xmlWriter.WriteElementString( "parent", String.Format("WebAppTemplate_{0}", log.Id) );
 
                         xmlWriter.WriteEndElement(); //log_item
                     }

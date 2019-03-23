@@ -1,6 +1,6 @@
 ﻿using TravelLine.Database.DataAccess;
 
-namespace TravelLine.CurrencyRate.Core.Data.Repository
+namespace TravelLine.WebAppTemplate.Core.Data.Repository
 {
     /// <summary> Entity repository interface (for entity with string primary key)  </summary>
     /// <typeparam name="TEntity">The entity type.</typeparam>

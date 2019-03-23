@@ -1,4 +1,4 @@
-﻿module CurrencyRate.Dto {
+﻿module WebAppTemplate.Dto {
 
     export class Provider {
         private _id: number;

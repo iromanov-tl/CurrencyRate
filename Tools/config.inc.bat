@@ -9,7 +9,7 @@ REM %APP_DIR% - application base dir.
 REM %MSBUILD% - msbuild.exe location full path
 REM %HANDLE% - handle.exe location full path
 
-SET WEB_SERVICE_APP_CODE=currencyRate
+SET WEB_SERVICE_APP_CODE=webAppTemplate
 
 SET ENV=%1
 SET APPLICATION=%2
@@ -20,7 +20,7 @@ IF NOT "%APPLICATION%"=="" (
 )
 IF "%APPLICATION%"=="" SET APPLICATION=%WEB_SERVICE_APP_CODE%
 
-SET PROJ_NAME=CurrencyRate
+SET PROJ_NAME=WebAppTemplate
 REM IF /I "%APPLICATION%"=="%WEB_SERVICE_APP_CODE%" SET PROJ_NAME=WebService
 
 SET APP_DIR=%TEMP%\%PROJ_NAME%
@@ -54,11 +54,11 @@ goto end
 
 :usage_error
     REM Invalid environment name. Error
-    ECHO Tool script for CurrencyRate
+    ECHO Tool script for WebAppTemplate
     ECHO --------------------------------
     ECHO Usage:  %~n0 ^<env^> [application]
-    ECHO   Parameter [application] is optional. Values: currencyRate - for CurrencyRate.
-    ECHO   Default value is currencyRate.
+    ECHO   Parameter [application] is optional. Values: webAppTemplate - for WebAppTemplate.
+    ECHO   Default value is webAppTemplate.
     EXIT /B 1
 goto end
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TravelLine.CurrencyRate.Core.Domain;
+using TravelLine.WebAppTemplate.Core.Domain;
 
-namespace TravelLine.CurrencyRate.Core.Services
+namespace TravelLine.WebAppTemplate.Core.Services
 {
     public interface IProviderService
     {

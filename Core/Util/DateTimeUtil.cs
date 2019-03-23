@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TravelLine.CurrencyRate.Core.Util
+namespace TravelLine.WebAppTemplate.Core.Util
 {
     public static class DateTimeUtil
     {

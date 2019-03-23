@@ -1,10 +1,10 @@
 ﻿using System.Web;
 using System.Web.Http;
-using TravelLine.CurrencyRate.Core.Domain;
-using TravelLine.CurrencyRate.Core.Services;
-using TravelLine.CurrencyRate.ExtranetApi.Models;
+using TravelLine.WebAppTemplate.Core.Domain;
+using TravelLine.WebAppTemplate.Core.Services;
+using TravelLine.WebAppTemplate.ExtranetApi.Models;
 
-namespace TravelLine.CurrencyRate.ExtranetApi.Controllers
+namespace TravelLine.WebAppTemplate.ExtranetApi.Controllers
 {
     [AllowAnonymous, RoutePrefix( "application" )]
     public class ApplicationController : BaseApiController

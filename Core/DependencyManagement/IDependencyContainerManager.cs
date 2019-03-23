@@ -2,7 +2,7 @@
 using Ninject.Activation;
 using TravelLine.Database.DataAccess.Initializers;
 
-namespace TravelLine.CurrencyRate.Core.DependencyManagement
+namespace TravelLine.WebAppTemplate.Core.DependencyManagement
 {
     /// <summary>
     /// Dependency container manager.

@@ -2,9 +2,9 @@
 using System.Web;
 using System.Web.Security;
 using TravelLine.AccountsLib;
-using TravelLine.CurrencyRate.Core.Services;
+using TravelLine.WebAppTemplate.Core.Services;
 
-namespace TravelLine.CurrencyRate.WebLib.Security
+namespace TravelLine.WebAppTemplate.WebLib.Security
 {
     public class FormsAuthService : IFormsAuthService
     {
@@ -23,7 +23,7 @@ namespace TravelLine.CurrencyRate.WebLib.Security
         {
             if ( FormsAuthentication.CookiesSupported )
             {
-                CurrencyRatePrincipal principal = null;
+                WebAppTemplatePrincipal principal = null;
                 string ticket = FormsAuthUtil.GetAuthenticationTicket( args.Context );
                 string ipAddress = FormsAuthUtil.GetIp( args.Context );
                 string authHash = FormsAuthUtil.GetAuthenticationHash( args.Context );
@@ -32,12 +32,12 @@ namespace TravelLine.CurrencyRate.WebLib.Security
                     var authenticatedUser = _tlAccountsSecurityService.AuthenticateUser( ticket, ipAddress, authHash, true );
                     if ( authenticatedUser != null )
                     {
-                        principal = CurrencyRatePrincipal.Create( _userService, authenticatedUser );
+                        principal = WebAppTemplatePrincipal.Create( _userService, authenticatedUser );
                     }
                 }
                 if ( principal == null )
                 {
-                    principal = CurrencyRatePrincipal.Create();
+                    principal = WebAppTemplatePrincipal.Create();
                 }
 
                 args.User = principal;

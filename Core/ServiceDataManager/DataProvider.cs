@@ -1,25 +1,30 @@
-﻿using System;
+﻿using ServiceManager.ServiceDataManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravelLine.CurrencyRate.Core.ServiceDataManager.Adapters;
+using TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters;
 
-namespace TravelLine.CurrencyRate.Core.ServiceDataManager
+namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
 {
     class DataProvider
     {
-        public static ServiceData GetServiceData(IServiceDataAdapter service, DateTime date)
+        public static CurrencyData GetServiceData(IServiceDataAdapter service, RequestData requestData)
         {
-            return service.GetData(date);
+            return service.GetData(requestData);
         }
 
-        public static List<ServiceData> GetServicesData(DateTime date)
+        public static List<CurrencyData> GetServicesData(RequestData requestData)
         {
-            List<ServiceData> servicesData = new List<ServiceData>();
-            servicesData.Add(GetServiceData(new BankGovUaDataAdapter(), date));
-            servicesData.Add(GetServiceData(new NationalbankDataAdapter(), date));
-            servicesData.Add(GetServiceData(new OpenexchangeratesDataAdapter(), date));
+            List<CurrencyData> servicesData = new List<CurrencyData>();
+            servicesData.Add(GetServiceData(new BankGovUaDataAdapter(), requestData));
+            servicesData.Add(GetServiceData(new OpenexchangeratesDataAdapter(), requestData));
+            servicesData.Add(GetServiceData(new NationalbankDataAdapter(), requestData));
+            foreach (CurrencyData item in servicesData)
+            {
+                Console.WriteLine(item.rate);
+            }
             return servicesData;
         }
     }

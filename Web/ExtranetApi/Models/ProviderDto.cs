@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using TravelLine.CurrencyRate.Core.Domain;
+using TravelLine.WebAppTemplate.Core.Domain;
 
-namespace TravelLine.CurrencyRate.ExtranetApi.Models
+namespace TravelLine.WebAppTemplate.ExtranetApi.Models
 {
     [DataContract]
     public class ProviderDto

@@ -6,11 +6,11 @@ using Common.Logging;
 using CPSLabs.ServiceBoost;
 using TravelLine.AccountsManagementLib;
 using TravelLine.AccountsManagementLib.Transport;
-using TravelLine.CurrencyRate.Core.Configuration;
-using TravelLine.CurrencyRate.Core.DependencyManagement;
-using TravelLine.CurrencyRate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.Core.Configuration;
+using TravelLine.WebAppTemplate.Core.DependencyManagement;
+using TravelLine.WebAppTemplate.Core.Infrastructure;
 
-namespace TravelLine.CurrencyRate.AccountsApi
+namespace TravelLine.WebAppTemplate.AccountsApi
 {
     public class Global : HttpApplication
     {
@@ -20,7 +20,7 @@ namespace TravelLine.CurrencyRate.AccountsApi
             log4net.GlobalContext.Properties[ "LogsDir" ] = Config.LogsDir;
 
             // DI
-            IDependencyContainerManager containerManager = CurrencyRateContext.Current.ContainerManager;
+            IDependencyContainerManager containerManager = WebAppTemplateContext.Current.ContainerManager;
             RegisterServices( containerManager );
 
 

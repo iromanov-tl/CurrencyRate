@@ -1,7 +1,7 @@
-﻿using TravelLine.CurrencyRate.Core.Domain.Logging;
-using TravelLine.CurrencyRate.Core.Services.Logging;
+﻿using TravelLine.WebAppTemplate.Core.Domain.Logging;
+using TravelLine.WebAppTemplate.Core.Services.Logging;
 
-namespace TravelLine.CurrencyRate.Core.Extensions.Log4Net
+namespace TravelLine.WebAppTemplate.Core.Extensions.Log4Net
 {
     public class EmailStorageLogAppender : AbstractLogAppender
     {
