@@ -4,7 +4,8 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Reflection;
-using TravelLine.WebAppTemplate.Core.Data.Models;
+using TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord;
+using TravelLine.WebAppTemplate.Core.Data.Models.Service;
 
 namespace TravelLine.WebAppTemplate.Core.Data
 {
@@ -32,7 +33,7 @@ namespace TravelLine.WebAppTemplate.Core.Data
         }
 
         public DbSet<CurrencyRecord> CurrencyRecords { get; set; }
-        public DbSet<Service> Service { get; set; }
+        public DbSet<Service> Services { get; set; }
 
     }
 }

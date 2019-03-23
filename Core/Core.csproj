@@ -158,8 +158,10 @@
     <Compile Include="Data\Mapping\Logging\ActivityLogMap.cs" />
     <Compile Include="Data\Mapping\Logging\LogMap.cs" />
     <Compile Include="Data\Mapping\Security\ProviderObjectGroupMap.cs" />
-    <Compile Include="Data\Models\CurrencyRecord.cs" />
-    <Compile Include="Data\Models\Service.cs" />
+    <Compile Include="Data\Models\CurrencyRecord\CurrencyRecord.cs" />
+    <Compile Include="Data\Models\CurrencyRecord\ICurrencyRecordRepository.cs" />
+    <Compile Include="Data\Models\Service\IServiceRepository.cs" />
+    <Compile Include="Data\Models\Service\Service.cs" />
     <Compile Include="Data\Repository\IRepositoryStringId.cs" />
     <Compile Include="Data\Repository\RepositoryStringId.cs" />
     <Compile Include="Data\WebAppTemplateDbContextFactory.cs" />
@@ -221,9 +223,8 @@
     <Compile Include="Domain\Security\GroupName.cs" />
     <Compile Include="Domain\Security\RoleName.cs" />
     <Compile Include="ServiceDataManager\Adapters\BankGovUaDataAdapter.cs" />
-    <Compile Include="ServiceDataManager\Adapters\NationalbankDataAdapter.cs" />
-    <Compile Include="ServiceDataManager\Adapters\OpenexchangeratesDataAdapter.cs" />
-    <Compile Include="ServiceDataManager\CurrencyData.cs" />
+    <Compile Include="ServiceDataManager\Adapters\NationalBankDataAdapter.cs" />
+    <Compile Include="ServiceDataManager\Adapters\OpenExchangeRatesDataAdapter.cs" />
     <Compile Include="ServiceDataManager\DataProvider.cs" />
     <Compile Include="ServiceDataManager\IServiceDataAdapter.cs" />
     <Compile Include="ServiceDataManager\RequestData.cs" />
@@ -266,6 +267,7 @@
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="I18n\" />
+    <Folder Include="Services\DBHelper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
