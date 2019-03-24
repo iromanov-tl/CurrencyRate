@@ -19,11 +19,15 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 
         private void ValidateResponse(JArray responseArray)
         {
+            if (responseArray.Count == 0)
+            {
+                throw new Exception("Service can't find information for this date");
+            }
             string message = (string)responseArray.First["message"];
             if (responseArray.Count == 1 && message != null)
             {
-                throw new Exception("Service returns message :" + message);
-            }
+                throw new Exception("Service returns message : " + message);
+            }  
         }
 
         public double GetRate(RequestData requestData)
@@ -72,7 +76,7 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
             if (sourceCurrencyValue == 0)
                 throw new Exception("Can't compute currency with code:" + SOURCE_CURRENCY_CODE);
 
-            return rate;
+            return rate / sourceCurrencyValue;
         }
     }
 }

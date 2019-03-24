@@ -8,7 +8,7 @@ using TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
 {
-    class DataProvider
+    public class DataProvider
     {
         public static double GetServiceRate(IServiceDataAdapter service, RequestData requestData)
         {

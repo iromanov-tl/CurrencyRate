@@ -17,11 +17,11 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 
         private void ValidateResponse(JObject responseObject)
         {
-            bool isError = (bool)responseObject["error"];
+            string error = (string)responseObject["error"];
             string description = (string)responseObject["description"];
-            if (isError)
+            if (error != null)
             {
-                throw new Exception("Service returns message :" + description);
+                throw new Exception("Service returns message : " + description);
             }
         }
 
@@ -29,17 +29,20 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
         {
             string connectionUrl = "https://openexchangerates.org/api/historical/" + requestData.date.ToString("yyyy-MM-dd") + ".json?app_id=d164219ce3aa4403adc977f9ee09b996";
 
-            double rate = 0;
             string responseJSON = HttpClient.GetDataFromUrl(connectionUrl);
             JObject responseObject = JObject.Parse(responseJSON);
             ValidateResponse(responseObject);
             JObject rates = (JObject)responseObject[RATES_PROPERTY];
 
-            if (rate == 0)
+            double sourceRate = (double)rates[SOURCE_CURRENCY_CODE];
+            double requestRate = (double)rates[requestData.currencyCode];
+
+            if (sourceRate == 0)
+                throw new Exception("Can't compute currency with code:" + SOURCE_CURRENCY_CODE);
+            if (requestRate == 0)
                 throw new Exception("Can't compute currency with code:" + requestData.currencyCode);
 
-            rate = (double)rates[SOURCE_CURRENCY_CODE] / (double)rates[requestData.currencyCode];
-            return rate;
+            return sourceRate / requestRate;
         }
     }
 }

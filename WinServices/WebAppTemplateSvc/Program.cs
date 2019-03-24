@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ServiceManager.ServiceDataManager;
+using System;
 using System.Reflection;
 using System.ServiceProcess;
 using TravelLine.WebAppTemplate.Core.Configuration;
 using TravelLine.WebAppTemplate.Core.DependencyManagement;
 using TravelLine.WebAppTemplate.Core.Infrastructure;
+using TravelLine.WebAppTemplate.Core.ServiceDataManager;
 
 namespace TravelLine.WebAppTemplate.Services.WebAppTemplateSvc
 {
@@ -21,6 +23,15 @@ namespace TravelLine.WebAppTemplate.Services.WebAppTemplateSvc
             containerManager.SetDefaultScope( () => ServiceScope.Current );
             DependencyContainerServiceRegistrator.RegisterServices( containerManager );
             containerManager.LoadModule( new MainNinjectModule() );
+
+            RequestData data = new RequestData();
+            data.currencyCode = "USD";
+            data.date = DateTime.Today;
+            foreach (var item in DataProvider.GetServicesRates(data))
+            {
+                Console.WriteLine(item);
+            }
+           
 
             ServiceBase[] servicesToRun = new ServiceBase[]
             {

@@ -35,7 +35,12 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
             string errorMessage = (string)responseObject["error"];
             if (errorMessage != null)
             {
-                throw new Exception("Service returns message :" + errorMessage);
+                throw new Exception("Service returns error : " + errorMessage);
+            }
+            string infoMessage = (string)responseObject["info"];
+            if (infoMessage != null)
+            {
+                throw new Exception("Service returns message : " + infoMessage);
             }
         }
 
