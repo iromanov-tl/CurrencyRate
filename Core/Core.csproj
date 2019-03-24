@@ -154,6 +154,8 @@
     <Compile Include="Configuration\DatabaseConfiguration.cs" />
     <Compile Include="Configuration\TravellineServiceConfig.cs" />
     <Compile Include="Data\DateTimeKindAttribute.cs" />
+    <Compile Include="Data\EFRepository\CurrencyRecordRepository.cs" />
+    <Compile Include="Data\EFRepository\ServiceRepository.cs" />
     <Compile Include="Data\Mapping\Logging\ActivityLogEntityMap.cs" />
     <Compile Include="Data\Mapping\Logging\ActivityLogMap.cs" />
     <Compile Include="Data\Mapping\Logging\LogMap.cs" />
@@ -267,7 +269,6 @@
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="I18n\" />
-    <Folder Include="Services\DBHelper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

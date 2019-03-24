@@ -12,14 +12,27 @@ namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
         private readonly WebAppTemplateDbContext db;
         public List<Service> GetServices()
         {
-            /*List<Service> services =
-                from service in services
+            var services =
+                from service in db.Services
                 select new Service
                 {
-                    ServiceId = service.Id,
+                    ServiceId = service.ServiceId,
                     Url = service.Url
                 };
-            return services;*/
+            return services.ToList();
+        }
+
+        public Service GetService(int id)
+        {
+            var services =
+                from service in db.Services
+                where service.ServiceId == id
+                select new Service
+                {
+                    ServiceId = service.ServiceId,
+                    Url = service.Url
+                };
+            return services.First();
         }
     }
 }

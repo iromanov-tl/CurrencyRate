@@ -9,5 +9,6 @@ namespace TravelLine.WebAppTemplate.Core.Data.Models.Service
     public interface IServiceRepository
     {
         List<Service> GetServices();
+        Service GetService(int id);
     }
 }
