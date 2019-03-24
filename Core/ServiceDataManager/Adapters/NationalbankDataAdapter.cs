@@ -11,7 +11,7 @@ using TravelLine.WebAppTemplate.Core.Util;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 {
-    class NationalBankDataAdapter : IServiceDataAdapter
+    public class NationalBankDataAdapter : IServiceDataAdapter
     {
         /* service return only xml format */
         private const string RATES_PROPERTY = "rates";

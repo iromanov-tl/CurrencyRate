@@ -10,7 +10,7 @@ using TravelLine.WebAppTemplate.Core.Util;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 {
-    class BankGovUaDataAdapter : IServiceDataAdapter
+    public class BankGovUaDataAdapter : IServiceDataAdapter
     {
         private const string CODE_PROPERTY = "cc";
         private const string RATE_PROPERTY = "rate";

@@ -10,7 +10,7 @@ using TravelLine.WebAppTemplate.Core.Util;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 {
-    class OpenExchangeRatesDataAdapter : IServiceDataAdapter
+    public class OpenExchangeRatesDataAdapter : IServiceDataAdapter
     {
         private const string RATES_PROPERTY = "rates";
         private const string SOURCE_CURRENCY_CODE = "RUB";

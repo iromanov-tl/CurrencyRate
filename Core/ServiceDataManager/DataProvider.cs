@@ -10,17 +10,17 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
 {
     public class DataProvider
     {
-        public static double GetServiceRate(IServiceDataAdapter service, RequestData requestData)
+        public static double LoadServiceRate(IServiceDataAdapter service, RequestData requestData)
         {
             return service.GetRate(requestData);
         }
 
-        public static List<double> GetServicesRates(RequestData requestData)
+        public static List<double> LoadServicesRates(RequestData requestData)
         {
             return new List<double> {
-                GetServiceRate(new BankGovUaDataAdapter(), requestData),
-                GetServiceRate(new OpenExchangeRatesDataAdapter(), requestData),
-                GetServiceRate(new NationalBankDataAdapter(), requestData)
+                LoadServiceRate(new BankGovUaDataAdapter(), requestData),
+                LoadServiceRate(new OpenExchangeRatesDataAdapter(), requestData),
+                LoadServiceRate(new NationalBankDataAdapter(), requestData)
             };
         }
     }
