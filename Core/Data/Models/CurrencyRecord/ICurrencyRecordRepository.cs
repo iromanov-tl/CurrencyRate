@@ -9,7 +9,8 @@ namespace TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord
 {
     public interface ICurrencyRecordRepository
     {
-        void Save(int serviceId, string code, double rate, string date);
+        void Save(CurrencyRecord record);
         List<CurrencyRecord> GetItems(DateTime date, string code);
+        CurrencyRecord GetItem(DateTime date, string code, int serviceId);
     }
 }

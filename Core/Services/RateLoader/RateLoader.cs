@@ -19,51 +19,55 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
             requestData.date = date;
             requestData.currencyCode = currencyCode;
         }
-        private CurrencyRecordRepository currencyRepository = new CurrencyRecordRepository();
-        private ServiceRepository serviceRepository = new ServiceRepository();
+        private readonly EFRepository repository;
         public RequestData requestData;
 
 
-        private void LoadServiceData(Service service)
+        private CurrencyRecord LoadServiceData(Service service)
         {
+            /*TODO: Refactor with polymorphysm*/
             switch (service.ServiceId)
             {
                 case 0:
                     DataProvider.LoadServiceRate(new BankGovUaDataAdapter(), requestData);
-                    break;
+                    return repository.currencyRecordRepsitory.GetItem(requestData.date, requestData.currencyCode, 0);
                 case 1:
                     DataProvider.LoadServiceRate(new NationalBankDataAdapter(), requestData);
-                    break;
+                    return repository.currencyRecordRepsitory.GetItem(requestData.date, requestData.currencyCode, 1);
                 case 2:
                     DataProvider.LoadServiceRate(new OpenExchangeRatesDataAdapter(), requestData);
-                    break;
+                    return repository.currencyRecordRepsitory.GetItem(requestData.date, requestData.currencyCode, 2);
+                default: throw new Exception("Invalid service id");
             }
-                
+            /*End TODO: Refactor with polymorphysm*/
         }
 
         private List<CurrencyRecord> LoadRemainingData(List<Service> services)
         {
+            List<CurrencyRecord> newRecords = new List<CurrencyRecord>();
             foreach (Service service in services)
             {
-                LoadServiceData(service);
+                newRecords.Add(LoadServiceData(service));
             }
+            return newRecords;
         }
 
         public List<CurrencyRecord> GetRates(RequestData requestData)
         {
-            List<Service> services = serviceRepository.GetServices();
-            List<CurrencyRecord> records = currencyRepository.GetItems(requestData.date, requestData.currencyCode);
+            List<Service> services = repository.serviceRepository.GetServices();
+            List<CurrencyRecord> records = repository.currencyRecordRepsitory.GetItems(requestData.date, requestData.currencyCode);
             List<Service> servicesToCheck = services.Where(
                 service => !records.Exists(
                     record => record.ServiceId == service.ServiceId
                     )
                 ).ToList();
 
-           if (servicesToCheck.Count == 0)
-           {
-                return records;
-           }
-           LoadRemainingData(servicesToCheck)
+            if (servicesToCheck.Count == 0)
+            {
+                 return records;
+            }
+            records.AddRange(LoadRemainingData(servicesToCheck));
+            return records;
         }
     }
 }

@@ -155,6 +155,7 @@
     <Compile Include="Configuration\TravellineServiceConfig.cs" />
     <Compile Include="Data\DateTimeKindAttribute.cs" />
     <Compile Include="Data\EFRepository\CurrencyRecordRepository.cs" />
+    <Compile Include="Data\EFRepository\EFRepository.cs" />
     <Compile Include="Data\EFRepository\ServiceRepository.cs" />
     <Compile Include="Data\Mapping\Logging\ActivityLogEntityMap.cs" />
     <Compile Include="Data\Mapping\Logging\ActivityLogMap.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="ServiceDataManager\DataProvider.cs" />
     <Compile Include="ServiceDataManager\IServiceDataAdapter.cs" />
     <Compile Include="ServiceDataManager\RequestData.cs" />
+    <Compile Include="ServiceDataManager\SaveDataHelper.cs" />
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\ExportActivityLogService.cs" />
     <Compile Include="Services\IExportActivityLogService.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="Services\Logging\ILogService.cs" />
     <Compile Include="Services\Logging\LogService.cs" />
     <Compile Include="Services\ProviderService.cs" />
+    <Compile Include="Services\RateLoader\RateLoader.cs" />
     <Compile Include="Services\ResourceService.cs" />
     <Compile Include="Services\Travelline\ITravellineProviderService.cs" />
     <Compile Include="Services\Travelline\ITravellineServiceClient.cs" />

@@ -10,6 +10,7 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
 {
     public class DataProvider
     {
+        private SaveDataHelper saveDataHelper;
         public static double LoadServiceRate(IServiceDataAdapter service, RequestData requestData)
         {
             return service.GetRate(requestData);

@@ -7,7 +7,7 @@ using TravelLine.WebAppTemplate.Core.Data.Models.Service;
 
 namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
 {
-    class ServiceRepository : IServiceRepository
+    public class ServiceRepository : IServiceRepository
     {
         private readonly WebAppTemplateDbContext db;
         public List<Service> GetServices()
