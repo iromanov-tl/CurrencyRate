@@ -23,9 +23,8 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
         public RequestData requestData;
 
 
-        private CurrencyRecord LoadServiceData(Service service)
+       /* private CurrencyRecord LoadServiceData(Service service)
         {
-            /*TODO: Refactor with polymorphysm*/
             switch (service.ServiceId)
             {
                 case 0:
@@ -39,7 +38,6 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
                     return repository.currencyRecordRepsitory.GetItem(requestData.date, requestData.currencyCode, 2);
                 default: throw new Exception("Invalid service id");
             }
-            /*End TODO: Refactor with polymorphysm*/
         }
 
         private List<CurrencyRecord> LoadRemainingData(List<Service> services)
@@ -50,13 +48,14 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
                 newRecords.Add(LoadServiceData(service));
             }
             return newRecords;
-        }
+        }*/
 
         public List<CurrencyRecord> GetRates(RequestData requestData)
         {
-            List<Service> services = repository.serviceRepository.GetServices();
+            //List<Service> services = repository.serviceRepository.GetServices();
+            DataProvider.LoadServicesRates(requestData);
             List<CurrencyRecord> records = repository.currencyRecordRepsitory.GetItems(requestData.date, requestData.currencyCode);
-            List<Service> servicesToCheck = services.Where(
+            /*List<Service> servicesToCheck = services.Where(
                 service => !records.Exists(
                     record => record.ServiceId == service.ServiceId
                     )
@@ -66,7 +65,7 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
             {
                  return records;
             }
-            records.AddRange(LoadRemainingData(servicesToCheck));
+            records.AddRange(LoadRemainingData(servicesToCheck));*/
             return records;
         }
     }
