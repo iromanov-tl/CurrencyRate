@@ -30,7 +30,7 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
             }  
         }
 
-        public double GetRate(RequestData requestData)
+        public double GetRates(DateTime date)
         {
             string connectionUrl = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=" + requestData.date.ToString("yyyyMMdd") + "&json";
             double rate = 0;

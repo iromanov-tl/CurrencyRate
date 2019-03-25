@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace ServiceManager.ServiceDataManager
+namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
 {
     public class RequestData
     {
@@ -13,6 +15,6 @@ namespace ServiceManager.ServiceDataManager
         }
         public DateTime date { get; set; }
         public string currencyCode { get; set; }
-        
+
     }
 }

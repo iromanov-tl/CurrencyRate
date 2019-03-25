@@ -50,22 +50,19 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
             return newRecords;
         }*/
 
+        private List<CurrencyRecord> LoadRatesFromDB(RequestData requestData)
+        {
+            return repository.currencyRecordRepsitory.GetItems(requestData.date, requestData.currencyCode);
+        }
+
         public List<CurrencyRecord> GetRates(RequestData requestData)
         {
-            //List<Service> services = repository.serviceRepository.GetServices();
-            DataProvider.LoadServicesRates(requestData);
-            List<CurrencyRecord> records = repository.currencyRecordRepsitory.GetItems(requestData.date, requestData.currencyCode);
-            /*List<Service> servicesToCheck = services.Where(
-                service => !records.Exists(
-                    record => record.ServiceId == service.ServiceId
-                    )
-                ).ToList();
-
-            if (servicesToCheck.Count == 0)
+            List<CurrencyRecord> records = LoadRatesFromDB(requestData);
+            if (records.Count == 0)
             {
-                 return records;
+                DataProvider.LoadServicesRates(requestData.date);
             }
-            records.AddRange(LoadRemainingData(servicesToCheck));*/
+            records = LoadRatesFromDB(requestData);
             return records;
         }
     }

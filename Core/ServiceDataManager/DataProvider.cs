@@ -1,28 +1,27 @@
-﻿using ServiceManager.ServiceDataManager;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord;
 using TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
 {
     public class DataProvider
     {
-        private SaveDataHelper saveDataHelper;
-        public static double LoadServiceRate(IServiceDataAdapter service, RequestData requestData)
+        private static SaveDataHelper saveDataHelper;
+        public static void LoadServiceRate(IServiceDataAdapter service, DateTime date)
         {
-            return service.GetRate(requestData);
+            List<CurrencyRecord> records = service.GetRates(date);
+            saveDataHelper.SaveData(records);
         }
 
-        public static List<double> LoadServicesRates(RequestData requestData)
+        public static void LoadServicesRates(DateTime date)
         {
-            return new List<double> {
-                LoadServiceRate(new BankGovUaDataAdapter(), requestData),
-                LoadServiceRate(new OpenExchangeRatesDataAdapter(), requestData),
-                LoadServiceRate(new NationalBankDataAdapter(), requestData)
-            };
+            LoadServiceRate(new BankGovUaDataAdapter(), date);
+            LoadServiceRate(new OpenExchangeRatesDataAdapter(), date);
+            LoadServiceRate(new NationalBankDataAdapter(), date);
         }
     }
 }
