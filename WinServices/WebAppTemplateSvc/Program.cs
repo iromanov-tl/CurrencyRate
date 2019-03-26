@@ -24,15 +24,6 @@ namespace TravelLine.WebAppTemplate.Services.WebAppTemplateSvc
             DependencyContainerServiceRegistrator.RegisterServices( containerManager );
             containerManager.LoadModule( new MainNinjectModule() );
 
-            RequestData data = new RequestData();
-            data.currencyCode = "USD";
-            data.date = DateTime.Today;
-            foreach (var item in DataProvider.GetServicesRates(data))
-            {
-                Console.WriteLine(item);
-            }
-           
-
             ServiceBase[] servicesToRun = new ServiceBase[]
             {
                 containerManager.Resolve<WebAppTemplateSvc>()

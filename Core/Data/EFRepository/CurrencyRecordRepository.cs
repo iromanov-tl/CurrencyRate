@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord;
+using TravelLine.WebAppTemplate.Core.Data.Models.Rate;
 
 
 namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
 {
-    public class CurrencyRecordRepository : ICurrencyRecordRepository
+    public class RateRepository : IRateRepository
     {
         private readonly WebAppTemplateDbContext db;
-        public void Save(CurrencyRecord record)
+        public void Save(Rate rate)
         {
-            List<CurrencyRecord> dbRecords = db.CurrencyRecords.ToList();
+            List<Rate> dbRecords = db.CurrencyRecords.ToList();
             var equalItemIndex = dbRecords.FindIndex(
-                item => (item.Date == record.Date &&
-                         item.Code == record.Code &&
-                         item.Rate == record.Rate &&
-                         item.ServiceId == record.ServiceId));
+                item => (item.Date == rate.Date &&
+                         item.Code == rate.Code &&
+                         item.Value == rate.Value &&
+                         item.ServiceId == rate.ServiceId));
             if (equalItemIndex != -1)
             {
-                dbRecords[equalItemIndex].Code = record.Code;
-                dbRecords[equalItemIndex].Date = record.Date;
-                dbRecords[equalItemIndex].Rate = record.Rate;
-                dbRecords[equalItemIndex].ServiceId = record.ServiceId;
+                dbRecords[equalItemIndex].Code = rate.Code;
+                dbRecords[equalItemIndex].Date = rate.Date;
+                dbRecords[equalItemIndex].Value = rate.Value;
+                dbRecords[equalItemIndex].ServiceId = rate.ServiceId;
             }
             else
             {
-                db.CurrencyRecords.Add(record);
+                db.CurrencyRecords.Add(rate);
             }
             
         }
@@ -43,39 +43,39 @@ namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
                 {
                     code = record.Code,
                     date = Convert.ToDateTime(record.Date),
-                    rate = record.Rate,
+                    rate = record.Value,
                     serviceUrl = service.Url
                 };
             return items.ToList();
         }*/
 
-        public List<CurrencyRecord> GetItems(DateTime date, string code)
+        public List<Rate> GetItems(DateTime date, string code)
         {
             var items =
                 from record in db.CurrencyRecords
                 where record.Date.Equals(date.ToString()) && record.Code == code
-                select new CurrencyRecord
+                select new Rate
                 {
                     Id = record.Id,
                     Code = record.Code,
                     Date = record.Date,
-                    Rate = record.Rate,
+                    Value = record.Value,
                     ServiceId = record.ServiceId
                 };
             return items.ToList();
         }
 
-        public CurrencyRecord GetItem(DateTime date, string code, int serviceId)
+        public Rate GetItem(DateTime date, string code, int serviceId)
         {
             var item =
                 (from record in db.CurrencyRecords
                 where record.Date.Equals(date.ToString()) && record.Code == code && record.ServiceId == serviceId
-                select new CurrencyRecord
+                select new Rate
                 {
                     Id = record.Id,
                     Code = record.Code,
                     Date = record.Date,
-                    Rate = record.Rate,
+                    Value = record.Value,
                     ServiceId = record.ServiceId
                 }).First();
             return item;

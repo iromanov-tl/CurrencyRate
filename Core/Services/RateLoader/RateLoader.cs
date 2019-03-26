@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelLine.WebAppTemplate.Core.Data.EFRepository;
-using TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord;
+using TravelLine.WebAppTemplate.Core.Data.Models.Rate;
 using TravelLine.WebAppTemplate.Core.Data.Models.Service;
 using TravelLine.WebAppTemplate.Core.ServiceDataManager;
 using TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters;
@@ -23,7 +23,7 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
         public RequestData requestData;
 
 
-       /* private CurrencyRecord LoadServiceData(Service service)
+       /* private Rate LoadServiceData(Service service)
         {
             switch (service.ServiceId)
             {
@@ -40,9 +40,9 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
             }
         }
 
-        private List<CurrencyRecord> LoadRemainingData(List<Service> services)
+        private List<Rate> LoadRemainingData(List<Service> services)
         {
-            List<CurrencyRecord> newRecords = new List<CurrencyRecord>();
+            List<Rate> newRecords = new List<Rate>();
             foreach (Service service in services)
             {
                 newRecords.Add(LoadServiceData(service));
@@ -50,20 +50,20 @@ namespace TravelLine.WebAppTemplate.Core.Services.RateLoader
             return newRecords;
         }*/
 
-        private List<CurrencyRecord> LoadRatesFromDB(RequestData requestData)
+        private List<Rate> LoadRatesFromDB(RequestData requestData)
         {
             return repository.currencyRecordRepsitory.GetItems(requestData.date, requestData.currencyCode);
         }
 
-        public List<CurrencyRecord> GetRates(RequestData requestData)
+        public List<Rate> GetRates(RequestData requestData)
         {
-            List<CurrencyRecord> records = LoadRatesFromDB(requestData);
-            if (records.Count == 0)
+            List<Rate> rates = LoadRatesFromDB(requestData);
+            if (rates.Count == 0)
             {
                 DataProvider.LoadServicesRates(requestData.date);
             }
-            records = LoadRatesFromDB(requestData);
-            return records;
+            rates = LoadRatesFromDB(requestData);
+            return rates;
         }
     }
 }

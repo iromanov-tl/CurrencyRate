@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord
+namespace TravelLine.WebAppTemplate.Core.Data.Models.Rate
 {
-    public class CurrencyRecord
+    public class Rate
     {
-        [Key, Column("id_record")]
+        [Key, Column("id_rate")]
         public int Id { get; set; }
 
         [Column("id_service")]
@@ -14,8 +14,8 @@ namespace TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord
         [Column("code")]
         public string Code { get; set; }
 
-        [Column("rate")]
-        public double Rate { get; set; }
+        [Column("value")]
+        public double Value { get; set; }
 
         [Column("date")]
         public string Date { get; set; }

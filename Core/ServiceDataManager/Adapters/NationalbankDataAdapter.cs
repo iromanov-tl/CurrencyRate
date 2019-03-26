@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ServiceManager.ServiceDataManager;
 using TravelLine.WebAppTemplate.Core.Util;
-using TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord;
+using TravelLine.WebAppTemplate.Core.Data.Models.Rate;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 {
@@ -46,17 +46,17 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
             }
         }
 
-        private CurrencyRecord CreateCurrencyRecord(string code, DateTime date, double rate)
+        private Rate CreateRate(string code, DateTime date, double value)
         {
-            CurrencyRecord record = new CurrencyRecord();
-            record.Code = code;
-            record.Date = date.ToString();
-            record.Rate = rate;
-            record.ServiceId = SERVICE_ID;
-            return record;
+            Rate rate = new Rate();
+            rate.Code = code;
+            rate.Date = date.ToString();
+            rate.Value = value;
+            rate.ServiceId = SERVICE_ID;
+            return rate;
         }
 
-        public List<CurrencyRecord> GetRates(DateTime date)
+        public List<Rate> GetRates(DateTime date)
         {
             string connectionUrl = "http://www.nationalbank.kz/rss/get_rates.cfm?fdate=" + date.ToString("dd.MM.yyyy");
             double sourceCourse = 0;
@@ -65,7 +65,7 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
             JObject responseObject = ConvertXmlToJSON(responseXML);
             JObject ratesProperty = (JObject)responseObject[RATES_PROPERTY];
             ValidateResponse(ratesProperty);
-            List<CurrencyRecord> records = new List<CurrencyRecord>();
+            List<Rate> rates = new List<Rate>();
             JArray ratesPropertyItems = (JArray)ratesProperty[ITEMS_PROPERTY];
             foreach (JObject item in ratesPropertyItems)
             {
@@ -74,19 +74,19 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
                 {
                     sourceCourse = (double)item[RATE_PROPERTY];
                 }
-                CurrencyRecord record = CreateCurrencyRecord((string)item[CODE_PROPERTY], date, (double)item[RATE_PROPERTY]);
-                records.Add(record);
+                Rate rate = CreateRate((string)item[CODE_PROPERTY], date, (double)item[RATE_PROPERTY]);
+                rates.Add(rate);
             }
 
             // Add service currency record
-            records.Add(CreateCurrencyRecord(SERVICE_CURRENCY_CODE, date, 1));
+            rates.Add(CreateRate(SERVICE_CURRENCY_CODE, date, 1));
 
             if (sourceCourse == 0)
                 throw new Exception("Can't compute currency with code:" + SOURCE_CURRENCY_CODE);
 
             // convert all currencies to source currency
-            records.ForEach(item => item.Rate = item.Rate / sourceCourse);
-            return records;
+            rates.ForEach(item => item.Value = item.Value / sourceCourse);
+            return rates;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace TravelLine.WebAppTemplate.Core.Data
             base.OnModelCreating( modelBuilder );
         }
 
-        public DbSet<CurrencyRecord> CurrencyRecords { get; set; }
+        public DbSet<Rate> CurrencyRecords { get; set; }
         public DbSet<Service> Services { get; set; }
 
     }

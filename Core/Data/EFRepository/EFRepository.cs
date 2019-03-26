@@ -8,7 +8,7 @@ namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
 {
     public class EFRepository
     {
-        public CurrencyRecordRepository currencyRecordRepsitory;
+        public RateRepository currencyRecordRepsitory;
         public ServiceRepository serviceRepository;
     }
 }

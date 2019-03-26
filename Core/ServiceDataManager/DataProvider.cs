@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord;
+using TravelLine.WebAppTemplate.Core.Data.Models.Rate;
 using TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
@@ -13,14 +13,14 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
         private static SaveDataHelper saveDataHelper;
         public static void LoadServiceRate(IServiceDataAdapter service, DateTime date)
         {
-            List<CurrencyRecord> records = service.GetRates(date);
+            List<Rate> rates = service.GetRates(date);
             /*Console.WriteLine("******************\n");
-            foreach (CurrencyRecord record in records)
+            foreach (Rate rate in rates)
             {
-                Console.WriteLine(record.Code + " | " + record.Rate + " | " + record.Date.ToString());
+                Console.WriteLine(rate.Code + " | " + rate.Value + " | " + rate.Date.ToString());
             }
             Console.WriteLine("******************\n");*/
-            //saveDataHelper.SaveData(records);
+            //saveDataHelper.SaveData(rates);
         }
 
         public static void LoadServicesRates(DateTime date)
