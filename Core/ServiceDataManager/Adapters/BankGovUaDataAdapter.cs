@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ServiceManager.ServiceDataManager;
 using TravelLine.WebAppTemplate.Core.Util;
+using TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord;
 
 namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
 {
@@ -16,6 +17,7 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
         private const string RATE_PROPERTY = "rate";
         private const string SOURCE_CURRENCY_CODE = "RUB";
         private const string SERVICE_CURRENCY_CODE = "UAH";
+        private const int SERVICE_ID = 0;
 
         private void ValidateResponse(JArray responseArray)
         {
@@ -30,53 +32,43 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager.Adapters
             }  
         }
 
-        public double GetRates(DateTime date)
+        private CurrencyRecord CreateCurrencyRecord(string code, DateTime date, double rate)
         {
-            string connectionUrl = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=" + requestData.date.ToString("yyyyMMdd") + "&json";
-            double rate = 0;
-            double sourceCurrencyValue = 0;
+            CurrencyRecord record = new CurrencyRecord();
+            record.Code = code;
+            record.Date = date.ToString();
+            record.Rate = rate;
+            record.ServiceId = SERVICE_ID;
+            return record;
+        }
+
+        public List<CurrencyRecord> GetRates(DateTime date)
+        {
+            string connectionUrl = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=" + date.ToString("yyyyMMdd") + "&json";
+            double sourceCourse = 0;
             string responseJSON = HttpClient.GetDataFromUrl(connectionUrl);
             JArray responseArray = JArray.Parse(responseJSON);
             ValidateResponse(responseArray);
-            bool isOneCurrencyFinded = false;
+            List<CurrencyRecord> records = new List<CurrencyRecord>();
             foreach (JObject item in responseArray)
             {
-                if ((string)item[CODE_PROPERTY] == requestData.currencyCode)
-                {
-                    rate = (double)item[RATE_PROPERTY];
-                    if (isOneCurrencyFinded)
-                    {
-                        break;
-                    }
-                    isOneCurrencyFinded = true;
-
-                }
-
                 if ((string)item[CODE_PROPERTY] == SOURCE_CURRENCY_CODE)
                 {
-                    if (requestData.currencyCode == SERVICE_CURRENCY_CODE)
-                    {
-                        rate = 1 / (double)item[RATE_PROPERTY];
-                        return rate;
-                    }
-
-                    sourceCurrencyValue = (double)item[RATE_PROPERTY];
-
-                    if (isOneCurrencyFinded)
-                    {
-                        break;
-                    }
-                    isOneCurrencyFinded = true;
+                    sourceCourse = (double)item[RATE_PROPERTY];
                 }
+                CurrencyRecord record = CreateCurrencyRecord((string)item[CODE_PROPERTY], date, (double)item[RATE_PROPERTY]);
+                records.Add(record);
             }
 
-            if (rate == 0)
-                throw new Exception("Can't compute currency with code:" + requestData.currencyCode);
+            // Add service currency record
+            records.Add(CreateCurrencyRecord(SERVICE_CURRENCY_CODE, date, 1));
 
-            if (sourceCurrencyValue == 0)
+            if (sourceCourse == 0)
                 throw new Exception("Can't compute currency with code:" + SOURCE_CURRENCY_CODE);
 
-            return rate / sourceCurrencyValue;
+            // convert all currencies to source currency
+            records.ForEach(item => item.Rate = item.Rate / sourceCourse);
+            return records;
         }
     }
 }

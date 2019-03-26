@@ -14,7 +14,13 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
         public static void LoadServiceRate(IServiceDataAdapter service, DateTime date)
         {
             List<CurrencyRecord> records = service.GetRates(date);
-            saveDataHelper.SaveData(records);
+            /*Console.WriteLine("******************\n");
+            foreach (CurrencyRecord record in records)
+            {
+                Console.WriteLine(record.Code + " | " + record.Rate + " | " + record.Date.ToString());
+            }
+            Console.WriteLine("******************\n");*/
+            //saveDataHelper.SaveData(records);
         }
 
         public static void LoadServicesRates(DateTime date)
