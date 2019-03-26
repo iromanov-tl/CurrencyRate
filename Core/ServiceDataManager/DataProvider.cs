@@ -14,12 +14,12 @@ namespace TravelLine.WebAppTemplate.Core.ServiceDataManager
         public static void LoadServiceRate(IServiceDataAdapter service, DateTime date)
         {
             List<Rate> rates = service.GetRates(date);
-            /*Console.WriteLine("******************\n");
+            Console.WriteLine("******************\n");
             foreach (Rate rate in rates)
             {
                 Console.WriteLine(rate.Code + " | " + rate.Value + " | " + rate.Date.ToString());
             }
-            Console.WriteLine("******************\n");*/
+            Console.WriteLine("******************\n");
             //saveDataHelper.SaveData(rates);
         }
 

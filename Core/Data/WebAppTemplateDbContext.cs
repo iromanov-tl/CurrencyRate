@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Reflection;
-using TravelLine.WebAppTemplate.Core.Data.Models.CurrencyRecord;
+using TravelLine.WebAppTemplate.Core.Data.Models.Rate;
 using TravelLine.WebAppTemplate.Core.Data.Models.Service;
 
 namespace TravelLine.WebAppTemplate.Core.Data
@@ -32,7 +32,7 @@ namespace TravelLine.WebAppTemplate.Core.Data
             base.OnModelCreating( modelBuilder );
         }
 
-        public DbSet<Rate> CurrencyRecords { get; set; }
+        public DbSet<Rate> Rates { get; set; }
         public DbSet<Service> Services { get; set; }
 
     }

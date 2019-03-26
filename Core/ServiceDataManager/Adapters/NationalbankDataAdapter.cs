@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ServiceManager.ServiceDataManager;
 using TravelLine.WebAppTemplate.Core.Util;
 using TravelLine.WebAppTemplate.Core.Data.Models.Rate;
 

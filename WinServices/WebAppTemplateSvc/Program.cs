@@ -1,5 +1,4 @@
-﻿using ServiceManager.ServiceDataManager;
-using System;
+﻿using System;
 using System.Reflection;
 using System.ServiceProcess;
 using TravelLine.WebAppTemplate.Core.Configuration;
@@ -23,6 +22,8 @@ namespace TravelLine.WebAppTemplate.Services.WebAppTemplateSvc
             containerManager.SetDefaultScope( () => ServiceScope.Current );
             DependencyContainerServiceRegistrator.RegisterServices( containerManager );
             containerManager.LoadModule( new MainNinjectModule() );
+
+            DataProvider.LoadServicesRates(DateTime.Now);
 
             ServiceBase[] servicesToRun = new ServiceBase[]
             {

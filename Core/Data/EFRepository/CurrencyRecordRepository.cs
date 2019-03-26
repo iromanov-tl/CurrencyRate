@@ -13,7 +13,7 @@ namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
         private readonly WebAppTemplateDbContext db;
         public void Save(Rate rate)
         {
-            List<Rate> dbRecords = db.CurrencyRecords.ToList();
+            List<Rate> dbRecords = db.Rates.ToList();
             var equalItemIndex = dbRecords.FindIndex(
                 item => (item.Date == rate.Date &&
                          item.Code == rate.Code &&
@@ -28,7 +28,7 @@ namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
             }
             else
             {
-                db.CurrencyRecords.Add(rate);
+                db.Rates.Add(rate);
             }
             
         }
@@ -36,7 +36,7 @@ namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
         /*public List<Currency> GetItems(DateTime date, string code)
         {
             var items =
-                from record in db.CurrencyRecords
+                from record in db.Rates
                 join service in db.Services on record.ServiceId equals service.ServiceId
                 where record.Date.Equals(date.ToString()) && record.Code == code
                 select new Currency
@@ -52,7 +52,7 @@ namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
         public List<Rate> GetItems(DateTime date, string code)
         {
             var items =
-                from record in db.CurrencyRecords
+                from record in db.Rates
                 where record.Date.Equals(date.ToString()) && record.Code == code
                 select new Rate
                 {
@@ -68,7 +68,7 @@ namespace TravelLine.WebAppTemplate.Core.Data.EFRepository
         public Rate GetItem(DateTime date, string code, int serviceId)
         {
             var item =
-                (from record in db.CurrencyRecords
+                (from record in db.Rates
                 where record.Date.Equals(date.ToString()) && record.Code == code && record.ServiceId == serviceId
                 select new Rate
                 {

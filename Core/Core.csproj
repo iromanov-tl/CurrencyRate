@@ -161,8 +161,8 @@
     <Compile Include="Data\Mapping\Logging\ActivityLogMap.cs" />
     <Compile Include="Data\Mapping\Logging\LogMap.cs" />
     <Compile Include="Data\Mapping\Security\ProviderObjectGroupMap.cs" />
-    <Compile Include="Data\Models\CurrencyRecord\CurrencyRecord.cs" />
-    <Compile Include="Data\Models\CurrencyRecord\ICurrencyRecordRepository.cs" />
+    <Compile Include="Data\Models\Rate\IRateRepository.cs" />
+    <Compile Include="Data\Models\Rate\Rate.cs" />
     <Compile Include="Data\Models\Service\IServiceRepository.cs" />
     <Compile Include="Data\Models\Service\Service.cs" />
     <Compile Include="Data\Repository\IRepositoryStringId.cs" />
@@ -230,7 +230,6 @@
     <Compile Include="ServiceDataManager\Adapters\OpenExchangeRatesDataAdapter.cs" />
     <Compile Include="ServiceDataManager\DataProvider.cs" />
     <Compile Include="ServiceDataManager\IServiceDataAdapter.cs" />
-    <Compile Include="ServiceDataManager\RequestData.cs" />
     <Compile Include="ServiceDataManager\SaveDataHelper.cs" />
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\ExportActivityLogService.cs" />
@@ -246,6 +245,7 @@
     <Compile Include="Services\Logging\LogService.cs" />
     <Compile Include="Services\ProviderService.cs" />
     <Compile Include="Services\RateLoader\RateLoader.cs" />
+    <Compile Include="Services\RateLoader\RequestData.cs" />
     <Compile Include="Services\ResourceService.cs" />
     <Compile Include="Services\Travelline\ITravellineProviderService.cs" />
     <Compile Include="Services\Travelline\ITravellineServiceClient.cs" />
