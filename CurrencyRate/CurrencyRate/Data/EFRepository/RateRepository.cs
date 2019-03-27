@@ -9,7 +9,7 @@ namespace CurrencyRate.Data.EFRepository
 {
     public class RateRepository : IRateRepository
     {
-        private CurrencyRateContext db;
+        private readonly CurrencyRateContext db;
         public RateRepository(CurrencyRateContext db)
         {
             this.db = db;
@@ -33,7 +33,7 @@ namespace CurrencyRate.Data.EFRepository
             {
                 db.Rate.Add(rate);
             }
-            
+            db.SaveChanges(); 
         }
 
         /*public List<Currency> GetItems(DateTime date, string code)
@@ -54,8 +54,7 @@ namespace CurrencyRate.Data.EFRepository
 
         public List<Rate> GetItems(DateTime date, string code)
         {
-            var items =
-                from record in db.Rate
+            var items = from record in db.Rate
                 where record.Date.Equals(date.ToString()) && record.Code == code
                 select new Rate
                 {

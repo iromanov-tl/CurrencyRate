@@ -4,7 +4,25 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Поиск валюты</h2>
+
+<form method="post" class="form">
+    <div class="form-group">
+        <div class="input-group date">
+            <input type="text" class="form-control" id="date" name="date" value="12-02-2012">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+        <select class="form-control" id="currency" name="currency">
+             <option value="USD">USD</option>
+             <option value="RUB">RUB</option>
+             <option value="UAH">UAH</option>
+             <option value="KZT">KZT</option>
+             <option value="GBP">GBP</option>
+             <option value="EUR">EUR</option>
+        </select>
+        <br />
+        <button type="submit" class="btn btn-primary">Поиск курса</button>
+    </div>
+</form>

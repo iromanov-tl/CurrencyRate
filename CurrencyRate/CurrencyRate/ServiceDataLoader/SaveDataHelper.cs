@@ -1,4 +1,5 @@
 ﻿using CurrencyRate.Data.EFRepository;
+using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,18 @@ namespace CurrencyRate.ServiceDataLoader
 {
     public class SaveDataHelper
     {
-        private EFRepository repository;
+        private readonly IRateRepository _rateRepository;
+
+        public SaveDataHelper(IRateRepository rateRepository)
+        {
+            _rateRepository = rateRepository;
+        }
+
         public void SaveData(List<Rate> rates)
         {
             foreach (Rate rate in rates)
             {
-                repository.currencyRecordRepsitory.Save(rate);
+                _rateRepository.Save(rate);
             }
         }
     }

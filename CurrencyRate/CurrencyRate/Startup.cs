@@ -11,6 +11,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using CurrencyRate.Models;
+using CurrencyRate.Models.Rate;
+using CurrencyRate.Data.EFRepository;
+using CurrencyRate.Models.Service;
+using CurrencyRate.ServiceDataLoader;
 
 namespace CurrencyRate
 {
@@ -38,6 +42,11 @@ namespace CurrencyRate
 
             services.AddDbContext<CurrencyRateContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("CurrencyRateContext")));
+            services.AddScoped<IRateRepository, RateRepository>()
+                .AddScoped<IServiceRepository, ServiceRepository>()
+                .AddScoped<DataProvider>()
+                .AddScoped<SaveDataHelper>()
+                .AddScoped<RatesManager.RatesManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

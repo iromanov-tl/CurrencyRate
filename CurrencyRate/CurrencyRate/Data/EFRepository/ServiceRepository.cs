@@ -10,7 +10,7 @@ namespace CurrencyRate.Data.EFRepository
 {
     public class ServiceRepository : IServiceRepository
     {
-        private CurrencyRateContext db;
+        private readonly CurrencyRateContext db;
         public ServiceRepository(CurrencyRateContext db)
         {
             this.db = db;

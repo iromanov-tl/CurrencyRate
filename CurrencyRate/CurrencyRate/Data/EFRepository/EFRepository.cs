@@ -9,10 +9,8 @@ namespace CurrencyRate.Data.EFRepository
 {
     public class EFRepository
     {
-        private CurrencyRateContext db;
         public EFRepository(CurrencyRateContext db)
         {
-            this.db = db;
             rateRepository = new RateRepository(db);
             serviceRepository = new ServiceRepository(db);
         }

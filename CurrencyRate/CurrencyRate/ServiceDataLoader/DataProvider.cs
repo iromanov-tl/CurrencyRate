@@ -11,20 +11,24 @@ namespace CurrencyRate.ServiceDataLoader
 {
     public class DataProvider
     {
-        private static SaveDataHelper saveDataHelper;
-        public static void LoadServiceRate(IServiceDataAdapter service, DateTime date)
+        private readonly SaveDataHelper _saveDataHelper;
+
+        public DataProvider(SaveDataHelper saveDataHelper)
         {
-            List<Rate> rates = service.GetRates(date);
-            Console.WriteLine("******************\n");
-            foreach (Rate rate in rates)
-            {
-                Console.WriteLine(rate.Code + " | " + rate.Value + " | " + rate.Date.ToString());
-            }
-            Console.WriteLine("******************\n");
-            //saveDataHelper.SaveData(rates);
+            _saveDataHelper = saveDataHelper;
         }
 
-        public static void LoadServicesRates(DateTime date)
+        private void LoadServiceRate(IServiceDataAdapter service, DateTime date)
+        {
+            List<Rate> rates = service.GetRates(date);
+           /* foreach (var rate in rates)
+            {
+                Console.WriteLine("Rate:" + rate.Code + " | " + rate.Date);
+            }*/
+            _saveDataHelper.SaveData(rates);
+        }
+
+        public void LoadServicesRates(DateTime date)
         {
             LoadServiceRate(new BankGovUaDataAdapter(), date);
             LoadServiceRate(new OpenExchangeRatesDataAdapter(), date);
