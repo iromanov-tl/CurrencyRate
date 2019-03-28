@@ -1,6 +1,7 @@
 ﻿using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.ServiceDataLoader.Adapters;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace CurrencyRate.ServiceDataLoader
     public class DataProvider
     {
         private readonly SaveDataHelper _saveDataHelper;
+        private readonly ILogger _logger;
 
         public DataProvider(SaveDataHelper saveDataHelper)
         {
@@ -20,12 +22,14 @@ namespace CurrencyRate.ServiceDataLoader
 
         private void LoadServiceRate(IServiceDataAdapter service, DateTime date)
         {
-            List<Rate> rates = service.GetRates(date);
-           /* foreach (var rate in rates)
-            {
-                Console.WriteLine("Rate:" + rate.Code + " | " + rate.Date);
-            }*/
-            _saveDataHelper.SaveData(rates);
+            try {
+                List<Rate> rates = service.GetRates(date);
+                _saveDataHelper.SaveData(rates);
+            }
+            catch(Exception exception) {
+                _logger.LogInformation(exception.Message);
+            }
+            
         }
 
         public void LoadServicesRates(DateTime date)

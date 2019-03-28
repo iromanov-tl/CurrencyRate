@@ -9,14 +9,14 @@ namespace CurrencyRate.Data.EFRepository
 {
     public class RateRepository : IRateRepository
     {
-        private readonly CurrencyRateContext db;
+        private readonly CurrencyRateContext _db;
         public RateRepository(CurrencyRateContext db)
         {
-            this.db = db;
+            _db = db;
         }
         public void Save(Rate rate)
         {
-            List<Rate> dbRecords = db.Rate.ToList();
+            List<Rate> dbRecords = _db.Rate.ToList();
             var equalItemIndex = dbRecords.FindIndex(
                 item => (item.Date == rate.Date &&
                          item.Code == rate.Code &&
@@ -31,9 +31,9 @@ namespace CurrencyRate.Data.EFRepository
             }
             else
             {
-                db.Rate.Add(rate);
+                _db.Rate.Add(rate);
             }
-            db.SaveChanges(); 
+            _db.SaveChanges(); 
         }
 
         /*public List<Currency> GetItems(DateTime date, string code)
@@ -52,25 +52,26 @@ namespace CurrencyRate.Data.EFRepository
             return items.ToList();
         }*/
 
-        public List<Rate> GetItems(DateTime date, string code)
+        public List<RateRecord> GetItems(DateTime date, string code)
         {
-            var items = from record in db.Rate
+            var items = from record in _db.Rate
+                join service in _db.Service on record.ServiceId equals service.ServiceId
                 where record.Date.Equals(date.ToString()) && record.Code == code
-                select new Rate
+                select new RateRecord
                 {
                     Id = record.Id,
                     Code = record.Code,
                     Date = record.Date,
                     Value = record.Value,
-                    ServiceId = record.ServiceId
+                    ServiceUrl = service.Url
                 };
             return items.ToList();
         }
 
-        public Rate GetItem(DateTime date, string code, int serviceId)
+        /* public Rate GetItem(DateTime date, string code, int serviceId)
         {
             var item =
-                (from record in db.Rate
+                (from record in _db.Rate
                 where record.Date.Equals(date.ToString()) && record.Code == code && record.ServiceId == serviceId
                 select new Rate
                 {
@@ -81,7 +82,7 @@ namespace CurrencyRate.Data.EFRepository
                     ServiceId = record.ServiceId
                 }).First();
             return item;
-        }
+        }*/
     }
 }
 

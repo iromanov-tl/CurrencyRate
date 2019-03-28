@@ -4,12 +4,42 @@
     ViewData["Title"] = "Home page";
 }
 
-<h2>Поиск валюты</h2>
-
+<h2>Курсы валют</h2
+@if(Model.date != "" && Model.currency != "")
+{
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Валюта</th>
+            <th>Значение</th>
+            <th>Источник</th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.rates.Count != 0)
+    {
+        @foreach(var item in Model.rates)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Code)</td>
+                <td>@Html.DisplayFor(modelItem => item.Value)</td>
+                <td>@Html.DisplayFor(modelItem => item.ServiceUrl)</td>
+            </tr>
+        }
+        
+    }
+    else
+    {
+        <tr><td colspan="3">Данных не найдено</td></tr>
+    }
+    
+    </tbody>
+    </table>
+}
 <form method="post" class="form">
     <div class="form-group">
         <div class="input-group date">
-            <input type="text" class="form-control" id="date" name="date" value="12-02-2012">
+            <input type="text" class="form-control datepicker" id="date" name="date" value="28-03-2019">
             <div class="input-group-addon">
                 <span class="glyphicon glyphicon-th"></span>
             </div>
