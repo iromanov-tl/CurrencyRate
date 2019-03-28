@@ -8,6 +8,7 @@ using CurrencyRate.RatesManager;
 using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.Models.Service;
+using Microsoft.Extensions.Logging;
 
 namespace CurrencyRate.Pages
 {
@@ -15,16 +16,19 @@ namespace CurrencyRate.Pages
     {
         private readonly RatesManager.RatesManager _ratesManager;
         private readonly IServiceRepository _serviceRepository;
-        public string date;
-        public string currency;
+        private readonly ILogger<IndexModel> _logger;
+        public string date = "";
+        public string currency = "";
+        public string message = "";
 
 
 
         public List<RateRecord> rates = new List<RateRecord>();
-        public IndexModel(RatesManager.RatesManager ratesManager, IServiceRepository serviceRepository)
+        public IndexModel(RatesManager.RatesManager ratesManager, IServiceRepository serviceRepository, ILogger<IndexModel> logger)
         {
             _ratesManager = ratesManager;
             _serviceRepository = serviceRepository;
+            _logger = logger;
         }
         public void OnGet(string date, string currency)
         {
@@ -32,16 +36,21 @@ namespace CurrencyRate.Pages
             {
                 this.date = date;
                 this.currency = currency;
-                this.rates = _ratesManager.GetRates(DateTime.Parse(date).Date, currency);
+                DateTime dateTime;
+                try
+                {
+                    dateTime = DateTime.Parse(date);
+                }
+                catch(Exception exception)
+                {
+                    _logger.LogWarning(exception.Message);
+                    return;
+                }
+                this.rates = _ratesManager.GetRates(dateTime.Date, currency);
+                this.rates.Sort((a, b) =>
+                    a.Value.CompareTo(b.Value)
+                );
             }
-        }
-
-        public void OnPost()
-        {
-            string date = Request.Form["date"];
-            string currency = Request.Form["currency"];
-            RedirectToPage("/Index?date=" + date + "&currency=" + currency);
-            //TODO: redirect to results page
         }
     }
 }

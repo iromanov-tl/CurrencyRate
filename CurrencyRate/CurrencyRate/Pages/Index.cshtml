@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<h2>Курсы валют</h2
+<h2>Курсы валют</h2>
 @if(Model.date != "" && Model.currency != "")
 {
     <table class="table">
@@ -36,10 +36,10 @@
     </tbody>
     </table>
 }
-<form method="post" class="form">
+<form method="get" asp-page="./Index" class="form">
     <div class="form-group">
         <div class="input-group date">
-            <input type="text" class="form-control datepicker" id="date" name="date" value="28-03-2019">
+            <input type="text" class="form-control datepicker" id="date" name="date" autocomplete="off">
             <div class="input-group-addon">
                 <span class="glyphicon glyphicon-th"></span>
             </div>

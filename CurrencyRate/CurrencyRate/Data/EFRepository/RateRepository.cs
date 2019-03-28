@@ -28,6 +28,7 @@ namespace CurrencyRate.Data.EFRepository
                 dbRecords[equalItemIndex].Date = rate.Date;
                 dbRecords[equalItemIndex].Value = rate.Value;
                 dbRecords[equalItemIndex].ServiceId = rate.ServiceId;
+                Console.WriteLine("EQUALEUIQLEQUALEUQLAIUEQLEIUQLAUEQLAUEQERUAKLEUQRKRWUQAK");
             }
             else
             {
@@ -65,6 +66,22 @@ namespace CurrencyRate.Data.EFRepository
                     Value = record.Value,
                     ServiceUrl = service.Url
                 };
+            return items.ToList();
+        }
+
+        public List<RateRecord> GetItemsByDate(DateTime date, string code)
+        {
+            var items = from record in _db.Rate
+                        join service in _db.Service on record.ServiceId equals service.ServiceId
+                        where record.Date.Equals(date.ToString()) && record.Code == code
+                        select new RateRecord
+                        {
+                            Id = record.Id,
+                            Code = record.Code,
+                            Date = record.Date,
+                            Value = record.Value,
+                            ServiceUrl = service.Url
+                        };
             return items.ToList();
         }
 

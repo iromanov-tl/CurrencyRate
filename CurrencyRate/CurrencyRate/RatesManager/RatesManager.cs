@@ -29,6 +29,7 @@ namespace CurrencyRate.RatesManager
         public List<RateRecord> GetRates(DateTime date, string currencyCode)
         {
             requestData = new RequestData(date, currencyCode);
+
             List<RateRecord> rates = LoadRatesFromDB(requestData);
             if (rates.Count == 0)
             {

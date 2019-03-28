@@ -20,7 +20,7 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
         private const string RATE_PROPERTY = "description";
         private const string SOURCE_CURRENCY_CODE = "RUB";
         private const string SERVICE_CURRENCY_CODE = "KZT";
-        private const int SERVICE_ID = 1;
+        private const int SERVICE_ID = 2;
 
         private JObject ConvertXmlToJSON(string xmlContent)
         {

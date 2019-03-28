@@ -13,11 +13,12 @@ namespace CurrencyRate.ServiceDataLoader
     public class DataProvider
     {
         private readonly SaveDataHelper _saveDataHelper;
-        private readonly ILogger _logger;
+        private readonly ILogger<SaveDataHelper> _logger;
 
-        public DataProvider(SaveDataHelper saveDataHelper)
+        public DataProvider(SaveDataHelper saveDataHelper, ILogger<SaveDataHelper> logger)
         {
             _saveDataHelper = saveDataHelper;
+            _logger = logger;
         }
 
         private void LoadServiceRate(IServiceDataAdapter service, DateTime date)
@@ -27,7 +28,7 @@ namespace CurrencyRate.ServiceDataLoader
                 _saveDataHelper.SaveData(rates);
             }
             catch(Exception exception) {
-                _logger.LogInformation(exception.Message);
+                _logger.LogWarning(exception.Message);
             }
             
         }

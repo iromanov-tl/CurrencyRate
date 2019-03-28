@@ -14,7 +14,7 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
     {
         private const string RATES_PROPERTY = "rates";
         private const string SOURCE_CURRENCY_CODE = "RUB";
-        private const int SERVICE_ID = 2;
+        private const int SERVICE_ID = 3;
 
         private void ValidateResponse(JObject responseObject)
         {

@@ -16,7 +16,7 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
         private const string RATE_PROPERTY = "rate";
         private const string SOURCE_CURRENCY_CODE = "RUB";
         private const string SERVICE_CURRENCY_CODE = "UAH";
-        private const int SERVICE_ID = 0;
+        private const int SERVICE_ID = 1;
 
         private void ValidateResponse(JArray responseArray)
         {
