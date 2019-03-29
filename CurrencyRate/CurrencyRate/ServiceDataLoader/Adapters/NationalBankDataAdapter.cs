@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.Tools;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -14,13 +15,23 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
     public class NationalBankDataAdapter : IServiceDataAdapter
     {
         /* service return only xml format */
+        private readonly IConfiguration _configuration;
         private const string RATES_PROPERTY = "rates";
         private const string ITEMS_PROPERTY = "item";
         private const string CODE_PROPERTY = "title";
         private const string RATE_PROPERTY = "description";
-        private const string SOURCE_CURRENCY_CODE = "RUB";
-        private const string SERVICE_CURRENCY_CODE = "KZT";
-        private const int SERVICE_ID = 2;
+        private string _defaultCurrencyCode;
+        private string _serviceCurrencyCode;
+        private int _serviceId;
+
+        public NationalBankDataAdapter(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            const string SECTION_NAME = "NationalBank";
+            _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SECTION_NAME +":ServiceCurrencyCode");
+            _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SECTION_NAME +":ServiceId");
+            _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
+        }
 
         private JObject ConvertXmlToJSON(string xmlContent)
         {
@@ -51,7 +62,7 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
             rate.Code = code;
             rate.Date = date.ToString();
             rate.Value = value;
-            rate.ServiceId = SERVICE_ID;
+            rate.ServiceId = _serviceId;
             return rate;
         }
 
@@ -69,7 +80,7 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
             foreach (JObject item in ratesPropertyItems)
             {
                 
-                if ((string)item[CODE_PROPERTY] == SOURCE_CURRENCY_CODE)
+                if ((string)item[CODE_PROPERTY] == _defaultCurrencyCode)
                 {
                     sourceCourse = (double)item[RATE_PROPERTY];
                 }
@@ -78,10 +89,10 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
             }
 
             // Add service currency record
-            rates.Add(CreateRate(SERVICE_CURRENCY_CODE, date, 1));
+            rates.Add(CreateRate(_serviceCurrencyCode, date, 1));
 
             if (sourceCourse == 0)
-                throw new Exception("Can't compute currency with code:" + SOURCE_CURRENCY_CODE);
+                throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
 
             // convert all currencies to source currency
             rates.ForEach(item => item.Value = item.Value / sourceCourse);

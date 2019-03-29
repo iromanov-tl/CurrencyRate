@@ -28,7 +28,6 @@ namespace CurrencyRate.Data.EFRepository
                 dbRecords[equalItemIndex].Date = rate.Date;
                 dbRecords[equalItemIndex].Value = rate.Value;
                 dbRecords[equalItemIndex].ServiceId = rate.ServiceId;
-                Console.WriteLine("EQUALEUIQLEQUALEUQLAIUEQLEIUQLAUEQLAUEQERUAKLEUQRKRWUQAK");
             }
             else
             {

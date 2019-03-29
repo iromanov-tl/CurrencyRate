@@ -7,14 +7,24 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.Tools;
+using Microsoft.Extensions.Configuration;
 
 namespace CurrencyRate.ServiceDataLoader.Adapters
 {
     public class OpenExchangeRatesDataAdapter : IServiceDataAdapter
     {
+        private readonly IConfiguration _configuration;
         private const string RATES_PROPERTY = "rates";
-        private const string SOURCE_CURRENCY_CODE = "RUB";
-        private const int SERVICE_ID = 3;
+        private string _defaultCurrencyCode;
+        private int _serviceId;
+
+        public OpenExchangeRatesDataAdapter(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            const string SECTION_NAME = "OpenExchangeRates";
+            _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SECTION_NAME +":ServiceId");
+            _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
+        }
 
         private void ValidateResponse(JObject responseObject)
         {
@@ -35,9 +45,9 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
             ValidateResponse(responseObject);
             JObject ratesObject = (JObject)responseObject[RATES_PROPERTY];
 
-            double sourceCourse = (double)ratesObject[SOURCE_CURRENCY_CODE];
+            double sourceCourse = (double)ratesObject[_defaultCurrencyCode];
             if (sourceCourse == 0)
-                throw new Exception("Can't compute currency with code:" + SOURCE_CURRENCY_CODE);
+                throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
 
             List<Rate> rates = new List<Rate>();
             foreach (JProperty property in ratesObject.Properties())
@@ -45,7 +55,7 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
                 Rate rate = new Rate();
                 rate.Code = property.Name;
                 rate.Date = date.ToString();
-                rate.ServiceId = SERVICE_ID;
+                rate.ServiceId = _serviceId;
                 rate.Value = sourceCourse / (double)property.Value;
                 rates.Add(rate);
             }

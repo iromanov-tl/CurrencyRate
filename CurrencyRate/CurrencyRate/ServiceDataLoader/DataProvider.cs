@@ -1,6 +1,7 @@
 ﻿using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.ServiceDataLoader.Adapters;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace CurrencyRate.ServiceDataLoader
     {
         private readonly SaveDataHelper _saveDataHelper;
         private readonly ILogger<SaveDataHelper> _logger;
+        private readonly IConfiguration _configuration;
 
-        public DataProvider(SaveDataHelper saveDataHelper, ILogger<SaveDataHelper> logger)
+        public DataProvider(SaveDataHelper saveDataHelper, ILogger<SaveDataHelper> logger, IConfiguration configuration)
         {
             _saveDataHelper = saveDataHelper;
             _logger = logger;
+            _configuration = configuration;
         }
 
         private void LoadServiceRate(IServiceDataAdapter service, DateTime date)
@@ -35,9 +38,9 @@ namespace CurrencyRate.ServiceDataLoader
 
         public void LoadServicesRates(DateTime date)
         {
-            LoadServiceRate(new BankGovUaDataAdapter(), date);
-            LoadServiceRate(new OpenExchangeRatesDataAdapter(), date);
-            LoadServiceRate(new NationalBankDataAdapter(), date);
+            LoadServiceRate(new BankGovUaDataAdapter(_configuration), date);
+            LoadServiceRate(new OpenExchangeRatesDataAdapter(_configuration), date);
+            LoadServiceRate(new NationalBankDataAdapter(_configuration), date);
         }
     }
 }
