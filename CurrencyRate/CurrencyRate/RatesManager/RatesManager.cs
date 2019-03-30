@@ -13,7 +13,7 @@ namespace CurrencyRate.RatesManager
     public class RatesManager
     {
         private readonly IRateRepository _rateRepository;
-        private RequestData requestData;
+        private RequestData _requestData;
         private readonly DataProvider _dataProvider;
         public RatesManager(DataProvider dataProvider, IRateRepository rateRepository)
         {
@@ -28,14 +28,14 @@ namespace CurrencyRate.RatesManager
 
         public List<RateRecord> GetRates(DateTime date, string currencyCode)
         {
-            requestData = new RequestData(date, currencyCode);
+            _requestData = new RequestData(date, currencyCode);
 
-            List<RateRecord> rates = LoadRatesFromDB(requestData);
+            List<RateRecord> rates = LoadRatesFromDB(_requestData);
             if (rates.Count == 0)
             {
-                _dataProvider.LoadServicesRates(requestData.date);
+                _dataProvider.LoadServicesRates(_requestData.date);
             }
-            rates = LoadRatesFromDB(requestData);
+            rates = LoadRatesFromDB(_requestData);
             return rates;
         }
     }

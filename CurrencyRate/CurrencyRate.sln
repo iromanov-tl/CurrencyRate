@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyRate", "CurrencyRate\CurrencyRate.csproj", "{79D8090A-C500-483B-BAC6-1C81E14C5CD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyRate.Tests", "CurrencyRate.Tests\CurrencyRate.Tests.csproj", "{AC9CAB3F-FD49-4ABC-AA07-05F49D3E5ED5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyRate.Tests", "CurrencyRate.Tests\CurrencyRate.Tests.csproj", "{1766FF3B-8AE8-4B5D-9CF9-0BEEE13FB398}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{79D8090A-C500-483B-BAC6-1C81E14C5CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79D8090A-C500-483B-BAC6-1C81E14C5CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79D8090A-C500-483B-BAC6-1C81E14C5CD6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC9CAB3F-FD49-4ABC-AA07-05F49D3E5ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC9CAB3F-FD49-4ABC-AA07-05F49D3E5ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC9CAB3F-FD49-4ABC-AA07-05F49D3E5ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC9CAB3F-FD49-4ABC-AA07-05F49D3E5ED5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1766FF3B-8AE8-4B5D-9CF9-0BEEE13FB398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1766FF3B-8AE8-4B5D-9CF9-0BEEE13FB398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1766FF3B-8AE8-4B5D-9CF9-0BEEE13FB398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1766FF3B-8AE8-4B5D-9CF9-0BEEE13FB398}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
