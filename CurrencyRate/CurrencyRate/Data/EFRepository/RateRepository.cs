@@ -19,12 +19,12 @@ namespace CurrencyRate.Data.EFRepository
             List<Rate> dbRecords = _db.Rate.ToList();
             var equalItemIndex = dbRecords.FindIndex(
                 item => (item.Date == rate.Date &&
-                         item.Code == rate.Code &&
+                         item.CurrencyId == rate.CurrencyId &&
                          item.Value == rate.Value &&
                          item.ServiceId == rate.ServiceId));
             if (equalItemIndex != -1)
             {
-                dbRecords[equalItemIndex].Code = rate.Code;
+                dbRecords[equalItemIndex].CurrencyId = rate.CurrencyId;
                 dbRecords[equalItemIndex].Date = rate.Date;
                 dbRecords[equalItemIndex].Value = rate.Value;
                 dbRecords[equalItemIndex].ServiceId = rate.ServiceId;
@@ -44,16 +44,16 @@ namespace CurrencyRate.Data.EFRepository
            }
         }
 
-        public List<RateRecord> GetItems(DateTime date, string code)
+        public List<RateRecord> GetItems(DateTime date, int currencyId)
         {
             var items = from record in _db.Rate
                 join service in _db.Service on record.ServiceId equals service.ServiceId
-                where record.Date.Equals(date.ToString()) && record.Code == code
-                select new RateRecord
+                join currency in _db.Currency on record.ServiceId equals currency.CurrencyId
+                where record.Date.Equals(date.ToString()) && record.CurrencyId == currencyId
+                        select new RateRecord
                 {
                     Id = record.Id,
-                    Code = record.Code,
-                    Date = record.Date,
+                    Code = currency.Code,
                     Value = record.Value,
                     ServiceUrl = service.Url
                 };

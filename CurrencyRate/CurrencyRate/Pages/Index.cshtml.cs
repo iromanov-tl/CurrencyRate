@@ -9,6 +9,7 @@ using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.Models.Service;
 using Microsoft.Extensions.Logging;
+using CurrencyRate.Models.Currency;
 
 namespace CurrencyRate.Pages
 {
@@ -16,26 +17,30 @@ namespace CurrencyRate.Pages
     {
         private readonly RatesManager.RatesManager _ratesManager;
         private readonly IServiceRepository _serviceRepository;
+        private readonly ICurrencyRepository _currencyRepository;
         private readonly ILogger<IndexModel> _logger;
+        public List<Currency> currencies;
         public string date = "";
-        public string currency = "";
+        public int currencyId;
         public string message = "";
 
 
 
         public List<RateRecord> rates = new List<RateRecord>();
-        public IndexModel(RatesManager.RatesManager ratesManager, IServiceRepository serviceRepository, ILogger<IndexModel> logger)
+        public IndexModel(RatesManager.RatesManager ratesManager, IServiceRepository serviceRepository, ICurrencyRepository currencyRepository, ILogger<IndexModel> logger)
         {
             _ratesManager = ratesManager;
             _serviceRepository = serviceRepository;
+            _currencyRepository = currencyRepository;
             _logger = logger;
+            currencies = _currencyRepository.GetCurrencies();
         }
-        public void OnGet(string date, string currency)
+        public void OnGet(string date, int ?currencyId)
         {
-            if (!String.IsNullOrEmpty(date) && !String.IsNullOrEmpty(currency))
+            if (!String.IsNullOrEmpty(date) && currencyId != null)
             {
                 this.date = date;
-                this.currency = currency;
+                this.currencyId = currencyId.GetValueOrDefault();
                 DateTime dateTime;
                 try
                 {
@@ -46,7 +51,7 @@ namespace CurrencyRate.Pages
                     _logger.LogWarning(exception.Message);
                     return;
                 }
-                this.rates = _ratesManager.GetRates(dateTime.Date, currency);
+                this.rates = _ratesManager.GetRates(dateTime.Date, this.currencyId);
                 this.rates.Sort((a, b) =>
                     a.Value.CompareTo(b.Value)
                 );

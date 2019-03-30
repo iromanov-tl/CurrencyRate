@@ -23,12 +23,12 @@ namespace CurrencyRate.RatesManager
 
         private List<RateRecord> GetRatesFromDB(RequestData requestData)
         {
-            return _rateRepository.GetItems(requestData.date, requestData.currencyCode);
+            return _rateRepository.GetItems(requestData.date, requestData.currencyId);
         }
 
-        public List<RateRecord> GetRates(DateTime date, string currencyCode)
+        public List<RateRecord> GetRates(DateTime date, int currencyId)
         {
-            _requestData = new RequestData(date, currencyCode);
+            _requestData = new RequestData(date, currencyId);
 
             List<RateRecord> ratesRecords = GetRatesFromDB(_requestData);
             if (ratesRecords.Count == 0)
