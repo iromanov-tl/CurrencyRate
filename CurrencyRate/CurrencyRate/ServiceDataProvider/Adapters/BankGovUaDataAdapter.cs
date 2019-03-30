@@ -9,13 +9,13 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace CurrencyRate.ServiceDataLoader.Adapters
+namespace CurrencyRate.ServiceDataProvider.Adapters
 {
     public class BankGovUaDataAdapter : IServiceDataAdapter
     {
         private readonly IConfiguration _configuration;
-        private const string CODE_PROPERTY = "cc";
-        private const string RATE_PROPERTY = "rate";
+        private const string CodeProperty = "cc";
+        private const string RateProperty = "rate";
         private string _defaultCurrencyCode;
         private string _serviceCurrencyCode;
         private int _serviceId;
@@ -23,9 +23,9 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
         public BankGovUaDataAdapter(IConfiguration configuration)
         {
             _configuration = configuration;
-            const string SECTION_NAME = "BankGovUa";
-            _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SECTION_NAME +":ServiceCurrencyCode");
-            _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SECTION_NAME +":ServiceId");
+            const string SectionName = "BankGovUa";
+            _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":ServiceCurrencyCode");
+            _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SectionName + ":ServiceId");
             _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
         }
 
@@ -44,11 +44,13 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
 
         private Rate CreateRate(string code, DateTime date, double value)
         {
-            Rate rate = new Rate();
-            rate.Code = code;
-            rate.Date = date.ToString();
-            rate.Value = value;
-            rate.ServiceId = _serviceId;
+            Rate rate = new Rate
+            {
+                Code = code,
+                Date = date.ToString(),
+                Value = value,
+                ServiceId = _serviceId
+            };
             return rate;
         }
 
@@ -62,11 +64,11 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
             List<Rate> rates = new List<Rate>();
             foreach (JObject item in responseArray)
             {
-                if ((string)item[CODE_PROPERTY] == _defaultCurrencyCode)
+                if ((string)item[CodeProperty] == _defaultCurrencyCode)
                 {
-                    sourceCourse = (double)item[RATE_PROPERTY];
+                    sourceCourse = (double)item[RateProperty];
                 }
-                Rate rate = CreateRate((string)item[CODE_PROPERTY], date, (double)item[RATE_PROPERTY]);
+                Rate rate = CreateRate((string)item[CodeProperty], date, (double)item[RateProperty]);
                 rates.Add(rate);
             }
 

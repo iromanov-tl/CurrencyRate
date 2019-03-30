@@ -1,4 +1,4 @@
-using CurrencyRate.ServiceDataLoader.Adapters;
+using CurrencyRate.ServiceDataProvider.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -10,11 +10,6 @@ namespace CurrencyRate.Tests
     [TestClass]
     public class BankGovUaServiceTest
     {
-        public BankGovUaServiceTest(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-        private readonly IConfiguration _configuration;
         [TestMethod]
         public void TestServiceAvailability()
         {

@@ -9,12 +9,12 @@ using CurrencyRate.Models.Rate;
 using CurrencyRate.Tools;
 using Microsoft.Extensions.Configuration;
 
-namespace CurrencyRate.ServiceDataLoader.Adapters
+namespace CurrencyRate.ServiceDataProvider.Adapters
 {
     public class OpenExchangeRatesDataAdapter : IServiceDataAdapter
     {
         private readonly IConfiguration _configuration;
-        private const string RATES_PROPERTY = "rates";
+        private const string RatesProperty = "rates";
         private string _defaultCurrencyCode;
         private int _serviceId;
 
@@ -43,7 +43,7 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
             string responseJSON = HttpClient.GetDataFromUrl(connectionUrl);
             JObject responseObject = JObject.Parse(responseJSON);
             ValidateResponse(responseObject);
-            JObject ratesObject = (JObject)responseObject[RATES_PROPERTY];
+            JObject ratesObject = (JObject)responseObject[RatesProperty];
 
             double sourceCourse = (double)ratesObject[_defaultCurrencyCode];
             if (sourceCourse == 0)

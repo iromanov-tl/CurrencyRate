@@ -2,7 +2,7 @@
 using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.Models.Service;
-using CurrencyRate.ServiceDataLoader;
+using CurrencyRate.ServiceDataProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace CurrencyRate.RatesManager
             _rateRepository = rateRepository;
         }
 
-        private List<RateRecord> LoadRatesFromDB(RequestData requestData)
+        private List<RateRecord> GetRatesFromDB(RequestData requestData)
         {
             return _rateRepository.GetItems(requestData.date, requestData.currencyCode);
         }
@@ -30,13 +30,14 @@ namespace CurrencyRate.RatesManager
         {
             _requestData = new RequestData(date, currencyCode);
 
-            List<RateRecord> rates = LoadRatesFromDB(_requestData);
-            if (rates.Count == 0)
+            List<RateRecord> ratesRecords = GetRatesFromDB(_requestData);
+            if (ratesRecords.Count == 0)
             {
-                _dataProvider.LoadServicesRates(_requestData.date);
+                List<Rate> rates = _dataProvider.GetServicesRates(_requestData.date);
+                _rateRepository.Save(rates);
             }
-            rates = LoadRatesFromDB(_requestData);
-            return rates;
+            ratesRecords = GetRatesFromDB(_requestData);
+            return ratesRecords;
         }
     }
 }

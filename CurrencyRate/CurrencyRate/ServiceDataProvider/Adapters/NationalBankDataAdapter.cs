@@ -10,16 +10,16 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace CurrencyRate.ServiceDataLoader.Adapters
+namespace CurrencyRate.ServiceDataProvider.Adapters
 {
     public class NationalBankDataAdapter : IServiceDataAdapter
     {
         /* service return only xml format */
         private readonly IConfiguration _configuration;
-        private const string RATES_PROPERTY = "rates";
-        private const string ITEMS_PROPERTY = "item";
-        private const string CODE_PROPERTY = "title";
-        private const string RATE_PROPERTY = "description";
+        private const string RatesProperty = "rates";
+        private const string ItemsProperty = "item";
+        private const string CodeProperty = "title";
+        private const string RateProperty = "description";
         private string _defaultCurrencyCode;
         private string _serviceCurrencyCode;
         private int _serviceId;
@@ -27,9 +27,9 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
         public NationalBankDataAdapter(IConfiguration configuration)
         {
             _configuration = configuration;
-            const string SECTION_NAME = "NationalBank";
-            _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SECTION_NAME +":ServiceCurrencyCode");
-            _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SECTION_NAME +":ServiceId");
+            const string SectionName = "NationalBank";
+            _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":ServiceCurrencyCode");
+            _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SectionName + ":ServiceId");
             _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
         }
 
@@ -58,11 +58,13 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
 
         private Rate CreateRate(string code, DateTime date, double value)
         {
-            Rate rate = new Rate();
-            rate.Code = code;
-            rate.Date = date.ToString();
-            rate.Value = value;
-            rate.ServiceId = _serviceId;
+            Rate rate = new Rate
+            {
+                Code = code,
+                Date = date.ToString(),
+                Value = value,
+                ServiceId = _serviceId
+            };
             return rate;
         }
 
@@ -73,18 +75,19 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
 
             string responseXML = HttpClient.GetDataFromUrl(connectionUrl);
             JObject responseObject = ConvertXmlToJSON(responseXML);
-            JObject ratesProperty = (JObject)responseObject[RATES_PROPERTY];
+            JObject ratesProperty = (JObject)responseObject[RatesProperty];
             ValidateResponse(ratesProperty);
             List<Rate> rates = new List<Rate>();
-            JArray ratesPropertyItems = (JArray)ratesProperty[ITEMS_PROPERTY];
+            JArray ratesPropertyItems = (JArray)ratesProperty[ItemsProperty];
+
             foreach (JObject item in ratesPropertyItems)
             {
                 
-                if ((string)item[CODE_PROPERTY] == _defaultCurrencyCode)
+                if ((string)item[CodeProperty] == _defaultCurrencyCode)
                 {
-                    sourceCourse = (double)item[RATE_PROPERTY];
+                    sourceCourse = (double)item[RateProperty];
                 }
-                Rate rate = CreateRate((string)item[CODE_PROPERTY], date, (double)item[RATE_PROPERTY]);
+                Rate rate = CreateRate((string)item[CodeProperty], date, (double)item[RateProperty]);
                 rates.Add(rate);
             }
 
@@ -95,7 +98,7 @@ namespace CurrencyRate.ServiceDataLoader.Adapters
                 throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
 
             // convert all currencies to source currency
-            rates.ForEach(item => item.Value = item.Value / sourceCourse);
+            rates.ForEach(item => item.Value /= sourceCourse);
             return rates;
         }
     }

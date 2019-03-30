@@ -6,7 +6,7 @@ namespace CurrencyRate.Models.Rate
     public interface IRateRepository
     {
         void Save(Rate rate);
+        void Save(List<Rate> rates);
         List<RateRecord> GetItems(DateTime date, string code);
-        //Rate GetItem(DateTime date, string code, int serviceId);
     }
 }

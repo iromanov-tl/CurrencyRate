@@ -32,7 +32,7 @@ namespace CurrencyRate.Pages
         }
         public void OnGet(string date, string currency)
         {
-            if (date != null && currency != null && date != "" && currency != "")
+            if (!String.IsNullOrEmpty(date) && !String.IsNullOrEmpty(currency))
             {
                 this.date = date;
                 this.currency = currency;

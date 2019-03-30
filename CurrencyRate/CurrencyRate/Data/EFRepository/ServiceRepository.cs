@@ -10,15 +10,15 @@ namespace CurrencyRate.Data.EFRepository
 {
     public class ServiceRepository : IServiceRepository
     {
-        private readonly CurrencyRateContext db;
+        private readonly CurrencyRateContext _db;
         public ServiceRepository(CurrencyRateContext db)
         {
-            this.db = db;
+            _db = db;
         }
         public List<Service> GetServices()
         {
             var services =
-                from service in db.Service
+                from service in _db.Service
                 select new Service
                 {
                     ServiceId = service.ServiceId,
@@ -30,7 +30,7 @@ namespace CurrencyRate.Data.EFRepository
         public Service GetService(int id)
         {
             var services =
-                from service in db.Service
+                from service in _db.Service
                 where service.ServiceId == id
                 select new Service
                 {

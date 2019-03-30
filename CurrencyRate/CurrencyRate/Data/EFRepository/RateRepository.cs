@@ -33,24 +33,16 @@ namespace CurrencyRate.Data.EFRepository
             {
                 _db.Rate.Add(rate);
             }
-            _db.SaveChanges(); 
+            _db.SaveChanges();
         }
 
-        /*public List<Currency> GetItems(DateTime date, string code)
+        public void Save(List<Rate> rates)
         {
-            var items =
-                from record in db.Rates
-                join service in db.Services on record.ServiceId equals service.ServiceId
-                where record.Date.Equals(date.ToString()) && record.Code == code
-                select new Currency
-                {
-                    code = record.Code,
-                    date = Convert.ToDateTime(record.Date),
-                    rate = record.Value,
-                    serviceUrl = service.Url
-                };
-            return items.ToList();
-        }*/
+           foreach (Rate rate in rates)
+           {
+                Save(rate);
+           }
+        }
 
         public List<RateRecord> GetItems(DateTime date, string code)
         {
@@ -67,38 +59,6 @@ namespace CurrencyRate.Data.EFRepository
                 };
             return items.ToList();
         }
-
-        public List<RateRecord> GetItemsByDate(DateTime date, string code)
-        {
-            var items = from record in _db.Rate
-                        join service in _db.Service on record.ServiceId equals service.ServiceId
-                        where record.Date.Equals(date.ToString()) && record.Code == code
-                        select new RateRecord
-                        {
-                            Id = record.Id,
-                            Code = record.Code,
-                            Date = record.Date,
-                            Value = record.Value,
-                            ServiceUrl = service.Url
-                        };
-            return items.ToList();
-        }
-
-        /* public Rate GetItem(DateTime date, string code, int serviceId)
-        {
-            var item =
-                (from record in _db.Rate
-                where record.Date.Equals(date.ToString()) && record.Code == code && record.ServiceId == serviceId
-                select new Rate
-                {
-                    Id = record.Id,
-                    Code = record.Code,
-                    Date = record.Date,
-                    Value = record.Value,
-                    ServiceId = record.ServiceId
-                }).First();
-            return item;
-        }*/
     }
 }
 

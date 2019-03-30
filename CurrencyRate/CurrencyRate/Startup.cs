@@ -14,7 +14,7 @@ using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.Data.EFRepository;
 using CurrencyRate.Models.Service;
-using CurrencyRate.ServiceDataLoader;
+using CurrencyRate.ServiceDataProvider;
 
 namespace CurrencyRate
 {
@@ -45,7 +45,6 @@ namespace CurrencyRate
             services.AddScoped<IRateRepository, RateRepository>()
                 .AddScoped<IServiceRepository, ServiceRepository>()
                 .AddScoped<DataProvider>()
-                .AddScoped<SaveDataHelper>()
                 .AddScoped<RatesManager.RatesManager>();
         }
 

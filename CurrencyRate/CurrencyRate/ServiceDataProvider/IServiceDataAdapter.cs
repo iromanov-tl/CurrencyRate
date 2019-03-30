@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyRate.ServiceDataLoader
+namespace CurrencyRate.ServiceDataProvider
 {
     public interface IServiceDataAdapter
     {
