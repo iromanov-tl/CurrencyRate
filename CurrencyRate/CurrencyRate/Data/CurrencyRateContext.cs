@@ -17,7 +17,5 @@ namespace CurrencyRate.Models
         public DbSet<CurrencyRate.Models.Rate.Rate> Rate { get; set; }
 
         public DbSet<CurrencyRate.Models.Service.Service> Service { get; set; }
-
-        public DbSet<CurrencyRate.Models.Currency.Currency> Currency { get; set; }
     }
 }

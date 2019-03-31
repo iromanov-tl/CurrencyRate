@@ -26,6 +26,11 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
         }
 
+        public int GetId()
+        {
+            return _serviceId;
+        }
+
         private void ValidateResponse(JObject responseObject)
         {
             string error = (string)responseObject["error"];
@@ -36,7 +41,7 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             }
         }
 
-        public List<Rate> GetRates(DateTime date)
+        public Dictionary<string, double> GetRates(DateTime date)
         {
             string connectionUrl = "https://openexchangerates.org/api/historical/" + date.ToString("yyyy-MM-dd") + ".json?app_id=d164219ce3aa4403adc977f9ee09b996";
 
@@ -49,15 +54,10 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             if (sourceCourse == 0)
                 throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
 
-            List<Rate> rates = new List<Rate>();
+            Dictionary<string, double> rates = new Dictionary<string, double>();
             foreach (JProperty property in ratesObject.Properties())
             {
-                Rate rate = new Rate();
-                rate.Code = property.Name;
-                rate.Date = date.ToString();
-                rate.ServiceId = _serviceId;
-                rate.Value = sourceCourse / (double)property.Value;
-                rates.Add(rate);
+                rates.Add(property.Name, sourceCourse / (double)property.Value);
             }
 
             return rates;

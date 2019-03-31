@@ -7,12 +7,12 @@ namespace CurrencyRate.RatesManager
 {
     public class RequestData
     {
-        public RequestData(DateTime date, int currencyId)
+        public RequestData(DateTime date, string currencyCode)
         {
             this.date = date;
-            this.currencyId = currencyId;
+            this.currencyCode = currencyCode;
         }
         public DateTime date { get; set; }
-        public int currencyId { get; set; }
+        public string currencyCode { get; set; }
     }
 }

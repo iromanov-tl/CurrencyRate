@@ -16,10 +16,6 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
     {
         /* service return only xml format */
         private readonly IConfiguration _configuration;
-        private const string RatesProperty = "rates";
-        private const string ItemsProperty = "item";
-        private const string CodeProperty = "title";
-        private const string RateProperty = "description";
         private string _defaultCurrencyCode;
         private string _serviceCurrencyCode;
         private int _serviceId;
@@ -33,13 +29,16 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
         }
 
-        private JObject ConvertXmlToJSON(string xmlContent)
+        public int GetId()
+        {
+            return _serviceId;
+        }
+
+        private string ConvertXmlToJSON(string xmlContent)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlContent);
-            string responseJSON = JsonConvert.SerializeXmlNode(doc);
-            JObject jsonObject = JObject.Parse(responseJSON);
-            return jsonObject;
+            return JsonConvert.SerializeXmlNode(doc);
         }
 
         private void ValidateResponse(JObject responseObject)
@@ -68,38 +67,55 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             return rate;
         }
 
-        public List<Rate> GetRates(DateTime date)
+        private Dictionary<string, double> ConvertRatesToSource(Dictionary<string, double> rates, double sourceCourse)
+        {
+            Dictionary<string, double> newRates = new Dictionary<string, double>();
+            foreach (var rate in rates)
+            {
+                newRates.Add(rate.Key, rate.Value / sourceCourse);
+            }
+            return newRates;
+        }
+
+        private List<NationalBankRateObject> GetDataFromJson(string json)
+        {
+            NationalBankDataObject dataObject;
+            try
+            {
+                dataObject = JsonConvert.DeserializeObject<NationalBankDataObject>(json);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Can not parse response from service. Exception text : " + exception.Message);
+            }
+            return dataObject.rates.item;
+        }
+
+        public Dictionary<string, double> GetRates(DateTime date)
         {
             string connectionUrl = "http://www.nationalbank.kz/rss/get_rates.cfm?fdate=" + date.ToString("dd.MM.yyyy");
             double sourceCourse = 0;
 
             string responseXML = HttpClient.GetDataFromUrl(connectionUrl);
-            JObject responseObject = ConvertXmlToJSON(responseXML);
-            JObject ratesProperty = (JObject)responseObject[RatesProperty];
-            ValidateResponse(ratesProperty);
-            List<Rate> rates = new List<Rate>();
-            JArray ratesPropertyItems = (JArray)ratesProperty[ItemsProperty];
+            string responseJson = ConvertXmlToJSON(responseXML);
+            List<NationalBankRateObject> rateObjects = GetDataFromJson(responseJson);
+            //ValidateResponse(ratesProperty);
+            Dictionary<string, double> rates = new Dictionary<string, double>();
 
-            foreach (JObject item in ratesPropertyItems)
+            foreach (NationalBankRateObject item in rateObjects)
             {
-                
-                if ((string)item[CodeProperty] == _defaultCurrencyCode)
+                if (item.title == _defaultCurrencyCode)
                 {
-                    sourceCourse = (double)item[RateProperty];
+                    sourceCourse = item.description;
                 }
-                Rate rate = CreateRate((string)item[CodeProperty], date, (double)item[RateProperty]);
-                rates.Add(rate);
+                rates.Add(item.title, item.description);
             }
-
-            // Add service currency record
-            rates.Add(CreateRate(_serviceCurrencyCode, date, 1));
+            rates.Add(_serviceCurrencyCode, 1);
 
             if (sourceCourse == 0)
                 throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
-
-            // convert all currencies to source currency
-            rates.ForEach(item => item.Value /= sourceCourse);
-            return rates;
+            
+            return ConvertRatesToSource(rates, sourceCourse);
         }
     }
 }

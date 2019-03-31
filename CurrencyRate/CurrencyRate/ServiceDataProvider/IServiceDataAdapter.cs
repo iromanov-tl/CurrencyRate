@@ -9,6 +9,7 @@ namespace CurrencyRate.ServiceDataProvider
 {
     public interface IServiceDataAdapter
     {
-        List<Rate> GetRates(DateTime date);
+        Dictionary<string, double> GetRates(DateTime date);
+        int GetId();
     }
 }

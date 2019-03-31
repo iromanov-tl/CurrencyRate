@@ -14,8 +14,6 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
     public class BankGovUaDataAdapter : IServiceDataAdapter
     {
         private readonly IConfiguration _configuration;
-        private const string CodeProperty = "cc";
-        private const string RateProperty = "rate";
         private string _defaultCurrencyCode;
         private string _serviceCurrencyCode;
         private int _serviceId;
@@ -27,6 +25,11 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":ServiceCurrencyCode");
             _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SectionName + ":ServiceId");
             _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
+        }
+
+        public int GetId()
+        {
+            return _serviceId;
         }
 
         private void ValidateResponse(JArray responseArray)
@@ -54,33 +57,55 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             return rate;
         }
 
-        public List<Rate> GetRates(DateTime date)
+        private Dictionary<string, double> ConvertRatesToSource(Dictionary<string, double> rates, double sourceCourse)
+        {
+            Dictionary<string, double> newRates = new Dictionary<string, double>();
+            foreach (var rate in rates)
+            {
+                newRates.Add(rate.Key, rate.Value / sourceCourse);
+            }
+            return newRates;
+        }
+
+        private List<BankGovUaRateObject> GetDataFromJson(string json)
+        {
+            List<BankGovUaRateObject> rates = new List<BankGovUaRateObject>();
+            try
+            {
+                rates = JsonConvert.DeserializeObject<BankGovUaRateObject[]>(json).ToList();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Can not parse response from service. Exception text : " + exception.Message);
+            }
+            return rates;
+        }
+
+        public Dictionary<string, double> GetRates(DateTime date)
         {
             string connectionUrl = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=" + date.ToString("yyyyMMdd") + "&json";
             double sourceCourse = 0;
-            string responseJSON = HttpClient.GetDataFromUrl(connectionUrl);
-            JArray responseArray = JArray.Parse(responseJSON);
-            ValidateResponse(responseArray);
-            List<Rate> rates = new List<Rate>();
-            foreach (JObject item in responseArray)
-            {
-                if ((string)item[CodeProperty] == _defaultCurrencyCode)
-                {
-                    sourceCourse = (double)item[RateProperty];
-                }
-                Rate rate = CreateRate((string)item[CodeProperty], date, (double)item[RateProperty]);
-                rates.Add(rate);
-            }
 
-            // Add service currency record
-            rates.Add(CreateRate(_serviceCurrencyCode, date, 1));
+            string responseJSON = HttpClient.GetDataFromUrl(connectionUrl);
+            List<BankGovUaRateObject> rateObjects = GetDataFromJson(responseJSON);
+            
+            Dictionary<string, double> rates = new Dictionary<string, double>();
+            foreach (BankGovUaRateObject item in rateObjects)
+            {
+                if (item.cc == _defaultCurrencyCode)
+                {
+                    sourceCourse = item.rate;
+                }
+                rates.Add(item.cc, item.rate);
+            }
 
             if (sourceCourse == 0)
                 throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
 
-            // convert all currencies to source currency
-            rates.ForEach(item => item.Value = item.Value / sourceCourse);
-            return rates;
+            // Add service currency record
+            rates.Add(_serviceCurrencyCode, 1);
+
+            return ConvertRatesToSource(rates, sourceCourse);
         }
     }
 }

@@ -7,6 +7,6 @@ namespace CurrencyRate.Models.Rate
     {
         void Save(Rate rate);
         void Save(List<Rate> rates);
-        List<RateRecord> GetItems(DateTime date, int currencyId);
+        List<ReportingRate> GetItems(DateTime date, string code);
     }
 }

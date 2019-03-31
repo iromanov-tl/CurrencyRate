@@ -21,16 +21,16 @@ namespace CurrencyRate.RatesManager
             _rateRepository = rateRepository;
         }
 
-        private List<RateRecord> GetRatesFromDB(RequestData requestData)
+        private List<ReportingRate> GetRatesFromDB(RequestData requestData)
         {
-            return _rateRepository.GetItems(requestData.date, requestData.currencyId);
+            return _rateRepository.GetItems(requestData.date, requestData.currencyCode);
         }
 
-        public List<RateRecord> GetRates(DateTime date, int currencyId)
+        public List<ReportingRate> GetRates(DateTime date, string currencyCode)
         {
-            _requestData = new RequestData(date, currencyId);
+            _requestData = new RequestData(date, currencyCode);
 
-            List<RateRecord> ratesRecords = GetRatesFromDB(_requestData);
+            List<ReportingRate> ratesRecords = GetRatesFromDB(_requestData);
             if (ratesRecords.Count == 0)
             {
                 List<Rate> rates = _dataProvider.GetServicesRates(_requestData.date);

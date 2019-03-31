@@ -15,7 +15,6 @@ namespace CurrencyRate.ServiceDataProvider
     {
         private readonly ILogger<DataProvider> _logger;
         private readonly IConfiguration _configuration;
-
         public DataProvider(ILogger<DataProvider> logger, IConfiguration configuration)
         {
             _logger = logger;
@@ -26,7 +25,17 @@ namespace CurrencyRate.ServiceDataProvider
         {
             List<Rate> rates = new List<Rate>();
             try {
-                rates = service.GetRates(date);
+                Dictionary<string, double> dictionary = service.GetRates(date);
+                foreach (var element in dictionary)
+                {
+                    rates.Add(new Rate()
+                    {
+                        ServiceId = service.GetId(),
+                        Code = element.Key,
+                        Date = date.ToString(),
+                        Value = element.Value
+                    });
+                }
             }
             catch(Exception exception) {
                 _logger.LogWarning(exception.Message);

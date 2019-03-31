@@ -16,6 +16,8 @@ namespace CurrencyRate.Tests
 
             Exception expectedException = null;
             var mockConfiguration = new Mock<IConfiguration>();
+            mockConfiguration.SetupGet(x => x["ServicesSettings:BankGovUa:ServiceId"]).Returns("1");
+            mockConfiguration.SetupGet(x => x["ServicesSettings:BankGovUa:ServiceCurrencyCode"]).Returns("UAH");
             BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(mockConfiguration.Object);
             try
             {
