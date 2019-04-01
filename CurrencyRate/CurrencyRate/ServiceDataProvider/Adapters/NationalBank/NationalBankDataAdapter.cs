@@ -26,7 +26,7 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             const string SectionName = "NationalBank";
             _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":ServiceCurrencyCode");
             _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SectionName + ":ServiceId");
-            _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
+            _defaultCurrencyCode = _configuration.GetValue<string>("CurrenciesSettings:DefaultCurrencyCode");
         }
 
         public int GetId()
@@ -39,32 +39,6 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlContent);
             return JsonConvert.SerializeXmlNode(doc);
-        }
-
-        private void ValidateResponse(JObject responseObject)
-        {
-            string errorMessage = (string)responseObject["error"];
-            if (errorMessage != null)
-            {
-                throw new Exception("Service returns error : " + errorMessage);
-            }
-            string infoMessage = (string)responseObject["info"];
-            if (infoMessage != null)
-            {
-                throw new Exception("Service returns message : " + infoMessage);
-            }
-        }
-
-        private Rate CreateRate(string code, DateTime date, double value)
-        {
-            Rate rate = new Rate
-            {
-                Code = code,
-                Date = date.ToString(),
-                Value = value,
-                ServiceId = _serviceId
-            };
-            return rate;
         }
 
         private Dictionary<string, double> ConvertRatesToSource(Dictionary<string, double> rates, double sourceCourse)
@@ -80,15 +54,19 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
         private List<NationalBankRateObject> GetDataFromJson(string json)
         {
             NationalBankDataObject dataObject;
+            List<NationalBankRateObject> rates = new List<NationalBankRateObject>();
             try
             {
                 dataObject = JsonConvert.DeserializeObject<NationalBankDataObject>(json);
+                rates = dataObject.rates.item;
             }
             catch (Exception exception)
             {
                 throw new Exception("Can not parse response from service. Exception text : " + exception.Message);
             }
-            return dataObject.rates.item;
+            if (rates == null || rates.Count == 0)
+                throw new Exception("Service did not return data");
+            return rates;
         }
 
         public Dictionary<string, double> GetRates(DateTime date)

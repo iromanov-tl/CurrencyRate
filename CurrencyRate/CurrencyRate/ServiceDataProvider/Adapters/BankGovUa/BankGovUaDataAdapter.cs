@@ -24,37 +24,12 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             const string SectionName = "BankGovUa";
             _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":ServiceCurrencyCode");
             _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SectionName + ":ServiceId");
-            _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
+            _defaultCurrencyCode = _configuration.GetValue<string>("CurrenciesSettings:DefaultCurrencyCode");
         }
 
         public int GetId()
         {
             return _serviceId;
-        }
-
-        private void ValidateResponse(JArray responseArray)
-        {
-            if (responseArray.Count == 0)
-            {
-                throw new Exception("Service can't find information for this date");
-            }
-            string message = (string)responseArray.First["message"];
-            if (responseArray.Count == 1 && message != null)
-            {
-                throw new Exception("Service returns message : " + message);
-            }  
-        }
-
-        private Rate CreateRate(string code, DateTime date, double value)
-        {
-            Rate rate = new Rate
-            {
-                Code = code,
-                Date = date.ToString(),
-                Value = value,
-                ServiceId = _serviceId
-            };
-            return rate;
         }
 
         private Dictionary<string, double> ConvertRatesToSource(Dictionary<string, double> rates, double sourceCourse)
@@ -78,6 +53,8 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             {
                 throw new Exception("Can not parse response from service. Exception text : " + exception.Message);
             }
+            if (rates.Count == 0 || rates == null)
+                throw new Exception("Service did not return data");
             return rates;
         }
 

@@ -45,12 +45,10 @@
             </div>
         </div>
         <select class="form-control" id="currency" name="currency">
-             <option value="USD">USD</option>
-             <option value="RUB">RUB</option>
-             <option value="UAH">UAH</option>
-             <option value="KZT">KZT</option>
-             <option value="GBP">GBP</option>
-             <option value="EUR">EUR</option>
+            @foreach (var currency in Model.currencies)
+            {
+                <option value="@currency">@currency</option>
+            }
         </select>
         <br />
         <button type="submit" class="btn btn-primary">Поиск курса</button>

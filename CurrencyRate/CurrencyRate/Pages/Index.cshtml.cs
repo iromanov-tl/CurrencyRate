@@ -9,6 +9,7 @@ using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.Models.Service;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace CurrencyRate.Pages
 {
@@ -17,18 +18,21 @@ namespace CurrencyRate.Pages
         private readonly RatesManager.RatesManager _ratesManager;
         private readonly IServiceRepository _serviceRepository;
         private readonly ILogger<IndexModel> _logger;
+        private readonly IConfiguration _configuration;
         public string date = "";
         public string currency = "";
         public string message = "";
-
-
-
+        public List<string> currencies = new List<string>();
         public List<ReportingRate> rates = new List<ReportingRate>();
-        public IndexModel(RatesManager.RatesManager ratesManager, IServiceRepository serviceRepository, ILogger<IndexModel> logger)
+
+        public IndexModel(RatesManager.RatesManager ratesManager, IServiceRepository serviceRepository, ILogger<IndexModel> logger, IConfiguration configuration)
         {
             _ratesManager = ratesManager;
             _serviceRepository = serviceRepository;
             _logger = logger;
+            _configuration = configuration;
+            currencies = configuration.GetSection("CurrenciesSettings:CurrenciesToChange").Get<List<string>>();
+
         }
         public void OnGet(string date, string currency)
         {

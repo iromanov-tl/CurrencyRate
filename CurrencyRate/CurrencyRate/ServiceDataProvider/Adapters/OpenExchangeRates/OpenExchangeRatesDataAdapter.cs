@@ -23,7 +23,7 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             _configuration = configuration;
             const string SECTION_NAME = "OpenExchangeRates";
             _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SECTION_NAME +":ServiceId");
-            _defaultCurrencyCode = _configuration.GetValue<string>("DefaultCurrencyCode");
+            _defaultCurrencyCode = _configuration.GetValue<string>("CurrenciesSettings:DefaultCurrencyCode");
         }
 
         public int GetId()
