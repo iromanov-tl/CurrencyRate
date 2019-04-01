@@ -1,4 +1,6 @@
 using CurrencyRate.ServiceDataProvider.Adapters;
+using Microsoft.Extensions.Configuration;
+using Moq;
 using System;
 using Xunit;
 
