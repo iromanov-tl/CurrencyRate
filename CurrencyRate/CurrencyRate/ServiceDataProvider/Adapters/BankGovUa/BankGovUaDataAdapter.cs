@@ -17,6 +17,8 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
         private string _defaultCurrencyCode;
         private string _serviceCurrencyCode;
         private int _serviceId;
+        private string _urlFormat;
+        private string _dateFormat;
 
         public BankGovUaDataAdapter(IConfiguration configuration)
         {
@@ -25,21 +27,13 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":ServiceCurrencyCode");
             _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SectionName + ":ServiceId");
             _defaultCurrencyCode = _configuration.GetValue<string>("CurrenciesSettings:DefaultCurrencyCode");
+            _urlFormat = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":UrlFormat");
+            _dateFormat = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":DateFormat");
         }
 
         public int GetId()
         {
             return _serviceId;
-        }
-
-        private Dictionary<string, double> ConvertRatesToSource(Dictionary<string, double> rates, double sourceCourse)
-        {
-            Dictionary<string, double> newRates = new Dictionary<string, double>();
-            foreach (var rate in rates)
-            {
-                newRates.Add(rate.Key, rate.Value / sourceCourse);
-            }
-            return newRates;
         }
 
         private List<BankGovUaRateObject> GetDataFromJson(string json)
@@ -60,10 +54,9 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
 
         public Dictionary<string, double> GetRates(DateTime date)
         {
-            string connectionUrl = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=" + date.ToString("yyyyMMdd") + "&json";
             double sourceCourse = 0;
 
-            string responseJSON = HttpClient.GetDataFromUrl(connectionUrl);
+            string responseJSON = AdapterHelper.GetResponse(_urlFormat, date, _dateFormat);
             List<BankGovUaRateObject> rateObjects = GetDataFromJson(responseJSON);
             
             Dictionary<string, double> rates = new Dictionary<string, double>();
@@ -82,7 +75,7 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
             // Add service currency record
             rates.Add(_serviceCurrencyCode, 1);
 
-            return ConvertRatesToSource(rates, sourceCourse);
+            return AdapterHelper.ConvertRatesToSource(rates, sourceCourse);
         }
     }
 }

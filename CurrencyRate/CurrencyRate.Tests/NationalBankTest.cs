@@ -1,28 +1,16 @@
 using CurrencyRate.ServiceDataProvider.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
 using System;
 using Xunit;
 
 namespace CurrencyRate.Tests
 {
-    public class IConfigurationFixture
-    {
-        public IConfiguration Configuration { get; }
-        public IConfigurationFixture()
-        {
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            // Duplicate here any configuration sources you use.
-            configurationBuilder.AddJsonFile("appsettings.json");
-            Configuration = configurationBuilder.Build();
-        }
-    }
-    public class BankGovUaServiceTest : IClassFixture<IConfigurationFixture>
+    public class NationalBankServiceTest : IClassFixture<IConfigurationFixture>
     {
         private readonly IConfiguration _configuration;   
 
-        public BankGovUaServiceTest(IConfigurationFixture fixture)    
+        public NationalBankServiceTest(IConfigurationFixture fixture)    
         {
             _configuration = fixture.Configuration;
         } 
@@ -31,7 +19,7 @@ namespace CurrencyRate.Tests
         public void hasNoExceptions()
         {
             Exception expectedException = null;
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
+            NationalBankDataAdapter adapter = new NationalBankDataAdapter(_configuration);
             try
             {
                 adapter.GetRates(DateTime.Now);

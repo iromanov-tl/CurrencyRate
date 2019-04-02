@@ -50,7 +50,6 @@ namespace CurrencyRate.ServiceDataProvider
                 new BankGovUaDataAdapter(_configuration),
                 new OpenExchangeRatesDataAdapter(_configuration),
                 new NationalBankDataAdapter(_configuration)
-
             };
             List<Rate> rates = new List<Rate>();
             foreach (IServiceDataAdapter adapter in adapters)
