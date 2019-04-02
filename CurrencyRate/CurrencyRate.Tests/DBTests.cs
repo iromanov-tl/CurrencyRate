@@ -1,4 +1,5 @@
-﻿using CurrencyRate.Models;
+﻿using CurrencyRate.Data.EFRepository;
+using CurrencyRate.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,32 @@ namespace CurrencyRate.Tests
     public class DBTests : IClassFixture<DBFixture>
     {
         private ServiceProvider _serviceProvider;
+        private readonly RateRepository _rateRepository;
+        private readonly ServiceRepository _serviceRepository;
 
         public DBTests(DBFixture fixture)
         {
             _serviceProvider = fixture.ServiceProvider;
+            _rateRepository = new RateRepository(_serviceProvider.GetService<CurrencyRateContext>());
+            _serviceRepository = new ServiceRepository(_serviceProvider.GetService<CurrencyRateContext>());
         }
 
         [Fact]
-        public void Test1()
+        public void CanSaveRate()
         {
-            using (var context = _serviceProvider.GetService<CurrencyRateContext>())
-            {
-                Type type = context.Rate.GetType();
-            }
+            _rateRepository.
+        }
+
+        [Fact]
+        public void CanGetValidItems()
+        {
+            _rateRepository.
+        }
+
+        [Fact]
+        public void CanGetServices()
+        {
+            _serviceRepository.
         }
 
     }
