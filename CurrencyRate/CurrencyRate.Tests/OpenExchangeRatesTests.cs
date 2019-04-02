@@ -6,11 +6,11 @@ using Xunit;
 
 namespace CurrencyRate.Tests
 {
-    public class BankGovUaServiceTest : IClassFixture<IConfigurationFixture>
+    public class OpenExchangeRatesTest : IClassFixture<IConfigurationFixture>
     {
         private readonly IConfiguration _configuration;   
 
-        public BankGovUaServiceTest(IConfigurationFixture fixture)    
+        public OpenExchangeRatesTest(IConfigurationFixture fixture)    
         {
             _configuration = fixture.Configuration;
         } 
@@ -19,7 +19,7 @@ namespace CurrencyRate.Tests
         public void HasNoExceptions()
         {
             Exception expectedException = null;
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
+            OpenExchangeRatesDataAdapter adapter = new OpenExchangeRatesDataAdapter(_configuration);
             try
             {
                 adapter.GetRates(DateTime.Now);
@@ -35,7 +35,7 @@ namespace CurrencyRate.Tests
         public void HasExceptionInFarDate()
         {
             Exception expectedException = null;
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
+            OpenExchangeRatesDataAdapter adapter = new OpenExchangeRatesDataAdapter(_configuration);
             try
             {
                 adapter.GetRates(DateTime.Now.AddYears(1));
@@ -45,13 +45,15 @@ namespace CurrencyRate.Tests
                 expectedException = ex;
             }
             Assert.NotNull(expectedException);
-            Assert.Equal("Service did not return data", expectedException.Message);
+            Assert.Equal("Service returns message :" +
+                " Historical rates for the requested date are not available" +
+                " - please try a different date, or contact support@openexchangerates.org.", expectedException.Message);
         }
 
         [Fact]
         public void HasCorrectData()
         {
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
+            OpenExchangeRatesDataAdapter adapter = new OpenExchangeRatesDataAdapter(_configuration);
             Dictionary<string, double> rates = adapter.GetRates(DateTime.Parse("2013-02-22"));
             Assert.Equal(1, rates["RUB"]);
             Assert.Equal(30, (int)rates["USD"]);

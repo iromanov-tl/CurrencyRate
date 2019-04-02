@@ -2,6 +2,7 @@ using CurrencyRate.ServiceDataProvider.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace CurrencyRate.Tests
@@ -16,7 +17,7 @@ namespace CurrencyRate.Tests
         } 
 
         [Fact]
-        public void hasNoExceptions()
+        public void HasNoExceptions()
         {
             Exception expectedException = null;
             NationalBankDataAdapter adapter = new NationalBankDataAdapter(_configuration);
@@ -32,10 +33,10 @@ namespace CurrencyRate.Tests
         }
 
         [Fact]
-        public void hasExceptionInFarDate()
+        public void HasExceptionInFarDate()
         {
             Exception expectedException = null;
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
+            NationalBankDataAdapter adapter = new NationalBankDataAdapter(_configuration);
             try
             {
                 adapter.GetRates(DateTime.Now.AddYears(1));
@@ -45,22 +46,17 @@ namespace CurrencyRate.Tests
                 expectedException = ex;
             }
             Assert.NotNull(expectedException);
+            Assert.Equal("Service did not return data", expectedException.Message);
         }
 
         [Fact]
-        public void hasExceptionInIncorrectData()
+        public void HasCorrectData()
         {
-            Exception expectedException = null;
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
-            try
-            {
-                adapter.GetRates(DateTime.Parse("abcdef"));
-            }
-            catch (Exception ex)
-            {
-                expectedException = ex;
-            }
-            Assert.NotNull(expectedException);
+            NationalBankDataAdapter adapter = new NationalBankDataAdapter(_configuration);
+            Dictionary<string, double> rates = adapter.GetRates(DateTime.Parse("2013-02-22"));
+            Assert.Equal(1, rates["RUB"]);
+            Assert.Equal(30, (int)rates["USD"]);
+            Assert.Equal(3, (int)rates["UAH"]);
         }
     }
 }
