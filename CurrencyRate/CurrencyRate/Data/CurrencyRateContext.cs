@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using CurrencyRate.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace CurrencyRate.Models
 {
@@ -14,8 +9,8 @@ namespace CurrencyRate.Models
         {
         }
 
-        public DbSet<CurrencyRate.Models.Rate.Rate> Rate { get; set; }
+        public DbSet<Rate.Rate> Rate { get; set; }
 
-        public DbSet<CurrencyRate.Models.Service.Service> Service { get; set; }
+        public DbSet<Service.Service> Service { get; set; }
     }
 }

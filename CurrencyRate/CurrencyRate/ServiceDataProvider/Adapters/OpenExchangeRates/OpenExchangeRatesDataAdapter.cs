@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using CurrencyRate.Models.Rate;
-using CurrencyRate.Tools;
 using Microsoft.Extensions.Configuration;
 
 namespace CurrencyRate.ServiceDataProvider.Adapters
 {
     public class OpenExchangeRatesDataAdapter : IServiceDataAdapter
     {
-        private readonly IConfiguration _configuration;
         private const string RatesProperty = "rates";
         private string _defaultCurrencyCode;
         private int _serviceId;
@@ -22,10 +15,9 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
 
         public OpenExchangeRatesDataAdapter(IConfiguration configuration)
         {
-            _configuration = configuration;
             const string SectionName = "OpenExchangeRates";
-            _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SectionName +":ServiceId");
-            _defaultCurrencyCode = _configuration.GetValue<string>("CurrenciesSettings:DefaultCurrencyCode");
+            _serviceId = configuration.GetValue<int>("ServicesSettings:"+ SectionName +":ServiceId");
+            _defaultCurrencyCode = configuration.GetValue<string>("CurrenciesSettings:DefaultCurrencyCode");
             _urlFormat = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":UrlFormat");
             _dateFormat = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":DateFormat");
         }

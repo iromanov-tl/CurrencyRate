@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CurrencyRate.Models.Rate;
-using CurrencyRate.Tools;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace CurrencyRate.ServiceDataProvider.Adapters
 {
@@ -24,9 +19,9 @@ namespace CurrencyRate.ServiceDataProvider.Adapters
         {
             _configuration = configuration;
             const string SectionName = "BankGovUa";
-            _serviceCurrencyCode = _configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":ServiceCurrencyCode");
-            _serviceId = _configuration.GetValue<int>("ServicesSettings:"+ SectionName + ":ServiceId");
-            _defaultCurrencyCode = _configuration.GetValue<string>("CurrenciesSettings:DefaultCurrencyCode");
+            _serviceCurrencyCode = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":ServiceCurrencyCode");
+            _serviceId = configuration.GetValue<int>("ServicesSettings:"+ SectionName + ":ServiceId");
+            _defaultCurrencyCode = configuration.GetValue<string>("CurrenciesSettings:DefaultCurrencyCode");
             _urlFormat = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":UrlFormat");
             _dateFormat = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":DateFormat");
         }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CurrencyRate.Models.Rate
+﻿namespace CurrencyRate.Models.Rate
 {
     public class Rate
     {

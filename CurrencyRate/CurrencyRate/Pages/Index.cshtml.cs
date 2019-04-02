@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using CurrencyRate.RatesManager;
-using CurrencyRate.Models;
 using CurrencyRate.Models.Rate;
 using CurrencyRate.Models.Service;
 using Microsoft.Extensions.Logging;
