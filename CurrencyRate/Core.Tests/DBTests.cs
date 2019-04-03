@@ -13,7 +13,6 @@ namespace CurrencyRate.Tests
 {
     public class DBTests
     {
-        private ServiceProvider _serviceProvider;
         private readonly RateRepository _rateRepository;
         private readonly ServiceRepository _serviceRepository;
 
@@ -24,7 +23,7 @@ namespace CurrencyRate.Tests
         public DBTests()
         {
             var options = new DbContextOptionsBuilder<CurrencyRateContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
+                .UseInMemoryDatabase(databaseName: "DBTest")
                 .Options;
             _context = new CurrencyRateContext(options);
             _rateRepository = new RateRepository(_context);
@@ -36,19 +35,17 @@ namespace CurrencyRate.Tests
         {
             List<Service> services = new List<Service> {
                 new Service {
-                    ServiceId = 1,
                     Url = "service1.com"
                 },
                 new Service {
-                    ServiceId = 2,
                     Url = "service2.com"
                 },
                 new Service {
-                    ServiceId = 3,
                     Url = "service3.com"
                 }
             };
             _context.Service.AddRange(services);
+            _context.SaveChanges();
         }
 
         private List<Rate> GetRatesTestData()

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CurrencyRate\CurrencyRate.csproj" />
+    <ProjectReference Include="..\ServiceAdapters\ServiceAdapters.csproj" />
   </ItemGroup>
 
 </Project>
