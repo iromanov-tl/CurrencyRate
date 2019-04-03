@@ -8,7 +8,6 @@ namespace CurrencyRate.Tests
         public IConfigurationFixture()
         {
             IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            // Duplicate here any configuration sources you use.
             configurationBuilder.AddJsonFile("appsettings.json");
             Configuration = configurationBuilder.Build();
         }
