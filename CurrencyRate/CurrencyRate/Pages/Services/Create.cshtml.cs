@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CurrencyRate.Core.Models;
+using CurrencyRate.Core.Models.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using CurrencyRate.Models;
-using CurrencyRate.Models.Service;
 
 namespace CurrencyRate.Pages.Services
 {
     public class CreateModel : PageModel
     {
-        private readonly CurrencyRate.Models.CurrencyRateContext _context;
+        private readonly CurrencyRateContext _context;
 
-        public CreateModel(CurrencyRate.Models.CurrencyRateContext context)
+        public CreateModel(CurrencyRateContext context)
         {
             _context = context;
         }

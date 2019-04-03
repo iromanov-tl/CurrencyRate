@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using CurrencyRate.Models;
-using CurrencyRate.Models.Service;
+using CurrencyRate.Core.Models;
+using CurrencyRate.Core.Models.Service;
 
 namespace CurrencyRate.Pages.Services
 {
     public class DeleteModel : PageModel
     {
-        private readonly CurrencyRate.Models.CurrencyRateContext _context;
+        private readonly CurrencyRateContext _context;
 
-        public DeleteModel(CurrencyRate.Models.CurrencyRateContext context)
+        public DeleteModel(CurrencyRateContext context)
         {
             _context = context;
         }

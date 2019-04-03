@@ -1,9 +1,9 @@
-﻿using CurrencyRate.Models.Rate;
-using CurrencyRate.ServiceDataProvider;
+﻿using CurrencyRate.Core.Models.Rate;
+using CurrencyRate.Core.ServiceDataProvider;
 using System;
 using System.Collections.Generic;
 
-namespace CurrencyRate.RatesManager
+namespace CurrencyRate.Core.RatesManager
 {
     public class RatesManager
     {

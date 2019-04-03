@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using CurrencyRate.Tools;
 using System.Xml;
+using CurrencyRate.ServiceAdapters.Tools;
 
-namespace CurrencyRate.ServiceDataProvider.Adapters
+namespace CurrencyRate.ServiceAdapters
 {
     public class AdapterHelper
     {

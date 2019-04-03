@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Configuration;
 
-namespace CurrencyRate.ServiceDataProvider.Adapters
+namespace CurrencyRate.ServiceAdapters.Adapters
 {
     public class OpenExchangeRatesDataAdapter : IServiceDataAdapter
     {

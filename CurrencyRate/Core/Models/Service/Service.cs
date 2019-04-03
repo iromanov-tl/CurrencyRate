@@ -1,4 +1,4 @@
-﻿namespace CurrencyRate.Models.Service
+﻿namespace CurrencyRate.Core.Models.Service
 {
     public class Service
     {

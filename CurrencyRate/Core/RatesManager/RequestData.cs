@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CurrencyRate.RatesManager
+namespace CurrencyRate.Core.RatesManager
 {
     public class RequestData
     {

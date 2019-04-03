@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using CurrencyRate.Models.Rate;
+using CurrencyRate.Core.Models.Rate;
+using CurrencyRate.Core.Models;
 
 namespace CurrencyRate.Pages.Rates
 {
     public class DetailsModel : PageModel
     {
-        private readonly CurrencyRate.Models.CurrencyRateContext _context;
+        private readonly CurrencyRateContext _context;
 
-        public DetailsModel(CurrencyRate.Models.CurrencyRateContext context)
+        public DetailsModel(CurrencyRateContext context)
         {
             _context = context;
         }

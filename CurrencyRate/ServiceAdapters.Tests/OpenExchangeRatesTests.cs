@@ -1,4 +1,4 @@
-using CurrencyRate.ServiceDataProvider.Adapters;
+using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

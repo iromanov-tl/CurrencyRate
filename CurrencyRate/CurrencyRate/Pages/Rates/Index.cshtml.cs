@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using CurrencyRate.Models;
-using CurrencyRate.Models.Rate;
+using CurrencyRate.Core.Models;
+using CurrencyRate.Core.Models.Rate;
 
 namespace CurrencyRate.Pages.Rates
 {

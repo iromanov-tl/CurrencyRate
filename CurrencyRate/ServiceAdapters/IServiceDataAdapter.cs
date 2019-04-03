@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CurrencyRate.ServiceDataProvider
+namespace CurrencyRate.ServiceAdapters
 {
     public interface IServiceDataAdapter
     {

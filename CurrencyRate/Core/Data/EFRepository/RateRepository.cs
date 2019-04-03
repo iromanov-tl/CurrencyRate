@@ -1,11 +1,10 @@
-﻿using CurrencyRate.Models;
-using CurrencyRate.Models.Rate;
+﻿using CurrencyRate.Core.Models;
+using CurrencyRate.Core.Models.Rate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
-namespace CurrencyRate.Data.EFRepository
+namespace CurrencyRate.Core.Data.EFRepository
 {
     public class RateRepository : IRateRepository
     {

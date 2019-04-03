@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CurrencyRate.Models.Service
+namespace CurrencyRate.Core.Models.Service
 {
     public interface IServiceRepository
     {

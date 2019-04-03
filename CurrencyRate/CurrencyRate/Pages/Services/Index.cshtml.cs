@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using CurrencyRate.Models;
-using CurrencyRate.Models.Service;
+using CurrencyRate.Core.Models;
+using CurrencyRate.Core.Models.Service;
 
 namespace CurrencyRate.Pages.Services
 {
     public class IndexModel : PageModel
     {
-        private readonly CurrencyRate.Models.CurrencyRateContext _context;
+        private readonly CurrencyRateContext _context;
 
-        public IndexModel(CurrencyRate.Models.CurrencyRateContext context)
+        public IndexModel(CurrencyRateContext context)
         {
             _context = context;
         }

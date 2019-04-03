@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using CurrencyRate.Models;
-using CurrencyRate.Models.Rate;
-using CurrencyRate.Data.EFRepository;
-using CurrencyRate.Models.Service;
-using CurrencyRate.ServiceDataProvider;
+using CurrencyRate.Core.Models;
+using CurrencyRate.Core.Models.Rate;
+using CurrencyRate.Core.Data.EFRepository;
+using CurrencyRate.Core.Models.Service;
+using CurrencyRate.Core.ServiceDataProvider;
+using CurrencyRate.Core.RatesManager;
 
 namespace CurrencyRate
 {
@@ -45,7 +41,7 @@ namespace CurrencyRate
             services.AddScoped<IRateRepository, RateRepository>()
                 .AddScoped<IServiceRepository, ServiceRepository>()
                 .AddScoped<DataProvider>()
-                .AddScoped<RatesManager.RatesManager>();
+                .AddScoped<RatesManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

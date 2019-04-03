@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace CurrencyRate.ServiceDataProvider.Adapters
+namespace CurrencyRate.ServiceAdapters.Adapters
 {
     public class NationalBankDataAdapter : IServiceDataAdapter
     {

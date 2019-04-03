@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CurrencyRate.Models.Rate
+namespace CurrencyRate.Core.Models.Rate
 {
     public interface IRateRepository
     {

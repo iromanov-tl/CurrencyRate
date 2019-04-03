@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace CurrencyRate.ServiceDataProvider.Adapters
+namespace CurrencyRate.ServiceAdapters.Adapters
 {
     public class BankGovUaDataAdapter : IServiceDataAdapter
     {

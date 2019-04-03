@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using CurrencyRate.Tools;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Web;
 
-namespace CurrencyRate.Tools
+namespace CurrencyRate.ServiceAdapters.Tools
 {
     public class HttpClient
     {

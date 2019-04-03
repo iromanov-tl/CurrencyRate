@@ -1,11 +1,12 @@
-﻿using CurrencyRate.Models.Rate;
-using CurrencyRate.ServiceDataProvider.Adapters;
+﻿using CurrencyRate.Core.Models.Rate;
+using CurrencyRate.ServiceAdapters;
+using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
-namespace CurrencyRate.ServiceDataProvider
+namespace CurrencyRate.Core.ServiceDataProvider
 {
     public class DataProvider
     {

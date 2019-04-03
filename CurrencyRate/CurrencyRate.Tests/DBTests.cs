@@ -1,13 +1,12 @@
-﻿using CurrencyRate.Data.EFRepository;
-using CurrencyRate.Models;
-using CurrencyRate.Models.Rate;
-using CurrencyRate.Models.Service;
+﻿using CurrencyRate.Core.Data.EFRepository;
+using CurrencyRate.Core.Models;
+using CurrencyRate.Core.Models.Rate;
+using CurrencyRate.Core.Models.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace CurrencyRate.Tests
@@ -129,7 +128,6 @@ namespace CurrencyRate.Tests
         [Fact]
         public void CanGetServices()
         {
-            var serviceCollection = new ServiceCollection();
             List<Service> services = _serviceRepository.GetServices();
             Assert.Equal(3, services.Count);
         }

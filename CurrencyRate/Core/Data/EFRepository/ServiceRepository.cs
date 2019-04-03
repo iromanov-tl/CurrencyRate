@@ -1,9 +1,10 @@
-﻿using CurrencyRate.Models;
-using CurrencyRate.Models.Service;
+﻿using CurrencyRate.Core.Models.Service;
+using CurrencyRate.Core.Models.Rate;
 using System.Collections.Generic;
 using System.Linq;
+using CurrencyRate.Core.Models;
 
-namespace CurrencyRate.Data.EFRepository
+namespace CurrencyRate.Core.Data.EFRepository
 {
     public class ServiceRepository : IServiceRepository
     {

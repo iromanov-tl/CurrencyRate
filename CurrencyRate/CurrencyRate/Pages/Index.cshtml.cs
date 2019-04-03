@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using CurrencyRate.Models.Rate;
-using CurrencyRate.Models.Service;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using CurrencyRate.Core.RatesManager;
+using CurrencyRate.Core.Models.Service;
+using CurrencyRate.Core.Models.Rate;
 
 namespace CurrencyRate.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly RatesManager.RatesManager _ratesManager;
+        private readonly RatesManager _ratesManager;
         private readonly IServiceRepository _serviceRepository;
         private readonly ILogger<IndexModel> _logger;
         private readonly IConfiguration _configuration;
@@ -20,7 +21,7 @@ namespace CurrencyRate.Pages
         public List<string> currencies = new List<string>();
         public List<ReportingRate> rates = new List<ReportingRate>();
 
-        public IndexModel(RatesManager.RatesManager ratesManager, IServiceRepository serviceRepository, ILogger<IndexModel> logger, IConfiguration configuration)
+        public IndexModel(RatesManager ratesManager, IServiceRepository serviceRepository, ILogger<IndexModel> logger, IConfiguration configuration)
         {
             _ratesManager = ratesManager;
             _serviceRepository = serviceRepository;

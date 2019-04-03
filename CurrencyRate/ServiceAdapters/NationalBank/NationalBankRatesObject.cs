@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CurrencyRate.ServiceDataProvider.Adapters
+namespace CurrencyRate.ServiceAdapters.Adapters
 {
     public class NationalBankRatesObject
     {

@@ -1,4 +1,4 @@
-namespace CurrencyRate.Models.Rate
+namespace CurrencyRate.Core.Models.Rate
 {
     public class ReportingRate
     {

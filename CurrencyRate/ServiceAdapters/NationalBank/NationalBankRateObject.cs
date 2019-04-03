@@ -1,4 +1,4 @@
-﻿namespace CurrencyRate.ServiceDataProvider.Adapters
+﻿namespace CurrencyRate.ServiceAdapters.Adapters
 {
     public class NationalBankRateObject
     {
