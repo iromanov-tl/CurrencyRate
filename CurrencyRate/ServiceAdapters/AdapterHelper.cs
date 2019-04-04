@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using CurrencyRate.Tools;
 using System.Xml;
 using CurrencyRate.ServiceAdapters.Tools;
 
