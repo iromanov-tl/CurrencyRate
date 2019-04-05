@@ -27,6 +27,16 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             return _serviceId;
         }
 
+        public string GetRequestConnectionUrl()
+        {
+            return _urlFormat;
+        }
+
+        public string GetRequestDateFormat()
+        {
+            return _dateFormat;
+        }
+
         private void ValidateResponse(JObject responseObject)
         {
             string error = (string)responseObject["error"];
@@ -37,10 +47,9 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             }
         }
 
-        public Dictionary<string, double> GetRates(DateTime date)
+        public Dictionary<string, double> GetRates(string responseContent)
         {
-            string responseJSON = AdapterHelper.GetResponse(_urlFormat, date, _dateFormat);
-            JObject responseObject = JObject.Parse(responseJSON);
+            JObject responseObject = JObject.Parse(responseContent);
             ValidateResponse(responseObject);
             JObject ratesObject = (JObject)responseObject[RatesProperty];
 

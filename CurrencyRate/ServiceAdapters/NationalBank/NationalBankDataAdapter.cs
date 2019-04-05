@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CurrencyRate.ServiceAdapters;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
@@ -29,6 +30,16 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             return _serviceId;
         }
 
+        public string GetRequestConnectionUrl()
+        {
+            return _urlFormat;
+        }
+
+        public string GetRequestDateFormat()
+        {
+            return _dateFormat;
+        }
+
         private List<NationalBankRateObject> GetDataFromJson(string json)
         {
             NationalBankDataObject dataObject;
@@ -47,11 +58,10 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             return rates;
         }
 
-        public Dictionary<string, double> GetRates(DateTime date)
+        public Dictionary<string, double> GetRates(string responseContent)
         {
             double sourceCourse = 0;
-            string responseXML = AdapterHelper.GetResponse(_urlFormat, date, _dateFormat);
-            string responseJson = AdapterHelper.ConvertXmlToJSON(responseXML);
+            string responseJson = AdapterHelper.ConvertXmlToJSON(responseContent);
             List<NationalBankRateObject> rateObjects = GetDataFromJson(responseJson);
             Dictionary<string, double> rates = new Dictionary<string, double>();
 

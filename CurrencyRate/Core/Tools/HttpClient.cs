@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace CurrencyRate.ServiceAdapters.Tools
+namespace CurrencyRate.Core.Tools
 {
     public class HttpClient
     {

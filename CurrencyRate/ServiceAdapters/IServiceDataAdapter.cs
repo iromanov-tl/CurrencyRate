@@ -5,7 +5,9 @@ namespace CurrencyRate.ServiceAdapters
 {
     public interface IServiceDataAdapter
     {
-        Dictionary<string, double> GetRates(DateTime date);
+        Dictionary<string, double> GetRates(string responseContent);
+        string GetRequestConnectionUrl();
+        string GetRequestDateFormat();
         int GetId();
     }
 }

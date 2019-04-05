@@ -1,4 +1,5 @@
 ﻿using CurrencyRate.Core.Models.Rate;
+using CurrencyRate.Core.Tools;
 using CurrencyRate.ServiceAdapters;
 using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +23,9 @@ namespace CurrencyRate.Core.ServiceDataProvider
         {
             List<Rate> rates = new List<Rate>();
             try {
-                Dictionary<string, double> dictionary = service.GetRates(date);
+                var connectionUrl = String.Format(service.GetRequestConnectionUrl(), date.ToString(service.GetRequestDateFormat()));
+                var content = HttpClient.GetDataFromUrl(connectionUrl);
+                Dictionary<string, double> dictionary = service.GetRates(content);
                 foreach (var element in dictionary)
                 {
                     rates.Add(new Rate()

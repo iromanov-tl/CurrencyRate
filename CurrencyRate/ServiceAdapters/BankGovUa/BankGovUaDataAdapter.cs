@@ -31,6 +31,16 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             return _serviceId;
         }
 
+        public string GetRequestConnectionUrl()
+        {
+            return _urlFormat;
+        }
+
+        public string GetRequestDateFormat()
+        {
+            return _dateFormat;
+        }
+
         private List<BankGovUaRateObject> GetDataFromJson(string json)
         {
             List<BankGovUaRateObject> rates = new List<BankGovUaRateObject>();
@@ -47,12 +57,10 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             return rates;
         }
 
-        public Dictionary<string, double> GetRates(DateTime date)
+        public Dictionary<string, double> GetRates(string responseContent)
         {
             double sourceCourse = 0;
-
-            string responseJSON = AdapterHelper.GetResponse(_urlFormat, date, _dateFormat);
-            List<BankGovUaRateObject> rateObjects = GetDataFromJson(responseJSON);
+            List<BankGovUaRateObject> rateObjects = GetDataFromJson(responseContent);
             
             Dictionary<string, double> rates = new Dictionary<string, double>();
             foreach (BankGovUaRateObject item in rateObjects)
