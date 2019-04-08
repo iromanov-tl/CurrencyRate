@@ -1,5 +1,4 @@
 ﻿using CurrencyRate.Core.Models.Service;
-using CurrencyRate.Core.Models.Rate;
 using System.Collections.Generic;
 using System.Linq;
 using CurrencyRate.Core.Models;

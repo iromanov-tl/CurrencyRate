@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CurrencyRate.Core.Models.Service;
-using CurrencyRate.Core.Models.Rate;
 
 namespace CurrencyRate.Core.Models
 {
