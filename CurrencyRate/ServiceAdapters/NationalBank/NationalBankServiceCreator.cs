@@ -4,10 +4,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace ServiceAdapters.NationalBank
 {
-    public class BankGovUaServiceCreator : IServiceCreator
+    public class NationalBankServiceCreator : IServiceCreator
     {
         private readonly IConfiguration _configuration;
-        public BankGovUaServiceCreator(IConfiguration configuration)
+        public NationalBankServiceCreator(IConfiguration configuration)
         {
             _configuration = configuration;
         }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using CurrencyRate.Core.RatesManager;
 using CurrencyRate.Core.Models.Service;
 using CurrencyRate.Core.Models.Rate;
+using CurrencyRate.Core.Repository;
 
 namespace CurrencyRate.Pages
 {

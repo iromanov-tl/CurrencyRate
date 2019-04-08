@@ -6,11 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using CurrencyRate.Core.Models;
-using CurrencyRate.Core.Models.Rate;
 using CurrencyRate.Core.Data.EFRepository;
-using CurrencyRate.Core.Models.Service;
 using CurrencyRate.Core.ServiceDataProvider;
 using CurrencyRate.Core.RatesManager;
+using CurrencyRate.Core.Repository;
 
 namespace CurrencyRate
 {

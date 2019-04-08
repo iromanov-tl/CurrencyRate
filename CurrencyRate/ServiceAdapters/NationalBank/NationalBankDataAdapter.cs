@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using CurrencyRate.ServiceAdapters;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using ServiceAdapters;
 
 namespace CurrencyRate.ServiceAdapters.Adapters
 {
-    public class NationalBankDataAdapter : IServiceDataAdapter
+    public class NationalBankDataAdapter : ServiceDataAdapter
     {
         /* service return only xml format */
         private string _defaultCurrencyCode;
@@ -25,17 +26,17 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             _dateFormat = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":DateFormat");
         }
 
-        public int GetId()
+        public override int GetId()
         {
             return _serviceId;
         }
 
-        public string GetRequestConnectionUrl()
+        public override string GetRequestConnectionUrl()
         {
             return _urlFormat;
         }
 
-        public string GetRequestDateFormat()
+        public override string GetRequestDateFormat()
         {
             return _dateFormat;
         }
@@ -58,7 +59,7 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             return rates;
         }
 
-        public Dictionary<string, double> GetRates(string responseContent)
+        public override Dictionary<string, double> GetRates(string responseContent)
         {
             double sourceCourse = 0;
             string responseJson = AdapterHelper.ConvertXmlToJSON(responseContent);

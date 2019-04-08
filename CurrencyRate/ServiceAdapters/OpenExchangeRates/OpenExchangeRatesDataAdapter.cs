@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Configuration;
+using ServiceAdapters;
 
 namespace CurrencyRate.ServiceAdapters.Adapters
 {
-    public class OpenExchangeRatesDataAdapter : IServiceDataAdapter
+    public class OpenExchangeRatesDataAdapter : ServiceDataAdapter
     {
         private const string RatesProperty = "rates";
         private string _defaultCurrencyCode;
@@ -22,17 +23,17 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             _dateFormat = configuration.GetValue<string>("ServicesSettings:"+ SectionName + ":DateFormat");
         }
 
-        public int GetId()
+        public override int GetId()
         {
             return _serviceId;
         }
 
-        public string GetRequestConnectionUrl()
+        public override string GetRequestConnectionUrl()
         {
             return _urlFormat;
         }
 
-        public string GetRequestDateFormat()
+        public override string GetRequestDateFormat()
         {
             return _dateFormat;
         }
@@ -47,7 +48,7 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             }
         }
 
-        public Dictionary<string, double> GetRates(string responseContent)
+        public override Dictionary<string, double> GetRates(string responseContent)
         {
             JObject responseObject = JObject.Parse(responseContent);
             ValidateResponse(responseObject);

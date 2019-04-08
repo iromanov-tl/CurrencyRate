@@ -4,10 +4,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace ServiceAdapters.OpenExchangeRates
 {
-    public class NationalBankServiceCreator : IServiceCreator
+    public class OpenExchangeRatesServiceCreator : IServiceCreator
     {
         private readonly IConfiguration _configuration;
-        public NationalBankServiceCreator(IConfiguration configuration)
+        public OpenExchangeRatesServiceCreator(IConfiguration configuration)
         {
             _configuration = configuration;
         }

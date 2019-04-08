@@ -5,6 +5,9 @@ using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ServiceAdapters;
+using ServiceAdapters.BankGovUa;
+using ServiceAdapters.NationalBank;
+using ServiceAdapters.OpenExchangeRates;
 using System;
 using System.Collections.Generic;
 
@@ -23,15 +26,23 @@ namespace CurrencyRate.Core.ServiceDataProvider
         private List<Rate> GetServiceRates(ServiceName serviceName, DateTime date)
         {
             List<Rate> rates = new List<Rate>();
+            IServiceCreator creator;
+            IServiceDataAdapter service;
             switch(serviceName)
             {
                 case ServiceName.BankGovUa:
+                    creator = new BankGovUaServiceCreator(_configuration);
                     break;
                 case ServiceName.NationalBank:
+                    creator = new NationalBankServiceCreator(_configuration);
                     break;
                 case ServiceName.OpenExchangeRates:
+                    creator = new OpenExchangeRatesServiceCreator(_configuration);
                     break;
+                default:
+                    throw new Exception("Can not find service:" + serviceName.ToString());
             }
+            service = creator.CreateService();
             try {
                 var connectionUrl = String.Format(service.GetRequestConnectionUrl(), date.ToString(service.GetRequestDateFormat()));
                 var content = HttpClient.GetDataFromUrl(connectionUrl);
@@ -62,9 +73,9 @@ namespace CurrencyRate.Core.ServiceDataProvider
                 ServiceName.OpenExchangeRates
             };
             List<Rate> rates = new List<Rate>();
-            foreach (IServiceDataAdapter adapter in adapters)
+            foreach (ServiceName adapterName in adapters)
             {
-                rates.AddRange(GetServiceRates(adapter, date));
+                rates.AddRange(GetServiceRates(adapterName, date));
             }
             return rates;
         }
