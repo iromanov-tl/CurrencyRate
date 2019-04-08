@@ -4,6 +4,7 @@ using CurrencyRate.ServiceAdapters;
 using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ServiceAdapters;
 using System;
 using System.Collections.Generic;
 
@@ -19,9 +20,18 @@ namespace CurrencyRate.Core.ServiceDataProvider
             _configuration = configuration;
         }
 
-        private List<Rate> GetServiceRates(IServiceDataAdapter service, DateTime date)
+        private List<Rate> GetServiceRates(ServiceName serviceName, DateTime date)
         {
             List<Rate> rates = new List<Rate>();
+            switch(serviceName)
+            {
+                case ServiceName.BankGovUa:
+                    break;
+                case ServiceName.NationalBank:
+                    break;
+                case ServiceName.OpenExchangeRates:
+                    break;
+            }
             try {
                 var connectionUrl = String.Format(service.GetRequestConnectionUrl(), date.ToString(service.GetRequestDateFormat()));
                 var content = HttpClient.GetDataFromUrl(connectionUrl);
@@ -45,11 +55,11 @@ namespace CurrencyRate.Core.ServiceDataProvider
 
         public List<Rate> GetServicesRates(DateTime date)
         {
-            List<IServiceDataAdapter> adapters = new List<IServiceDataAdapter>()
+            List<ServiceName> adapters = new List<ServiceName>()
             {
-                new BankGovUaDataAdapter(_configuration),
-                new OpenExchangeRatesDataAdapter(_configuration),
-                new NationalBankDataAdapter(_configuration)
+                ServiceName.BankGovUa,
+                ServiceName.NationalBank,
+                ServiceName.OpenExchangeRates
             };
             List<Rate> rates = new List<Rate>();
             foreach (IServiceDataAdapter adapter in adapters)

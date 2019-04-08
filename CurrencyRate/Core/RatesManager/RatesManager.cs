@@ -1,4 +1,5 @@
 ﻿using CurrencyRate.Core.Models.Rate;
+using CurrencyRate.Core.Repository;
 using CurrencyRate.Core.ServiceDataProvider;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,11 @@ namespace CurrencyRate.Core.RatesManager
 
         private List<ReportingRate> GetRatesFromDB(RequestData requestData)
         {
-            return _rateRepository.GetItems(requestData.date, requestData.currencyCode);
+            List<ReportingRate> rates = _rateRepository.GetItems(requestData.date, requestData.currencyCode);
+            rates.Sort((a, b) =>
+                    a.Value.CompareTo(b.Value)
+                );
+            return rates;
         }
 
         public List<ReportingRate> GetRates(DateTime date, string currencyCode)

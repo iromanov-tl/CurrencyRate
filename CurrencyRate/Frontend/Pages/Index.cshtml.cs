@@ -47,9 +47,6 @@ namespace CurrencyRate.Pages
                     return;
                 }
                 this.rates = _ratesManager.GetRates(dateTime.Date, currency);
-                this.rates.Sort((a, b) =>
-                    a.Value.CompareTo(b.Value)
-                );
             }
         }
     }

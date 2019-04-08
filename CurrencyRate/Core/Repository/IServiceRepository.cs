@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CurrencyRate.Core.Models.Service;
+using System.Collections.Generic;
 
-namespace CurrencyRate.Core.Models.Service
+namespace CurrencyRate.Core.Repository
 {
     public interface IServiceRepository
     {

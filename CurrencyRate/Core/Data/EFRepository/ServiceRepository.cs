@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CurrencyRate.Core.Models;
+using CurrencyRate.Core.Repository;
 
 namespace CurrencyRate.Core.Data.EFRepository
 {
