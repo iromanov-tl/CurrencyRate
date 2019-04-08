@@ -20,4 +20,5 @@ web.config*
 /packages
 /build/env
 /backup
+.vs/
 *.csproj.user
