@@ -3,7 +3,6 @@ using CurrencyRate.Core.Models;
 using CurrencyRate.Core.Models.Rate;
 using CurrencyRate.Core.Models.Service;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,14 +1,10 @@
 using CurrencyRate.ServiceAdapters;
-using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
-using ServiceAdapters;
-using ServiceAdapters.NationalBank;
+using CurrencyRate.ServiceAdapters.NationalBank;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using Xunit;
 
 namespace CurrencyRate.Tests
@@ -57,23 +53,14 @@ namespace CurrencyRate.Tests
         [Fact]
         public void NationalBankDataAdapter_GetRates_IncorrectDate_Exception()
         {
-            Exception expectedException = null;
             IServiceDataAdapter adapter = _creator.CreateService();
-            try
-            {
-                adapter.GetRates(_invalidContent);
-            }
-            catch (Exception ex)
-            {
-                expectedException = ex;
-            }
-            Assert.NotNull(expectedException);
+            Exception expectedException = Assert.Throws<Exception>(() => adapter.GetRates(_invalidContent));
             Assert.Equal("Service did not return data", expectedException.Message);
         }
 
         private double GetRateValue(List<ServiceRate> rates, string code)
         {
-            return rates.Single(item => item.Code == "RUB").Value;
+            return rates.Single(item => item.Code == code).Value;
         }
 
         [Fact]
@@ -81,9 +68,9 @@ namespace CurrencyRate.Tests
         {
             IServiceDataAdapter adapter = _creator.CreateService();
             List<ServiceRate> rates = adapter.GetRates(_validContent);
-            Assert.Equal(1, GetRateValue(rates, "RUB"));
-            Assert.Equal(64, GetRateValue(rates, "USD"));
-            Assert.Equal(2, GetRateValue(rates, "UAH"));
+            Assert.Equal(1, (int)GetRateValue(rates, "RUB"));
+            Assert.Equal(64, (int)GetRateValue(rates, "USD"));
+            Assert.Equal(2, (int)GetRateValue(rates, "UAH"));
         }
     }
 }

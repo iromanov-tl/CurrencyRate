@@ -1,6 +1,4 @@
-﻿using CurrencyRate.ServiceAdapters;
-
-namespace ServiceAdapters
+﻿namespace CurrencyRate.ServiceAdapters
 {
     public interface IServiceCreator
     {

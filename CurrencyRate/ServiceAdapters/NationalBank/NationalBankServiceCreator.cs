@@ -1,8 +1,7 @@
-﻿using CurrencyRate.ServiceAdapters;
-using CurrencyRate.ServiceAdapters.Adapters;
+﻿using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
 
-namespace ServiceAdapters.NationalBank
+namespace CurrencyRate.ServiceAdapters.NationalBank
 {
     public class NationalBankServiceCreator : IServiceCreator
     {

@@ -1,14 +1,10 @@
 ﻿using CurrencyRate.Core.Models.Rate;
 using CurrencyRate.ServiceAdapters;
-using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using ServiceAdapters;
-using ServiceAdapters.BankGovUa;
-using ServiceAdapters.NationalBank;
-using ServiceAdapters.OpenExchangeRates;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CurrencyRate.Core.ServiceDataProvider
 {
@@ -29,16 +25,13 @@ namespace CurrencyRate.Core.ServiceDataProvider
             try {
                 string content = service.GetContent(date);
                 List<ServiceRate> serviceRates = service.GetRates(content);
-                foreach (var item in serviceRates)
+                rates = serviceRates.Select(serviceRate => new Rate()
                 {
-                    rates.Add(new Rate()
-                    {
-                        ServiceId = service.GetId(),
-                        Code = item.Code,
-                        Date = date.ToString(),
-                        Value = item.Value
-                    });
-                }
+                    ServiceId = service.GetId(),
+                    Code = serviceRate.Code,
+                    Date = date.ToString(),
+                    Value = serviceRate.Value
+                }).ToList();
             }
             catch(Exception exception) {
                 _logger.LogWarning(exception.Message);
@@ -55,10 +48,7 @@ namespace CurrencyRate.Core.ServiceDataProvider
                 ServiceName.OpenExchangeRates
             };
             List<Rate> rates = new List<Rate>();
-            foreach (ServiceName adapterName in adapters)
-            {
-                rates.AddRange(GetServiceRates(adapterName, date));
-            }
+            adapters.ForEach(adapterName => rates.AddRange(GetServiceRates(adapterName, date)));
             return rates;
         }
     }

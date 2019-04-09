@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using ServiceAdapters;
 
 namespace CurrencyRate.ServiceAdapters.Adapters
 {

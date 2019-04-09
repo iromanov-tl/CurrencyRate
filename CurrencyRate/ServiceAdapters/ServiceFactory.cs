@@ -1,13 +1,10 @@
-﻿using CurrencyRate.ServiceAdapters;
-using Microsoft.Extensions.Configuration;
-using ServiceAdapters.BankGovUa;
-using ServiceAdapters.NationalBank;
-using ServiceAdapters.OpenExchangeRates;
-using System;
+﻿using Microsoft.Extensions.Configuration;
+using CurrencyRate.ServiceAdapters.BankGovUa;
+using CurrencyRate.ServiceAdapters.NationalBank;
+using CurrencyRate.ServiceAdapters.OpenExchangeRates;
 using System.Collections.Generic;
-using System.Text;
 
-namespace ServiceAdapters
+namespace CurrencyRate.ServiceAdapters
 {
     public class ServiceFactory
     {

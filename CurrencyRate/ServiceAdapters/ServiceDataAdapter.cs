@@ -1,9 +1,8 @@
-﻿using CurrencyRate.ServiceAdapters;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CurrencyRate.ServiceAdapters.Tools;
 using System;
 
-namespace ServiceAdapters
+namespace CurrencyRate.ServiceAdapters
 {
     public abstract class ServiceDataAdapter : IServiceDataAdapter
     {

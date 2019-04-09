@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Xml;
-using ServiceAdapters;
 
 namespace CurrencyRate.ServiceAdapters
 {
@@ -18,10 +16,7 @@ namespace CurrencyRate.ServiceAdapters
 
         public static List<ServiceRate> ConvertRatesToSource(List<ServiceRate> rates, double sourceCourse)
         {
-            foreach (var rate in rates)
-            {
-                rate.Value /= sourceCourse;
-            }
+            rates.ForEach(rate => rate.Value /= sourceCourse);
             return rates;
         }
     }

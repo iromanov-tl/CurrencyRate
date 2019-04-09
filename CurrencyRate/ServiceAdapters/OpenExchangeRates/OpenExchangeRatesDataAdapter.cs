@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Configuration;
-using ServiceAdapters;
+using System.Linq;
 
 namespace CurrencyRate.ServiceAdapters.Adapters
 {
@@ -58,14 +58,11 @@ namespace CurrencyRate.ServiceAdapters.Adapters
                 throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
 
             List<ServiceRate> rates = new List<ServiceRate>();
-            foreach (JProperty property in ratesObject.Properties())
+            rates = ratesObject.Properties().Select(property => new ServiceRate()
             {
-                rates.Add(new ServiceRate()
-                {
-                    Code = property.Name,
-                    Value = (double)property.Value
-                });
-            }
+                Code = property.Name,
+                Value = 1 / (double)property.Value
+            }).ToList();
 
             return AdapterHelper.ConvertRatesToSource(rates, sourceCourse);
         }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using CurrencyRate.ServiceAdapters;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using ServiceAdapters;
 
 namespace CurrencyRate.ServiceAdapters.Adapters
 {
