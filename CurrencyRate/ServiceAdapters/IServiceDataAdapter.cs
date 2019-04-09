@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ServiceAdapters;
+using System;
 using System.Collections.Generic;
 
 namespace CurrencyRate.ServiceAdapters
 {
     public interface IServiceDataAdapter
     {
-        Dictionary<string, double> GetRates(string responseContent);
+        List<ServiceRate> GetRates(string responseContent);
         string GetContent(DateTime date);
         int GetId();
     }

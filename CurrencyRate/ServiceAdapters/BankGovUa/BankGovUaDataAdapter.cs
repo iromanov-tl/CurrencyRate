@@ -58,26 +58,34 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             return rates;
         }
 
-        public override Dictionary<string, double> GetRates(string responseContent)
+        public override List<ServiceRate> GetRates(string responseContent)
         {
             double sourceCourse = 0;
             List<BankGovUaRateObject> rateObjects = GetDataFromJson(responseContent);
             
-            Dictionary<string, double> rates = new Dictionary<string, double>();
+            List<ServiceRate> rates = new List<ServiceRate>();
             foreach (BankGovUaRateObject item in rateObjects)
             {
                 if (item.cc == _defaultCurrencyCode)
                 {
                     sourceCourse = item.rate;
                 }
-                rates.Add(item.cc, item.rate);
+                rates.Add(new ServiceRate()
+                {
+                    Code = item.cc,
+                    Value = item.rate
+                });
             }
 
             if (sourceCourse == 0)
                 throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
 
             // Add service currency record
-            rates.Add(_serviceCurrencyCode, 1);
+            rates.Add(new ServiceRate()
+            {
+                Code = _serviceCurrencyCode,
+                Value = 1
+            });
 
             return AdapterHelper.ConvertRatesToSource(rates, sourceCourse);
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Xml;
+using ServiceAdapters;
 
 namespace CurrencyRate.ServiceAdapters
 {
@@ -15,14 +16,13 @@ namespace CurrencyRate.ServiceAdapters
             return JsonConvert.SerializeXmlNode(doc);
         }
 
-        public static Dictionary<string, double> ConvertRatesToSource(Dictionary<string, double> rates, double sourceCourse)
+        public static List<ServiceRate> ConvertRatesToSource(List<ServiceRate> rates, double sourceCourse)
         {
-            Dictionary<string, double> newRates = new Dictionary<string, double>();
             foreach (var rate in rates)
             {
-                newRates.Add(rate.Key, rate.Value / sourceCourse);
+                rate.Value /= sourceCourse;
             }
-            return newRates;
+            return rates;
         }
     }
 }

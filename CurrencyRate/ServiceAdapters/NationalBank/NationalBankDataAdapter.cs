@@ -59,12 +59,12 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             return rates;
         }
 
-        public override Dictionary<string, double> GetRates(string responseContent)
+        public override List<ServiceRate> GetRates(string responseContent)
         {
             double sourceCourse = 0;
             string responseJson = AdapterHelper.ConvertXmlToJSON(responseContent);
             List<NationalBankRateObject> rateObjects = GetDataFromJson(responseJson);
-            Dictionary<string, double> rates = new Dictionary<string, double>();
+            List<ServiceRate> rates = new List<ServiceRate>();
 
             foreach (NationalBankRateObject item in rateObjects)
             {
@@ -72,9 +72,17 @@ namespace CurrencyRate.ServiceAdapters.Adapters
                 {
                     sourceCourse = item.description;
                 }
-                rates.Add(item.title, item.description);
+                rates.Add(new ServiceRate()
+                {
+                    Code = item.title,
+                    Value = (double)item.description
+                });
             }
-            rates.Add(_serviceCurrencyCode, 1);
+            rates.Add(new ServiceRate()
+            {
+                Code = _serviceCurrencyCode,
+                Value = 1
+            });
 
             if (sourceCourse == 0)
                 throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);

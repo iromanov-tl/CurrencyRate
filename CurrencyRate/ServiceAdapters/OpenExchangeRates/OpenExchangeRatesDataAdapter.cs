@@ -48,20 +48,23 @@ namespace CurrencyRate.ServiceAdapters.Adapters
             }
         }
 
-        public override Dictionary<string, double> GetRates(string responseContent)
+        public override List<ServiceRate> GetRates(string responseContent)
         {
             JObject responseObject = JObject.Parse(responseContent);
             ValidateResponse(responseObject);
             JObject ratesObject = (JObject)responseObject[RatesProperty];
-
             double sourceCourse = 1 / (double)ratesObject[_defaultCurrencyCode];
             if (sourceCourse == 0)
                 throw new Exception("Can't compute currency with code:" + _defaultCurrencyCode);
 
-            Dictionary<string, double> rates = new Dictionary<string, double>();
+            List<ServiceRate> rates = new List<ServiceRate>();
             foreach (JProperty property in ratesObject.Properties())
             {
-                rates.Add(property.Name, 1 / (double)property.Value);
+                rates.Add(new ServiceRate()
+                {
+                    Code = property.Name,
+                    Value = (double)property.Value
+                });
             }
 
             return AdapterHelper.ConvertRatesToSource(rates, sourceCourse);
