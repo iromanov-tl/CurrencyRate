@@ -1,5 +1,8 @@
+using CurrencyRate.ServiceAdapters;
 using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
+using ServiceAdapters;
+using ServiceAdapters.BankGovUa;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +14,7 @@ namespace CurrencyRate.Tests
 {
     public class BankGovUaServiceTest : IClassFixture<IConfigurationFixture>
     {
-        private readonly IConfiguration _configuration;
+        private readonly IServiceCreator _creator;
         private const string ValidFilePath = "..\\..\\..\\ResponseExamples\\BankGovUa\\Valid.json";
         private const string InvalidFilePath = "..\\..\\..\\ResponseExamples\\BankGovUa\\Invalid.json";
         private string _validContent;
@@ -19,7 +22,8 @@ namespace CurrencyRate.Tests
 
         public BankGovUaServiceTest(IConfigurationFixture fixture)    
         {
-            _configuration = fixture.Configuration;
+            IConfiguration configuration = fixture.Configuration;
+            _creator = new BankGovUaServiceCreator(configuration);
             string ValidFileAbsolutePath = Path.GetFullPath(ValidFilePath, Directory.GetCurrentDirectory());
             string InvalidFileAbsolutePath = Path.GetFullPath(InvalidFilePath, Directory.GetCurrentDirectory());
             if (!File.Exists(ValidFileAbsolutePath) && !File.Exists(InvalidFileAbsolutePath))
@@ -36,7 +40,7 @@ namespace CurrencyRate.Tests
         public void HasNoExceptions()
         {
             Exception expectedException = null;
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
+            IServiceDataAdapter adapter = _creator.CreateService();
             try
             {
                 adapter.GetRates(_validContent);
@@ -49,10 +53,10 @@ namespace CurrencyRate.Tests
         }
 
         [Fact]
-        public void HasExceptionInFarDate()
+        public void HasExceptionInIncorrectData()
         {
             Exception expectedException = null;
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
+            IServiceDataAdapter adapter = _creator.CreateService();
             try
             {
                 adapter.GetRates(_invalidContent);
@@ -68,7 +72,7 @@ namespace CurrencyRate.Tests
         [Fact]
         public void HasCorrectData()
         {
-            BankGovUaDataAdapter adapter = new BankGovUaDataAdapter(_configuration);
+            IServiceDataAdapter adapter = _creator.CreateService();
             Dictionary<string, double> rates = adapter.GetRates(_validContent);
             Assert.Equal(1, rates["RUB"]);
             Assert.Equal(63, (int)rates["USD"]);

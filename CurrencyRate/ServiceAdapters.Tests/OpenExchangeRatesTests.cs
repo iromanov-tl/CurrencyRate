@@ -1,5 +1,8 @@
+using CurrencyRate.ServiceAdapters;
 using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
+using ServiceAdapters;
+using ServiceAdapters.OpenExchangeRates;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +14,7 @@ namespace CurrencyRate.Tests
 {
     public class OpenExchangeRatesTest : IClassFixture<IConfigurationFixture>
     {
-        private readonly IConfiguration _configuration;
+        private readonly IServiceCreator _creator;
         private const string ValidFilePath = "..\\..\\..\\ResponseExamples\\Openexchangerates\\Valid.json";
         private const string InvalidFilePath = "..\\..\\..\\ResponseExamples\\Openexchangerates\\Invalid.json";
         private string _validContent;
@@ -19,7 +22,8 @@ namespace CurrencyRate.Tests
 
         public OpenExchangeRatesTest(IConfigurationFixture fixture)    
         {
-            _configuration = fixture.Configuration;
+            IConfiguration configuration = fixture.Configuration;
+            _creator = new OpenExchangeRatesServiceCreator(configuration);
             string ValidFileAbsolutePath = Path.GetFullPath(ValidFilePath, Directory.GetCurrentDirectory());
             string InvalidFileAbsolutePath = Path.GetFullPath(InvalidFilePath, Directory.GetCurrentDirectory());
             if (!File.Exists(ValidFileAbsolutePath) || !File.Exists(InvalidFileAbsolutePath))
@@ -36,7 +40,7 @@ namespace CurrencyRate.Tests
         public void HasNoExceptions()
         {
             Exception expectedException = null;
-            OpenExchangeRatesDataAdapter adapter = new OpenExchangeRatesDataAdapter(_configuration);
+            IServiceDataAdapter adapter = _creator.CreateService();
             try
             {
                 adapter.GetRates(_validContent);
@@ -52,7 +56,7 @@ namespace CurrencyRate.Tests
         public void HasExceptionInFarDate()
         {
             Exception expectedException = null;
-            OpenExchangeRatesDataAdapter adapter = new OpenExchangeRatesDataAdapter(_configuration);
+            IServiceDataAdapter adapter = _creator.CreateService();
             try
             {
                 adapter.GetRates(_invalidContent);
@@ -70,7 +74,7 @@ namespace CurrencyRate.Tests
         [Fact]
         public void HasCorrectData()
         {
-            OpenExchangeRatesDataAdapter adapter = new OpenExchangeRatesDataAdapter(_configuration);
+            IServiceDataAdapter adapter = _creator.CreateService();
             Dictionary<string, double> rates = adapter.GetRates(_validContent);
             Assert.Equal(1, rates["RUB"]);
             Assert.Equal(64, (int)rates["USD"]);
