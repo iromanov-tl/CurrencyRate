@@ -1,5 +1,4 @@
 ﻿using CurrencyRate.Core.Models.Rate;
-using CurrencyRate.Core.Tools;
 using CurrencyRate.ServiceAdapters;
 using CurrencyRate.ServiceAdapters.Adapters;
 using Microsoft.Extensions.Configuration;
@@ -23,11 +22,9 @@ namespace CurrencyRate.Core.ServiceDataProvider
             _configuration = configuration;
         }
 
-        private List<Rate> GetServiceRates(ServiceName serviceName, DateTime date)
+        private IServiceDataAdapter GetAdapterFromName(ServiceName serviceName)
         {
-            List<Rate> rates = new List<Rate>();
             IServiceCreator creator;
-            IServiceDataAdapter service;
             switch(serviceName)
             {
                 case ServiceName.BankGovUa:
@@ -42,10 +39,15 @@ namespace CurrencyRate.Core.ServiceDataProvider
                 default:
                     throw new Exception("Can not find service:" + serviceName.ToString());
             }
-            service = creator.CreateService();
+            return creator.CreateService();
+        }
+
+        private List<Rate> GetServiceRates(ServiceName serviceName, DateTime date)
+        {
+            List<Rate> rates = new List<Rate>();
+            IServiceDataAdapter service = GetAdapterFromName(serviceName);
             try {
-                var connectionUrl = String.Format(service.GetRequestConnectionUrl(), date.ToString(service.GetRequestDateFormat()));
-                var content = HttpClient.GetDataFromUrl(connectionUrl);
+                string content = service.GetContent(date);
                 Dictionary<string, double> dictionary = service.GetRates(content);
                 foreach (var element in dictionary)
                 {
